@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 
 #include <stdio.h>
-#include "Framework.hpp"
+#include "Graphic/Framework.hpp"
 
 
 int beige[3] = {255, 183, 138}; //beige
@@ -51,7 +51,7 @@ void drawSquares(Framework fw)
 
 }
 
-int main(int argc, char** argv)
+int main(int, char**)
 {
 	Framework framework = Framework(800, 800);
 

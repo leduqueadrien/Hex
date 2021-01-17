@@ -4,24 +4,38 @@
 CXXFLAGS = -Wall -Wextra -MMD -g -O2
 LDFLAGS = -lSDL2
 
-SRC = $(wildcard src/*.cpp)
+SRCGraphic = $(wildcard src/Game/*.cpp) $(wildcard src/Graphic/*.cpp) src/MainHexGraph.cpp
+OBJGraphic = $(addprefix build/, $(SRCGraphic:.cpp=.o))
 
-OBJ = $(addprefix build/, $(SRC:.cpp=.o))
-DEP = $(addprefix build/, $(SRC:.cpp=.d))
+SRCConsole = $(wildcard src/Game/*.cpp) $(wildcard src/Console/*.cpp) src/MainHexCons.cpp
+OBJConsole = $(addprefix build/, $(SRCConsole:.cpp=.o))
+
+DEP = $(addprefix build/, $(SRCGraphic:.cpp=.d)) $(addprefix build/, $(SRCConsole:.cpp=.d)) $(src/MainHexGraph.cpp) $(src/MainHexCons.cpp)
 
 
 .PHONY: all
-all: main
-	@echo "1 executables disponibles"
+all: graphic console
+	@echo "2 executables disponibles"
 
-.PHONY: main
-main: bin/main
-	@echo "Executer avec ./bin/main"
+.PHONY: graphic
+graphic: bin/graphic
+	@echo "Executer avec ./bin/graphic"
 
-# edition des liens, executable main
-bin/main: $(OBJ)
+# edition des liens, executable graphic
+bin/graphic: $(OBJGraphic)
 	@mkdir -p $(@D) #creer le dossier bin, sil nexiste pas
 	$(CXX) -o $@ $^ $(LDFLAGS)
+
+
+.PHONY: console
+console: bin/console
+	@echo "Executer avec ./bin/console"
+
+# edition des liens, executable console
+bin/console: $(OBJConsole)
+	@mkdir -p $(@D) #creer le dossier bin, sil nexiste pas
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
 
 # genere les fichiers .o (dans build) a partir des fichiers .cpp (dans src) du meme nom
 # compilation
