@@ -27,7 +27,6 @@ class Point {
 		bool isCheck();
 
 		Point & operator=(Point const &);
-		std::iostream & operator<<(std::iostream &) const;
 };
 
 bool operator==(Point const &, Point const &);
