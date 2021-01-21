@@ -113,25 +113,29 @@ void drawHexagon2(SDL_Renderer * renderer, int x0, int y0, int radius)
 }
 
 // "hexagon horizontal"
-void fillHexagon(SDL_Renderer * renderer, int x0, int y0, int radius)
+void fillHexagon(SDL_Renderer * renderer, int xC, int yC, int radius)
 {
-	float x = x0 - radius / 2; float y = y0 - radius * sqrt(3) / 2;
-	int yF = y0 + radius * sqrt(3) / 2;
+	float x = xC - radius / 2; float y = yC - radius * sqrt(3) / 2;
+	int x0 = (int)x;
+	int yF = yC + radius * sqrt(3) / 2;
+
+	int rab = 0;
 
 	int halfWidth = sqrt(radius / 2);
 
 	while (y < yF) {
 
-
-		SDL_RenderDrawLine(renderer, (int)x, (int)y, (int)(x + radius), (int)y);
+		SDL_RenderDrawLine(renderer, (int)x, (int)y, (int)(x + radius + rab), (int)y);
 
 		// On descend chaque pixel
 		y++;
 		// premiere moitiee de la descente
-		if (y <= y0) {
-			x = x - 1;
+		if (y <= yC) {
+			x = x - 0.5;
+			rab += 1;
 		} else {
-			x = x + 1;
+			x = x + 0.5;
+			rab -= 1;
 		}
 
 	}
