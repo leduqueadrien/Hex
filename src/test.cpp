@@ -82,6 +82,7 @@ void drawCircles(SDL_Renderer * renderer)
 	}
 }
 
+// "hexagon horizontal"
 void drawHexagon(SDL_Renderer * renderer, int x0, int y0, int radius)
 {
 	SDL_Point hexagon[7];
@@ -96,17 +97,44 @@ void drawHexagon(SDL_Renderer * renderer, int x0, int y0, int radius)
 
 }
 
+// "hexagon vertival"
 void drawHexagon2(SDL_Renderer * renderer, int x0, int y0, int radius)
 {
 	SDL_Point hexagon[7];
 	hexagon[0].x = x0;                        hexagon[0].y = y0 - radius;
 	hexagon[1].x = x0 + radius * sqrt(3) / 2; hexagon[1].y = y0 - radius / 2;
-	hexagon[2].x = x0 + radius * sqrt(3) / 2; hexagon[2].y = x0 + radius / 2;;
+	hexagon[2].x = x0 + radius * sqrt(3) / 2; hexagon[2].y = x0 + radius / 2;
 	hexagon[3].x = x0;                        hexagon[3].y = y0 + radius;
 	hexagon[4].x = x0 - radius * sqrt(3) / 2; hexagon[4].y = y0 + radius / 2;
 	hexagon[5].x = x0 - radius * sqrt(3) / 2; hexagon[5].y = y0 - radius / 2;
 	hexagon[6].x = x0;                        hexagon[6].y = y0 - radius;
 	SDL_RenderDrawLines(renderer, hexagon, 7);
+
+}
+
+// "hexagon horizontal"
+void fillHexagon(SDL_Renderer * renderer, int x0, int y0, int radius)
+{
+	float x = x0 - radius / 2; float y = y0 - radius * sqrt(3) / 2;
+	int yF = y0 + radius * sqrt(3) / 2;
+
+	int halfWidth = sqrt(radius / 2);
+
+	while (y < yF) {
+
+
+		SDL_RenderDrawLine(renderer, (int)x, (int)y, (int)(x + radius), (int)y);
+
+		// On descend chaque pixel
+		y++;
+		// premiere moitiee de la descente
+		if (y <= y0) {
+			x = x - 1;
+		} else {
+			x = x + 1;
+		}
+
+	}
 
 }
 
@@ -138,6 +166,10 @@ int main(int, char**)
 
 				drawHexagon(renderer, 250, 255, 50);
 				drawHexagon2(renderer, 150, 155, 50);
+
+				SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+				fillHexagon(renderer, 250, 255, 50);
+				fillHexagon(renderer, 350, 355, 50);
 				// drawCircles(renderer);
 
 				SDL_RenderPresent(renderer);
