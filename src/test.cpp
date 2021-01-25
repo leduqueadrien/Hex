@@ -142,34 +142,103 @@ void fillHexagon(SDL_Renderer * renderer, int xC, int yC, int radius)
 
 }
 
+#include <vector>
+
+typedef struct point {
+	int x;
+	int y;
+} point_t;
+
+void determineHexaCenters(std::vector<point_t> hexaCenters, int nbHexa, int x0, int y0, int radius, int apothem) {
+	int x = x0;
+	int y = y0;
+
+	point_t center;
+
+	for (int line=0; line<nbHexa; line++) {
+		x = x0 + radius;
+		y = y0 + apothem + 2 * apothem * line;
+		for (int col=0; col<nbHexa; col++) {
+			center.x = x;
+			center.y = y;
+			hexaCenters.push_back(center);
+			x += radius + apothem / 2;
+			y += apothem;
+		}
+	}
+}
+
+
 int main(int, char**)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) == 0) {
 		SDL_Window* window = NULL;
 		SDL_Renderer* renderer = NULL;
 
-		if (SDL_CreateWindowAndRenderer(500, 500, 0, &window, &renderer) == 0) {
+		if (SDL_CreateWindowAndRenderer(800, 800, 0, &window, &renderer) == 0) {
 			SDL_bool done = SDL_FALSE;
 
-			/////
-			DrawCircle(250, 250, 280);
-			//////
+			SDL_Rect board;
+			board.x = 100;
+			board.y = 100;
+			board.w = 600;
+			board.h = 600;
+
+			int nbHexa = 6;
+			int hexaRadius = board.w / nbHexa / 2;
+
+			int hexaApothem = sqrt(hexaRadius * hexaRadius - (hexaRadius / 2) * (hexaRadius / 2)) + 1; // (+1)
+
+///
+			int x = board.x;
+			int y = board.y;
+
+			point_t hexaCenters[nbHexa][nbHexa];
+			for (int line=0; line<nbHexa; line++) {
+				x = board.x + hexaRadius;
+				y = board.y + hexaApothem + 2 * hexaApothem * line;
+				for (int col=0; col<nbHexa; col++) {
+					hexaCenters[line][col].x = x;
+					hexaCenters[line][col].y = y;
+					x += hexaRadius + hexaApothem / 2 + 1; // (+1)
+					y += hexaApothem + 1; // (+1)
+				}
+			}
+///
+			// std::vector<point_t> hexaCenters;
+			// determineHexaCenters(hexaCenters, nbHexa, board.x, board.y, hexaRadius, hexaApothem);
 
 			while (!done) {
 				SDL_Event event;
 
-				SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+				SDL_SetRenderDrawColor(renderer, 60, 60, 0, SDL_ALPHA_OPAQUE);
 				SDL_RenderClear(renderer);
 
 				SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-				// SDL_RenderDrawLines(renderer, points, POINTS_COUNT);
+				SDL_RenderDrawRect(renderer, &board);
 
-				/////
-				SDL_RenderDrawPoints(renderer, points2, cpt+1);
-				/////
+				for (int line=0; line<nbHexa; line++) {
+					for (int col=0; col<nbHexa; col++) {
+						drawHexagon(renderer, hexaCenters[line][col].x, hexaCenters[line][col].y, hexaRadius);
+						// drawHexagon(renderer, hexaCenters.at(line*nbHexa + col).x, hexaCenters.at(line*nbHexa + col).y, hexaRadius);
+					}
+				}
 
-				drawHexagon(renderer, 250, 255, 50);
-				drawHexagon2(renderer, 150, 155, 50);
+				// x = board.x + hexaRadius;
+				// y = board.y + hexaApothem + 1;
+
+				// for (int i=0; i<nbHexa; i++) {
+				// 	drawHexagon(renderer, x, y, hexaRadius);
+				// 	y += hexaApothem * 2;
+				// }
+
+				// x = board.x + hexaRadius;
+				// y = board.y + hexaApothem + 1;
+
+				// for (int i=0; i<nbHexa; i++) {
+				// 	drawHexagon(renderer, x, y, hexaRadius);
+				// 	x += hexaRadius * 2;
+				// }
 
 				SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
 				fillHexagon(renderer, 250, 255, 50);
@@ -196,3 +265,129 @@ int main(int, char**)
 	SDL_Quit();
 	return 0;
 }
+
+
+
+// int main(int, char**)
+// {
+// 	if (SDL_Init(SDL_INIT_VIDEO) == 0) {
+// 		SDL_Window* window = NULL;
+// 		SDL_Renderer* renderer = NULL;
+
+// 		if (SDL_CreateWindowAndRenderer(500, 500, 0, &window, &renderer) == 0) {
+// 			SDL_bool done = SDL_FALSE;
+
+// 			/////
+// 			DrawCircle(250, 250, 280);
+// 			//////
+
+// 			while (!done) {
+// 				SDL_Event event;
+
+// 				SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+// 				SDL_RenderClear(renderer);
+
+// 				SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+// 				// SDL_RenderDrawLines(renderer, points, POINTS_COUNT);
+
+// 				/////
+// 				SDL_RenderDrawPoints(renderer, points2, cpt+1);
+// 				/////
+
+// 				drawHexagon(renderer, 250, 255, 50);
+// 				drawHexagon(renderer, 330, 210, 50);
+// 				drawHexagon2(renderer, 150, 155, 50);
+
+// 				SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+// 				fillHexagon(renderer, 250, 255, 50);
+// 				fillHexagon(renderer, 350, 355, 50);
+// 				// drawCircles(renderer);
+
+// 				SDL_RenderPresent(renderer);
+
+// 				while (SDL_PollEvent(&event)) {
+// 					if (event.type == SDL_QUIT) {
+// 						done = SDL_TRUE;
+// 					}
+// 				}
+// 			}
+// 		}
+
+// 		if (renderer) {
+// 			SDL_DestroyRenderer(renderer);
+// 		}
+// 		if (window) {
+// 			SDL_DestroyWindow(window);
+// 		}
+// 	}
+// 	SDL_Quit();
+// 	return 0;
+// }
+
+
+
+//dans MainHexGraphic.cpp
+
+// #include <SDL2/SDL.h>
+
+// #include <stdio.h>
+// #include "Graphic/Framework.hpp"
+
+
+// int beige[3] = {255, 183, 138}; //beige
+// SDL_Rect rect;
+
+
+// void drawSquares(Framework fw)
+// {
+// 	bool running  = true;
+// 	SDL_Event      event;
+
+// 	while (running) {
+// 		while (SDL_PollEvent(&event)) {
+// 			switch (event.type)
+// 			{
+// 			case SDL_MOUSEBUTTONDOWN:
+// 				printf("Appui : %d %d\n", event.button.x, event.button.y);
+
+// 				// if(0 != SDL_RenderClear(g.renderer))
+// 				// {
+// 				// 	fprintf(stderr, "Erreur SDL_SetRenderDrawColor : %s", SDL_GetError());
+// 				// }
+
+// 				SDL_SetRenderDrawColor(fw.renderer, 0, 0, 0, 255);
+// 				SDL_RenderClear(fw.renderer);
+// 				SDL_SetRenderDrawColor(fw.renderer, beige[0], beige[1], beige[2], 255);
+// 				rect.x = event.button.x; rect.y = event.button.y;
+// 				rect.w = 20; rect.h = 20;
+// 				SDL_RenderFillRect(fw.renderer, &rect);
+// 				SDL_RenderPresent(fw.renderer);
+// 				SDL_RenderFillRect(fw.renderer, &rect);
+// 				SDL_RenderPresent(fw.renderer);
+
+// 				break;
+
+// 			case SDL_QUIT:
+// 				running = false;
+// 				SDL_RenderPresent(fw.renderer);
+// 				SDL_Delay(3000);
+// 				SDL_RenderPresent(fw.renderer);
+// 				SDL_Delay(3000);
+// 				SDL_RenderPresent(fw.renderer);
+// 				SDL_Delay(3000);
+// 				break;
+// 			}
+// 		}
+// 		SDL_Delay(1);
+// 	}
+
+// }
+
+// int main(int, char**)
+// {
+// 	Framework framework = Framework(800, 800);
+
+// 	drawSquares(framework);
+
+// 	return 0;
+// }
