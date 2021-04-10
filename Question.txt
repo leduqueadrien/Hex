@@ -1,0 +1,4 @@
+Fait on du public priver (encapsulation)
+Fait on une class joueur (abstrait)
+Faire une class Point ? Case ? pour un iterator.
+Iterator pour le plateau en plus des voisins ?
