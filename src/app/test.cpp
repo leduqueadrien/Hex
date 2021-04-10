@@ -2,7 +2,7 @@
 // Example program:
 // Using SDL_Point in some places of your code
 
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 #include <stdio.h>
 
 #define POINTS_COUNT 4
