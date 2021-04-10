@@ -2,6 +2,9 @@
 #include <SDL2/SDL.h>
 #include "Framework.hpp"
 
+// regarder les options de creation du renderer
+// et regarder les options de mix des pixels du renderer
+
 Framework::Framework(int height_, int width_):
 	height(height_), width(width_)
 {
