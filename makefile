@@ -13,9 +13,13 @@ OBJConsole = $(addprefix build/, $(SRCConsole:.cpp=.o))
 DEP = $(addprefix build/, $(SRCGraphic:.cpp=.d)) $(addprefix build/, $(SRCConsole:.cpp=.d)) $(src/MainHexGraph.cpp) $(src/MainHexCons.cpp)
 
 
+#------------------------------------------#
+
 .PHONY: all
 all: graphic console
 	@echo "2 executables disponibles"
+
+#------------------------------------------#
 
 .PHONY: graphic
 graphic: bin/graphic
@@ -26,6 +30,7 @@ bin/graphic: $(OBJGraphic)
 	@mkdir -p $(@D) #creer le dossier bin, sil nexiste pas
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
+#------------------------------------------#
 
 .PHONY: console
 console: bin/console
@@ -36,12 +41,25 @@ bin/console: $(OBJConsole)
 	@mkdir -p $(@D) #creer le dossier bin, sil nexiste pas
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
+#------------------------------------------#
 
 # genere les fichiers .o (dans build) a partir des fichiers .cpp (dans src) du meme nom
 # compilation
 build/%.o: %.cpp
 	@mkdir -p $(@D)  #creer le dossier build sil nexiste pas
 	$(CXX) -c $< $(CXXFLAGS) -o $@
+
+#------------------------------------------#
+
+SRCTest = src/test.cpp
+OBJTest = build/src/test.o
+.PHONY: test
+test: $(OBJTest)
+	@mkdir -p bin #creer le dossier bin, sil nexiste pas
+	$(CXX) -o bin/$@ $^ $(LDFLAGS)
+	@echo "test executable disponible"
+
+#------------------------------------------#
 
 .PHONY: clean
 clean:
