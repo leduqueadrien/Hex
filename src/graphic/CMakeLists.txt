@@ -12,7 +12,4 @@ add_library(graphic ${SOURCES} ${HEADERS})
 target_include_directories(graphic PUBLIC 
 	"${CMAKE_CURRENT_SOURCE_DIR}"
 	# #include <graphic/Framework.hpp>
-
-	"${CMAKE_CURRENT_SOURCE_DIR}/graphic"
-	# #include <Framework.hpp>
 )
