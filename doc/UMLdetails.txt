@@ -1,0 +1,7 @@
+Game :
+	Game() {
+		Creer le board
+	}
+	initGame() {
+		Init board
+	}
