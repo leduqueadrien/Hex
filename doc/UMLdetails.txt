@@ -1,7 +1,39 @@
+
+Main du jeu :
+	On instancie un GameUI
+	On instancie un Player =>
+		Human(GameUI)
+		IA(...)
+	On instancie un Player =>
+		Human(GameUI)
+		IA(...)
+	On instancie une Game
+
 Game :
 	Game() {
+		rempli les attributs
 		Creer le board
 	}
 	initGame() {
 		Init board
 	}
+
+	launchGame() {
+		Tant que pas finit
+			affiche le plateau
+			joueur joue (verifie le coup, rejoue jusqua coup valide)
+	}
+	isGameFinished() {
+		appel les methodes de parcours necessaires dans Board
+	}
+	isMoveValid(MoveMade) {}
+
+	
+
+Player :
+	Player() {}
+	makeMove() {
+		recupere la valeur de l'input du joueur
+		(via GameUI si cest un humain / via IA... en fct du type d'IA)
+	}
+
