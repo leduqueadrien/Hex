@@ -26,14 +26,73 @@ Game :
 	isGameFinished() {
 		appel les methodes de parcours necessaires dans Board
 	}
-	isMoveValid(MoveMade) {}
+
 
 	
 
 Player :
-	Player() {}
+	Player(Color ) {}
 	makeMove() {
 		recupere la valeur de l'input du joueur
 		(via GameUI si cest un humain / via IA... en fct du type d'IA)
 	}
+
+
+Board :
+	Board(int) {
+		creer le plateau de jeu
+	}
+	initBoard() {
+		initialise le board en mettant tous les attributs des Tiles a 0
+	}
+	getTile(int, int) {
+		renvoie la Tile de cordonnées données en parametre
+	}
+	isMoveValid(Move) {
+		renvoie si oui ou non le move est valide
+	}
+	addMoveToBoard(Move) {
+		ajoute le move au board
+	}
+	resetCheckup() {
+		reset l'attribut isChecked de toutes les Tiles (set a faux)
+	}
+
+Tile :
+	Tile(int, int)
+	Tile(int, int, Color, bool) {
+		Creer une Tile
+	}
+	setIndexes(int, int) {
+		set X et Y
+	}
+	operator=
+	operator==
+	operator!=
+
+IterBoard :
+	IterBoard(Board)
+	begin() {
+		renvoie la premiere Tile du plateau
+	}
+	end() {
+		renvoie la dernière Tile du plateau
+	}
+	getCurrentTile() {
+		renvoie un pointeur sur la Tile courante
+	}
+	operator++
+	operator--
+
+IterNeighbour :
+	IterNeighbour(int, int, board)
+	begin() {
+		renvoie le premier neighbour de la Tile
+	}
+	end() {
+		renvoie le dernier neighbour de la Tile
+	}
+	operator++
+	operator--
+
 
