@@ -1,6 +1,4 @@
 
-#include <gameUI/GameUI.hpp>
-
 class Game
 {
 private:
@@ -8,7 +6,7 @@ private:
 	// Board
 	// Player1
 	// Player2
-	GameUI gameUI;
+	// GameUI gameUI;
 
 public:
 	Game(int boardSize);
