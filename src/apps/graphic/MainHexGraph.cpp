@@ -1,7 +1,7 @@
-#include <SDL2/SDL.h>
 
 #include <stdio.h>
-#include <graphic/Framework.hpp>
+#include <SDL2/SDL.h>
+#include <framework/Framework.hpp>
 
 
 int beige[3] = {255, 183, 138}; //beige

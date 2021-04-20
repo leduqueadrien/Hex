@@ -1,14 +1,22 @@
 
-set(HEX_GAME_LIB_NAME "hexGameLib")
+set(HEX_GAME_LIB_NAME "HexGameLib")
 
 
 
 set(SOURCES
-	game/Game.cpp
+	hexGame/Board.cpp
+	hexGame/Game.cpp
+	hexGame/Point.cpp
 )
 
 set(HEADERS
-	game/Game.hpp
+	hexGame/Board.cpp
+	hexGame/Color.hpp
+	hexGame/Game.hpp
+	hexGame/GameUI.hpp
+	hexGame/Point.cpp
+	hexGame/Vecteur.hpp
+
 )
 
 

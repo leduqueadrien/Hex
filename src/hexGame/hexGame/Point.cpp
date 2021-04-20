@@ -52,9 +52,9 @@ Point & Point::operator=(Point const & p) {
 
 
 bool operator==(Point const & p1, Point const & p2) {
-	return P1.getX() == p2.getY();
+	return p1.getX() == p2.getY();
 }
 
 bool operator !=(Point const & p1, Point const & p2) {
-	return P1.getX() != p2.getY();
+	return p1.getX() != p2.getY();
 }

@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <string>
-#include <game/Game.hpp>
+#include <hexGame/Game.hpp>
 
 void printBoard() {
 	int boardSize = 11;
