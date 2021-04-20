@@ -1,4 +1,9 @@
 
+
+###############################################################################
+#################################### SETUP ####################################
+###############################################################################
+
 set(SOURCES
 	framework/Framework.cpp
 )
@@ -7,42 +12,63 @@ set(HEADERS
 	framework/Framework.hpp
 )
 
-add_library(graphic ${SOURCES} ${HEADERS})
+###############################################################################
+#################################### MAIN #####################################
+############################ IMPLEMENTATION/BUILD #############################
+###############################################################################
 
-target_include_directories(graphic PUBLIC 
-	"${CMAKE_CURRENT_SOURCE_DIR}"
-	# #include <framework/Framework.hpp>
+set(GRAPH_APP mainGraph)
+
+add_executable(${GRAPH_APP}
+	${SOURCES}
+	MainHexGraph.cpp
+	${HEADERS}
 )
 
+target_link_libraries(${GRAPH_APP} PUBLIC
+	HexGameLib
+	${SDL2_LIBRARIES}
+)
+
+message("SDL2_INCLUDE_DIRS : ${SDL2_INCLUDE_DIRS}")
+
+target_include_directories(${GRAPH_APP} PUBLIC
+	"${CMAKE_CURRENT_SOURCE_DIR}" # #include <framework/Framework.hpp>
+	${SDL2_INCLUDE_DIRS} # #include <SDL2/SDL.h>
+)
+
+###############################################################################
+#################################### MAIN #####################################
+############################## INSTALL/PACKAGING ##############################
+###############################################################################
+
+install(TARGETS ${GRAPH_APP} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 
 
-# Main de tests
+
+
+###############################################################################
+#################################### TEST #####################################
+############################ IMPLEMENTATION/BUILD #############################
+###############################################################################
+
 if (STUFF_TESTING)
 
 	set(TEST_APP test)
 
 	add_executable(${TEST_APP} test.cpp)
 
-	include_directories(${TEST_APP} ${SDL2_INCLUDE_DIRS})
+	target_include_directories(${TEST_APP} PUBLIC
+		${SDL2_INCLUDE_DIRS}
+	)
 	target_link_libraries(${TEST_APP} ${SDL2_LIBRARIES})
+
+
+###############################################################################
+#################################### TEST #####################################
+############################## INSTALL/PACKAGING ##############################
+###############################################################################
 
 	install(TARGETS ${TEST_APP} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 
 endif()
-
-
-# Main Jeu Graphique
-set(GRAPH_APP mainGraph)
-
-add_executable(${GRAPH_APP} MainHexGraph.cpp)
-
-target_link_libraries(${GRAPH_APP} PUBLIC
-	graphic
-	${SDL2_LIBRARIES}
-)
-
-include_directories(${GRAPH_APP} ${SDL2_INCLUDE_DIRS})
-
-install(TARGETS ${GRAPH_APP} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
-
-
