@@ -2,7 +2,7 @@
 // Example program:
 // Using SDL_Point in some places of your code
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <stdio.h>
 
 #define POINTS_COUNT 4
@@ -18,8 +18,7 @@ static SDL_Point points2[5000];
 
 static int cpt = 0;
 
-void putpixel(int x0, int y0, int i) {
-	(void)i;
+void putpixel(int x0, int y0, int) {
 	points2[cpt].x = x0;
 	points2[cpt].y = y0;
 	cpt++;
@@ -86,13 +85,13 @@ void drawCircles(SDL_Renderer * renderer)
 void drawHexagon(SDL_Renderer * renderer, int x0, int y0, int radius)
 {
 	SDL_Point hexagon[7];
-	hexagon[0].x = x0 - radius;     hexagon[0].y = y0;
-	hexagon[1].x = x0 - radius / 2; hexagon[1].y = y0 - radius * sqrt(3) / 2;
-	hexagon[2].x = x0 + radius / 2; hexagon[2].y = y0 - radius * sqrt(3) / 2;
-	hexagon[3].x = x0 + radius;     hexagon[3].y = y0;
-	hexagon[4].x = x0 + radius / 2; hexagon[4].y = y0 + radius * sqrt(3) / 2;
-	hexagon[5].x = x0 - radius / 2; hexagon[5].y = y0 + radius * sqrt(3) / 2;
-	hexagon[6].x = x0 - radius;     hexagon[6].y = y0;
+	hexagon[0].x = (int)(x0 - radius);     hexagon[0].y = (int)(y0);
+	hexagon[1].x = (int)(x0 - radius / 2); hexagon[1].y = (int)(y0 - radius * sqrt(3) / 2);
+	hexagon[2].x = (int)(x0 + radius / 2); hexagon[2].y = (int)(y0 - radius * sqrt(3) / 2);
+	hexagon[3].x = (int)(x0 + radius);     hexagon[3].y = (int)(y0);
+	hexagon[4].x = (int)(x0 + radius / 2); hexagon[4].y = (int)(y0 + radius * sqrt(3) / 2);
+	hexagon[5].x = (int)(x0 - radius / 2); hexagon[5].y = (int)(y0 + radius * sqrt(3) / 2);
+	hexagon[6].x = (int)(x0 - radius);     hexagon[6].y = (int)(y0);
 	SDL_RenderDrawLines(renderer, hexagon, 7);
 
 }
@@ -101,13 +100,13 @@ void drawHexagon(SDL_Renderer * renderer, int x0, int y0, int radius)
 void drawHexagon2(SDL_Renderer * renderer, int x0, int y0, int radius)
 {
 	SDL_Point hexagon[7];
-	hexagon[0].x = x0;                        hexagon[0].y = y0 - radius;
-	hexagon[1].x = x0 + radius * sqrt(3) / 2; hexagon[1].y = y0 - radius / 2;
-	hexagon[2].x = x0 + radius * sqrt(3) / 2; hexagon[2].y = x0 + radius / 2;
-	hexagon[3].x = x0;                        hexagon[3].y = y0 + radius;
-	hexagon[4].x = x0 - radius * sqrt(3) / 2; hexagon[4].y = y0 + radius / 2;
-	hexagon[5].x = x0 - radius * sqrt(3) / 2; hexagon[5].y = y0 - radius / 2;
-	hexagon[6].x = x0;                        hexagon[6].y = y0 - radius;
+	hexagon[0].x = (int)(x0);                        hexagon[0].y = (int)(y0 - radius);
+	hexagon[1].x = (int)(x0 + radius * sqrt(3) / 2); hexagon[1].y = (int)(y0 - radius / 2);
+	hexagon[2].x = (int)(x0 + radius * sqrt(3) / 2); hexagon[2].y = (int)(x0 + radius / 2);
+	hexagon[3].x = (int)(x0);                        hexagon[3].y = (int)(y0 + radius);
+	hexagon[4].x = (int)(x0 - radius * sqrt(3) / 2); hexagon[4].y = (int)(y0 + radius / 2);
+	hexagon[5].x = (int)(x0 - radius * sqrt(3) / 2); hexagon[5].y = (int)(y0 - radius / 2);
+	hexagon[6].x = (int)(x0);                        hexagon[6].y = (int)(y0 - radius);
 	SDL_RenderDrawLines(renderer, hexagon, 7);
 
 }
@@ -115,13 +114,13 @@ void drawHexagon2(SDL_Renderer * renderer, int x0, int y0, int radius)
 // "hexagon horizontal"
 void fillHexagon(SDL_Renderer * renderer, int xC, int yC, int radius)
 {
-	float x = xC - radius / 2; float y = yC - radius * sqrt(3) / 2;
+	float x = (float)(xC - radius / 2); float y = (float)(yC - radius * sqrt(3) / 2);
 	int x0 = (int)x;
-	int yF = yC + radius * sqrt(3) / 2;
+	int yF = (int)(yC + radius * sqrt(3) / 2);
 
 	int rab = 0;
 
-	int halfWidth = sqrt(radius / 2);
+	int halfWidth = (int)(sqrt(radius / 2));
 
 	while (y < yF) {
 
@@ -172,7 +171,7 @@ void determineHexaCenters(std::vector<point_t> hexaCenters, int nbHexa, int x0, 
 int main(int, char**)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) == 0) {
-		SDL_Window* window = NULL;
+		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = NULL;
 
 		if (SDL_CreateWindowAndRenderer(800, 800, 0, &window, &renderer) == 0) {
@@ -184,20 +183,20 @@ int main(int, char**)
 			board.w = 600;
 			board.h = 600;
 
-			int nbHexa = 6;
+			int const nbHexa = 6;
 			int hexaRadius = board.w / nbHexa / 2;
 
-			int hexaApothem = sqrt(hexaRadius * hexaRadius - (hexaRadius / 2) * (hexaRadius / 2)) + 1; // (+1)
+			int hexaApothem = static_cast<int>(sqrt(hexaRadius * hexaRadius - (hexaRadius / 2) * (hexaRadius / 2)) + 1); // (+1)
 
 ///
 			int x = board.x;
 			int y = board.y;
 
 			point_t hexaCenters[nbHexa][nbHexa];
-			for (int line=0; line<nbHexa; line++) {
+			for (int line=0; line<nbHexa; ++line) {
 				x = board.x + hexaRadius;
 				y = board.y + hexaApothem + 2 * hexaApothem * line;
-				for (int col=0; col<nbHexa; col++) {
+				for (int col=0; col<nbHexa; ++col) {
 					hexaCenters[line][col].x = x;
 					hexaCenters[line][col].y = y;
 					x += hexaRadius + hexaApothem / 2 + 1; // (+1)

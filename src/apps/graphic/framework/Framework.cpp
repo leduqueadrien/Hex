@@ -1,5 +1,6 @@
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
+#include <iostream>
 #include "Framework.hpp"
 
 // regarder les options de creation du renderer

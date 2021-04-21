@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <framework/Framework.hpp>
 
 
@@ -13,6 +13,7 @@ void drawSquares(Framework fw)
 	bool running  = true;
 	SDL_Event      event;
 
+	int mouse_x, mouse_y;
 	while (running) {
 		while (SDL_PollEvent(&event)) {
 			switch (event.type)
@@ -26,7 +27,7 @@ void drawSquares(Framework fw)
 				// }
 
 				SDL_SetRenderDrawColor(fw.renderer, 0, 0, 0, 255);
-				SDL_RenderClear(fw.renderer);
+				// SDL_RenderClear(fw.renderer);
 				SDL_SetRenderDrawColor(fw.renderer, beige[0], beige[1], beige[2], 255);
 				rect.x = event.button.x; rect.y = event.button.y;
 				rect.w = 20; rect.h = 20;
@@ -45,6 +46,16 @@ void drawSquares(Framework fw)
 				// SDL_Delay(3000);
 				break;
 			}
+
+			SDL_GetMouseState(&mouse_x, &mouse_y);
+
+			SDL_SetRenderDrawColor(fw.renderer, 255, 0, 0, 255);
+			rect.x = mouse_x; rect.y = mouse_y;
+			rect.w = 10; rect.h = 10;
+			SDL_RenderFillRect(fw.renderer, &rect);
+
+			SDL_RenderPresent(fw.renderer);
+
 		}
 		SDL_Delay(1);
 	}
