@@ -1,0 +1,5 @@
+@PACKAGE_INIT@
+
+include(${CMAKE_CURRENT_LIST_DIR}/@HEX_GAME_TARGET_NAME@.cmake)
+
+check_required_components("@HEX_GAME_LIB_NAME@")

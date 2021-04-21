@@ -1,4 +1,8 @@
 
-add_subdirectory(console)
+if(BUILD_MAIN_CONSOLE)
+    add_subdirectory(console)
+endif()
 
-add_subdirectory(graphic)
+if(BUILD_MAIN_GRAPHIC)
+    add_subdirectory(graphic)
+endif()
