@@ -5,19 +5,32 @@
 
 set(CONS_APP mainCons)
 
+set(SOURCES
+    MainHexCons.cpp
+    ConsoleUI.cpp
+)
+
+set(HEADERS
+    ConsoleUI.hpp
+)
+
+
 ###############################################################################
 #################################### MAIN #####################################
 ############################ IMPLEMENTATION/BUILD #############################
 ###############################################################################
 
 
-add_executable(${CONS_APP} MainHexCons.cpp)
+add_executable(${CONS_APP} ${SOURCES} ${HEADERS})
 
 target_link_libraries(${CONS_APP} PUBLIC
 	HexGameLib
     #ncurses ?
 )
 
+target_include_directories(${CONS_APP} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 ###############################################################################
 #################################### MAIN #####################################

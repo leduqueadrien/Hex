@@ -13,7 +13,7 @@ ConsoleUI::~ConsoleUI()
 }
 
 
-void ConsoleUI::displayBoard()
+void ConsoleUI::displayBoard(Board* board)
 {
 	int boardSize = 11;
 	std::string space = "";

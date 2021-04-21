@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Board.hpp"
+#include "GameUI.hpp"
 #include "HexGameLib_export.hpp"
 
 // Without HEXGAMELIB_EXPORT, we get : error LNK2019 or : fatal error LNK1104
@@ -11,14 +12,14 @@ class Game
 {
 private:
 	int boardSize;
-	Board * board;
+	Board * board = nullptr;
 	// Player1
 	// Player2
-	// GameUI gameUI;
+	GameUI * gameUI = nullptr;
 
 public:
-	HEXGAMELIB_EXPORT Game(int boardSize);
+	HEXGAMELIB_EXPORT Game(GameUI* gameUI, int boardSize = 11);
 	HEXGAMELIB_EXPORT ~Game();
 
-	HEXGAMELIB_EXPORT void printBoard();
+	HEXGAMELIB_EXPORT void displayBoard();
 };
