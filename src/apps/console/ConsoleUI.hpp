@@ -1,7 +1,6 @@
 
 #include "hexGame/GameUI.hpp"
 #include "hexGame/Board.hpp"
-#include "HexGameLib_export.hpp"
 
 class ConsoleUI : public GameUI
 {
