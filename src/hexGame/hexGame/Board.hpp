@@ -10,8 +10,8 @@
 class Board final
 {
 private:
-	int size;
-	std::vector<std::vector<Tile*>> board;
+	int m_size;
+	std::vector<std::vector<Tile*>> m_board;
 
 public:
 	HEXGAMELIB_EXPORT Board(int size);

@@ -4,7 +4,7 @@
 
 Human::Human(Color color, GameUI* gameUI):
     Player::Player(color),
-    gameUI(gameUI)
+    m_gameUI(gameUI)
 {
 }
 
@@ -16,7 +16,7 @@ Human::~Human()
 
 Move Human::makeMove()
 {
-    Move move(color);
-    gameUI->getPlayerMove(move);
+    Move move(m_color);
+    m_gameUI->getPlayerMove(move);
     return move;
 }

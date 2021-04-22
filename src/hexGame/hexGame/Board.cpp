@@ -3,11 +3,11 @@
 
 
 Board::Board(int size):
-    size(size)
+    m_size(size)
 {
-    for (int i=0; i<size; ++i) {
-        for (int j=0; j<size; ++j) {
-            board.at(i).push_back(new Tile(i, j));
+    for (int i=0; i<m_size; ++i) {
+        for (int j=0; j<m_size; ++j) {
+            m_board.at(i).push_back(new Tile(i, j));
         }
     }
 }
@@ -20,10 +20,10 @@ Board::~Board()
 
 void Board::initBoard()
 {
-    for (int i=0; i<size; ++i) {
-        for (int j=0; j<size; ++j) {
-            board.at(i).at(j)->setColor(Color::Undefined);
-            board.at(i).at(j)->setIsChecked(false);
+    for (int i=0; i<m_size; ++i) {
+        for (int j=0; j<m_size; ++j) {
+            m_board.at(i).at(j)->setColor(Color::Undefined);
+            m_board.at(i).at(j)->setIsChecked(false);
         }
     }
 }
@@ -31,21 +31,21 @@ void Board::initBoard()
 
 void Board::addMoveToBoard(Move move)
 {
-    board.at(move.i).at(move.j)->setColor(move.color);
+    m_board.at(move.i).at(move.j)->setColor(move.color);
 }
 
 
 bool Board::isMoveValid(Move move) const
 {
-    return board.at(move.i).at(move.j)->getColor() == Color::Undefined;
+    return m_board.at(move.i).at(move.j)->getColor() == Color::Undefined;
 }
 
 
 void Board::resetCheckup()
 {
-    for (int i=0; i<size; ++i) {
-        for (int j=0; j<size; ++j) {
-            board.at(i).at(j)->setIsChecked(false);
+    for (int i=0; i<m_size; ++i) {
+        for (int j=0; j<m_size; ++j) {
+            m_board.at(i).at(j)->setIsChecked(false);
         }
     }
 }
@@ -53,14 +53,14 @@ void Board::resetCheckup()
 
 Tile* Board::getTile(int i, int j) const
 {
-    return board.at(i).at(j);
+    return m_board.at(i).at(j);
 }
 
 
 Board& Board::operator=(const Board& board)
 {
 	if (this != &board) {
-		if (board.size == size) {
+		if (board.m_size == m_size) {
             //copy board.board in this.board
         }
 	}

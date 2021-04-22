@@ -6,14 +6,14 @@
 class Tile final
 {
 private:
-    int i;
-    int j;
-    Color color;
-    bool isChecked;
+    int m_i;
+    int m_j;
+    Color m_color;
+    bool m_isChecked;
 
 public:
     HEXGAMELIB_EXPORT Tile(int i, int j);
-    HEXGAMELIB_EXPORT Tile(int i, int y, Color color, bool isChecked);
+    HEXGAMELIB_EXPORT Tile(int i, int j, Color color, bool isChecked);
     HEXGAMELIB_EXPORT ~Tile()=default;
 
     // Getters - Setters
@@ -29,5 +29,5 @@ public:
     HEXGAMELIB_EXPORT Tile& operator=(const Tile& tile);
 };
 
-HEXGAMELIB_EXPORT bool operator==(const Tile&Tile1, const Tile&Tile2);
-HEXGAMELIB_EXPORT bool operator!=(const Tile&Tile1, const Tile&Tile2);
+HEXGAMELIB_EXPORT bool operator==(const Tile& tile1, const Tile& tile2);
+HEXGAMELIB_EXPORT bool operator!=(const Tile& tile1, const Tile& tile2);

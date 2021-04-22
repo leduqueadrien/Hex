@@ -4,10 +4,10 @@
 #include "Game.hpp"
 
 Game::Game(GameUI* gameUI, Player* player1, Player* player2, int boardSize):
-	gameUI(gameUI),
-	player1(player1),
-	player2(player2),
-	boardSize(boardSize)
+	m_gameUI(gameUI),
+	m_player1(player1),
+	m_player2(player2),
+	m_boardSize(boardSize)
 {
 
 }
@@ -39,5 +39,5 @@ bool Game::isGameFinished() const
 
 void Game::displayBoard() const
 {
-	gameUI->displayBoard(board);
+	m_gameUI->displayBoard(m_board);
 }

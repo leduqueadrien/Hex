@@ -2,33 +2,33 @@
 #include "Tile.hpp"
 #include "gameUtils.hpp"
 
-Tile::Tile(int i, int y):
-    i(i),
-    j(j),
-    color(Undefined),
-    isChecked(false)
+Tile::Tile(int i, int j):
+    m_i(i),
+    m_j(j),
+    m_color(Undefined),
+    m_isChecked(false)
 {
 }
 
 
-Tile::Tile(int i, int y, Color color, bool isChecked):
-    i(i),
-    j(j),
-    color(color),
-    isChecked(isChecked)
+Tile::Tile(int i, int j, Color color, bool isChecked):
+    m_i(i),
+    m_j(j),
+    m_color(color),
+    m_isChecked(isChecked)
 {
 }
 
 
 int Tile::getI() const
 {
-    return i;
+    return m_i;
 }
 
 
 int Tile::getJ() const
 {
-    return j;
+    return m_j;
 }
 
 
@@ -40,7 +40,7 @@ void Tile::setIndexes(int i, int j)
 
 Color Tile::getColor() const
 {
-    return color;
+    return m_color;
 }
 
 
@@ -52,7 +52,7 @@ void Tile::setColor(Color color)
 
 bool Tile::getIsChecked() const
 {
-    return isChecked;
+    return m_isChecked;
 }
 
 
@@ -66,10 +66,10 @@ void Tile::setIsChecked(bool isChecked)
 Tile& Tile::operator=(const Tile& tile)
 {
 	if (this != &tile) {
-		i = tile.i;
-		j = tile.j;
-		color = tile.color;
-		isChecked = tile.isChecked;
+		m_i = tile.m_i;
+		m_j = tile.m_j;
+		m_color = tile.m_color;
+		m_isChecked = tile.m_isChecked;
 	}
 	return *this;
 }

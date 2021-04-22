@@ -12,13 +12,13 @@
 class Game final
 {
 private:
-	int boardSize;
-	Board* board = nullptr;
-	GameUI* gameUI = nullptr;
-	Player* player1 = nullptr;
-	Player* player2 = nullptr;
+	int m_boardSize;
+	Board* m_board = nullptr;
+	GameUI* m_gameUI = nullptr;
+	Player* m_player1 = nullptr;
+	Player* m_player2 = nullptr;
 
-	Player* turn = nullptr;
+	Player* m_turn = nullptr;
 
 public:
 	HEXGAMELIB_EXPORT Game(GameUI* gameUI, Player* player1, Player* player2, int boardSize = 11);

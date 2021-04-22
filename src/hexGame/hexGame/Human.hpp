@@ -8,7 +8,7 @@ class Human final : public Player
 {
 
 private:
-    GameUI* gameUI;
+    GameUI* m_gameUI;
 
 public:
 	HEXGAMELIB_EXPORT Human(Color color, GameUI* gameUI);
