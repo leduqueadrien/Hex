@@ -28,8 +28,6 @@ set(HEADERS
 	hexGame/GameUI.hpp
 	hexGame/gameUtils.hpp
 	hexGame/Tile.hpp
-	hexGame/Vecteur.hpp
-
 )
 
 add_library(${HEX_GAME_LIB_NAME} ${SOURCES} ${HEADERS})
