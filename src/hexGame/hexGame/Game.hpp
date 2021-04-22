@@ -3,6 +3,7 @@
 
 #include "Board.hpp"
 #include "GameUI.hpp"
+#include "Player.hpp"
 #include "HexGameLib_export.hpp"
 
 // Without HEXGAMELIB_EXPORT, we get : error LNK2019 or : fatal error LNK1104
@@ -12,14 +13,20 @@ class Game final
 {
 private:
 	int boardSize;
-	Board * board = nullptr;
-	// Player1
-	// Player2
-	GameUI * gameUI = nullptr;
+	Board* board = nullptr;
+	GameUI* gameUI = nullptr;
+	Player* player1 = nullptr;
+	Player* player2 = nullptr;
+
+	Player* turn = nullptr;
 
 public:
-	HEXGAMELIB_EXPORT Game(GameUI* gameUI, int boardSize = 11);
+	HEXGAMELIB_EXPORT Game(GameUI* gameUI, Player* player1, Player* player2, int boardSize = 11);
 	HEXGAMELIB_EXPORT ~Game();
 
-	HEXGAMELIB_EXPORT void displayBoard();
+	HEXGAMELIB_EXPORT void displayBoard() const;
+
+	HEXGAMELIB_EXPORT void initGame();
+	HEXGAMELIB_EXPORT void launchGame();
+	HEXGAMELIB_EXPORT bool isGameFinished() const;
 };
