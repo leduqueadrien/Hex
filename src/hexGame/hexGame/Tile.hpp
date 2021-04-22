@@ -14,16 +14,16 @@ private:
 public:
     HEXGAMELIB_EXPORT Tile(int i, int j);
     HEXGAMELIB_EXPORT Tile(int i, int y, Color color, bool isChecked);
-    HEXGAMELIB_EXPORT ~Tile();
+    HEXGAMELIB_EXPORT ~Tile()=default;
 
     // Getters - Setters
-    HEXGAMELIB_EXPORT int getI() {return i;}
-    HEXGAMELIB_EXPORT int getJ() {return j;}
-    HEXGAMELIB_EXPORT void setIndexes(int i, int j) {i = i; j = j;}
-    HEXGAMELIB_EXPORT Color getColor() {return color;}
-    HEXGAMELIB_EXPORT void setColor(Color color) {color = color;}
-    HEXGAMELIB_EXPORT bool getIsChecked() {return isChecked;}
-    HEXGAMELIB_EXPORT void setIsChecked(bool isChecked) {isChecked = isChecked;}
+    HEXGAMELIB_EXPORT int getI() const;
+    HEXGAMELIB_EXPORT int getJ() const;
+    HEXGAMELIB_EXPORT void setIndexes(int i, int j);
+    HEXGAMELIB_EXPORT Color getColor() const;
+    HEXGAMELIB_EXPORT void setColor(Color color);
+    HEXGAMELIB_EXPORT bool getIsChecked() const;
+    HEXGAMELIB_EXPORT void setIsChecked(bool isChecked);
 
     // Operators
     HEXGAMELIB_EXPORT Tile& operator=(const Tile&);

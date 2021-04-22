@@ -19,16 +19,14 @@ set(HEX_GAME_TARGET_NAME "${HEX_GAME_LIB_NAME}Targets")
 set(SOURCES
 	hexGame/Board.cpp
 	hexGame/Game.cpp
-	hexGame/Point.cpp
 	hexGame/Tile.cpp
 )
 
 set(HEADERS
-	hexGame/Board.cpp
-	hexGame/Color.hpp
+	hexGame/Board.hpp
 	hexGame/Game.hpp
 	hexGame/GameUI.hpp
-	hexGame/Point.cpp
+	hexGame/gameUtils.hpp
 	hexGame/Tile.hpp
 	hexGame/Vecteur.hpp
 
