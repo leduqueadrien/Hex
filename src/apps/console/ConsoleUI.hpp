@@ -12,6 +12,6 @@ public:
 	~ConsoleUI();
 
 	void displayBoard(Board* board);
-	void getMove();
+	void getPlayerMove(Move& move);
 
 };

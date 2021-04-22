@@ -7,12 +7,12 @@
 
 class Player
 {
-private:
+protected:
     Color color;
 
 public:
 	HEXGAMELIB_EXPORT Player(Color color): color(color) {};
 	HEXGAMELIB_EXPORT virtual ~Player() = default;
 
-	HEXGAMELIB_EXPORT virtual void makeMove() = 0;
+	HEXGAMELIB_EXPORT virtual Move makeMove() = 0;
 };

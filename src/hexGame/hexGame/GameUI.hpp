@@ -13,12 +13,11 @@
 class GameUI
 {
 private:
-	/* data */
+
 public:
 	HEXGAMELIB_EXPORT GameUI() = default;
 	HEXGAMELIB_EXPORT virtual ~GameUI() = default;
 
 	HEXGAMELIB_EXPORT virtual void displayBoard(Board*) = 0;
-	HEXGAMELIB_EXPORT virtual void getMove() = 0;
-	//
+	HEXGAMELIB_EXPORT virtual void getPlayerMove(Move& move) = 0;
 };

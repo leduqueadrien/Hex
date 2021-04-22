@@ -37,11 +37,7 @@ void Board::addMoveToBoard(Move move)
 
 bool Board::isMoveValid(Move move)
 {
-    bool isValid = false;
-    if (board.at(move.i).at(move.j)->getColor() == Undefined) {
-        isValid = true;
-    }
-    return isValid;
+    return board.at(move.i).at(move.j)->getColor() == Color::Undefined;
 }
 
 

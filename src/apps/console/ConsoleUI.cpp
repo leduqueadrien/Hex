@@ -33,6 +33,7 @@ void ConsoleUI::displayBoard(Board* board)
 }
 
 
-void ConsoleUI::getMove()
+void ConsoleUI::getPlayerMove(Move& move)
 {
+	//std::cin ... 
 }

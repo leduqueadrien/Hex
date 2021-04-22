@@ -18,12 +18,14 @@ set(HEX_GAME_TARGET_NAME "${HEX_GAME_LIB_NAME}Targets")
 
 set(SOURCES
 	hexGame/Board.cpp
+	hexGame/Human.cpp
 	hexGame/Game.cpp
 	hexGame/Tile.cpp
 )
 
 set(HEADERS
 	hexGame/Board.hpp
+	hexGame/Human.hpp
 	hexGame/Game.hpp
 	hexGame/GameUI.hpp
 	hexGame/gameUtils.hpp
