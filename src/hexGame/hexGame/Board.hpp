@@ -18,12 +18,13 @@ public:
 	HEXGAMELIB_EXPORT ~Board();
 
 	HEXGAMELIB_EXPORT void initBoard();
-	HEXGAMELIB_EXPORT void resetCheckup();
-	HEXGAMELIB_EXPORT Tile* getTile(int, int);
 	HEXGAMELIB_EXPORT void addMoveToBoard(Move);
 	HEXGAMELIB_EXPORT bool isMoveValid(Move);
+	HEXGAMELIB_EXPORT void resetCheckup();
+
+	// Getters - Setters
+	HEXGAMELIB_EXPORT Tile* getTile(int, int);
 
 	// Operators
-
 	HEXGAMELIB_EXPORT Board& operator=(const Board&);
 };
