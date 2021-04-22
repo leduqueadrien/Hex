@@ -20,6 +20,7 @@ set(SOURCES
 	hexGame/Board.cpp
 	hexGame/Game.cpp
 	hexGame/Point.cpp
+	hexGame/Tile.cpp
 )
 
 set(HEADERS
@@ -28,6 +29,7 @@ set(HEADERS
 	hexGame/Game.hpp
 	hexGame/GameUI.hpp
 	hexGame/Point.cpp
+	hexGame/Tile.hpp
 	hexGame/Vecteur.hpp
 
 )
