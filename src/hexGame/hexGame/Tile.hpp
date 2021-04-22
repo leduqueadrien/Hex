@@ -1,7 +1,7 @@
 
 #include "HexGameLib_export.hpp"
 
-#include "Color.hpp"
+#include "gameUtils.hpp"
 
 class Tile
 {

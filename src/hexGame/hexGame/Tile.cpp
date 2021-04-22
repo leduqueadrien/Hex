@@ -1,6 +1,6 @@
 
 #include "Tile.hpp"
-#include "Color.hpp"
+#include "gameUtils.hpp"
 
 Tile::Tile(int i, int y):
     i(i),
