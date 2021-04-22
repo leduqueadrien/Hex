@@ -55,11 +55,18 @@ void Board::resetCheckup()
 }
 
 
-Tile* Board::getTile(int, int)
+Tile* Board::getTile(int i, int j)
 {
+    return board.at(i).at(j);
 }
 
 
-Board& Board::operator=(const Board&)
+Board& Board::operator=(const Board& board)
 {
+	if (this != &board) {
+		if (board.size == size) {
+            //copy board.board in this.board
+        }
+	}
+	return *this;
 }
