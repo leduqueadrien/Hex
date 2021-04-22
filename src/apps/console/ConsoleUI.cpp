@@ -19,11 +19,11 @@ void ConsoleUI::displayBoard(Board* board)
 	std::string space = "";
 
 	std::cout << std::endl;
-	for (int i=0; i<=boardSize; i++) {
+	for (int i=0; i<=boardSize; ++i) {
 
 		space.append(" ");
 		std::cout << space;
-		for (int j=0; j<=boardSize; j++) {
+		for (int j=0; j<=boardSize; ++j) {
 			std::cout << "[]";
 		}
 

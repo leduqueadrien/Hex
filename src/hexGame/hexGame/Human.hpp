@@ -4,14 +4,14 @@
 #include "Player.hpp"
 #include "GameUI.hpp"
 
-class Human : public Player
+class Human final : public Player
 {
 
 private:
     GameUI* gameUI;
 
 public:
-	HEXGAMELIB_EXPORT Human(Color, GameUI*);
+	HEXGAMELIB_EXPORT Human(Color color, GameUI* gameUI);
 	HEXGAMELIB_EXPORT ~Human();
 
 	HEXGAMELIB_EXPORT Move makeMove();

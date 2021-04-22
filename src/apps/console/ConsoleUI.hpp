@@ -2,7 +2,7 @@
 #include <hexGame/GameUI.hpp>
 #include <hexGame/Board.hpp>
 
-class ConsoleUI : public GameUI
+class ConsoleUI final : public GameUI
 {
 
 private:

@@ -7,7 +7,7 @@
 #include "gameUtils.hpp"
 #include "Tile.hpp"
 
-class Board
+class Board final
 {
 private:
 	int size;
@@ -18,13 +18,13 @@ public:
 	HEXGAMELIB_EXPORT ~Board();
 
 	HEXGAMELIB_EXPORT void initBoard();
-	HEXGAMELIB_EXPORT void addMoveToBoard(Move);
-	HEXGAMELIB_EXPORT bool isMoveValid(Move);
+	HEXGAMELIB_EXPORT void addMoveToBoard(Move move);
+	HEXGAMELIB_EXPORT bool isMoveValid(Move move) const;
 	HEXGAMELIB_EXPORT void resetCheckup();
 
 	// Getters - Setters
-	HEXGAMELIB_EXPORT Tile* getTile(int, int);
+	HEXGAMELIB_EXPORT Tile* getTile(int i, int j) const;
 
 	// Operators
-	HEXGAMELIB_EXPORT Board& operator=(const Board&);
+	HEXGAMELIB_EXPORT Board& operator=(const Board& board);
 };

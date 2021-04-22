@@ -3,7 +3,7 @@
 
 #include "gameUtils.hpp"
 
-class Tile
+class Tile final
 {
 private:
     int i;
@@ -26,8 +26,8 @@ public:
     HEXGAMELIB_EXPORT void setIsChecked(bool isChecked);
 
     // Operators
-    HEXGAMELIB_EXPORT Tile& operator=(const Tile&);
+    HEXGAMELIB_EXPORT Tile& operator=(const Tile& tile);
 };
 
-HEXGAMELIB_EXPORT bool operator==(const Tile&, const Tile&);
-HEXGAMELIB_EXPORT bool operator!=(const Tile&, const Tile&);
+HEXGAMELIB_EXPORT bool operator==(const Tile&Tile1, const Tile&Tile2);
+HEXGAMELIB_EXPORT bool operator!=(const Tile&Tile1, const Tile&Tile2);

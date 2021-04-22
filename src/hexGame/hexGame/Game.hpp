@@ -8,7 +8,7 @@
 // Without HEXGAMELIB_EXPORT, we get : error LNK2019 or : fatal error LNK1104
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/tool-errors/linker-tools-error-lnk2019?view=msvc-160
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/compiler-errors-1/fatal-error-c1083?view=msvc-160
-class Game
+class Game final
 {
 private:
 	int boardSize;
