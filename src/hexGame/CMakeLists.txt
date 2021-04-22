@@ -27,6 +27,7 @@ set(HEADERS
 	hexGame/Game.hpp
 	hexGame/GameUI.hpp
 	hexGame/gameUtils.hpp
+	hexGame/Player.hpp
 	hexGame/Tile.hpp
 )
 
