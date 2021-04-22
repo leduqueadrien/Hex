@@ -6,7 +6,14 @@ typedef enum Color {
 } Color;
 
 typedef struct Move {
-	int i = -1;
-	int j = -1;
-	Color color = Undefined;
+	int i;
+	int j;
+	Color color;
+
+	Move(Color color=Undefined):
+		i(-1),
+		j(-1),
+		color(color)
+	{}
+
 } Move;
