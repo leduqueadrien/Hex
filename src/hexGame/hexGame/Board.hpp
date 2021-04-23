@@ -24,6 +24,7 @@ public:
 
 	// Getters - Setters
 	HEXGAMELIB_EXPORT Tile* getTile(int i, int j) const;
+	HEXGAMELIB_EXPORT int getSize() const;
 
 	// Operators
 	HEXGAMELIB_EXPORT Board& operator=(const Board& board);

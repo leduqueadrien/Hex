@@ -5,10 +5,12 @@
 Board::Board(int size):
     m_size(size)
 {
+    std::vector<Tile*> tmp;
     for (int i=0; i<m_size; ++i) {
         for (int j=0; j<m_size; ++j) {
-            m_board.at(i).push_back(new Tile(i, j));
+            tmp.push_back(new Tile(i, j));
         }
+        m_board.push_back(tmp);
     }
 }
 
@@ -54,6 +56,12 @@ void Board::resetCheckup()
 Tile* Board::getTile(int i, int j) const
 {
     return m_board.at(i).at(j);
+}
+
+
+int Board::getSize() const
+{
+    return m_size;
 }
 
 
