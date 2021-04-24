@@ -1,5 +1,6 @@
 
 #include "Board.hpp"
+#include <stdexcept>
 
 
 Board::Board(int size):
@@ -65,7 +66,11 @@ void Board::deleteBoard() {
 
 Tile* Board::getTile(int i, int j) const
 {
-    
+    try {
+        return m_board.at(i).at(j);
+    } catch (std::out_of_range e) {
+        return nullptr;
+    }
 }
 
 
