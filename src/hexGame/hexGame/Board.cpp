@@ -1,16 +1,12 @@
 
 #include "Board.hpp"
-<<<<<<< HEAD
 #include "Tile.hpp"
-=======
 #include <stdexcept>
->>>>>>> a070196adac219250807e2336f47b050b7d70ec5
 
 
 Board::Board(int size):
     m_size(size)
 {
-    std::vector<Tile*> tmp;
     for (int i=0; i<m_size; ++i) {
         std::vector<Tile*> tmp;
         for (int j=0; j<m_size; ++j) {
@@ -23,17 +19,18 @@ Board::Board(int size):
 
 Board::~Board()
 {
-<<<<<<< HEAD
-
-=======
     deleteBoard();
->>>>>>> a070196adac219250807e2336f47b050b7d70ec5
 }
 
 
 void Board::initBoard()
 {
-    deleteBoard();
+    for (int i=0; i<m_size; ++i) {
+        for (int j=0; j<m_size; ++j) {
+            m_board.at(i).at(j)->setColor(Color::Undefined);
+            m_board.at(i).at(j)->setIsChecked(false);
+        }
+    }
 }
 
 
@@ -45,7 +42,8 @@ void Board::addMoveToBoard(Move move)
 
 bool Board::isMoveValid(Move move) const
 {
-    return m_board.at(move.i).at(move.j)->getColor() == Color::Undefined;
+    Tile * ptile = getTile(move.i, move.j);
+    return ptile != nullptr && (*ptile).getColor() == Color::Undefined;
 }
 
 
