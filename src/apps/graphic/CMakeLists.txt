@@ -5,11 +5,14 @@
 ###############################################################################
 
 set(SOURCES
+	MainHexGraph.cpp
 	framework/Framework.cpp
+	graphicUI/GraphicUI.cpp
 )
 
 set(HEADERS
 	framework/Framework.hpp
+	graphicUI/GraphicUI.hpp
 )
 
 ###############################################################################
@@ -21,7 +24,6 @@ set(GRAPH_APP mainGraph)
 
 add_executable(${GRAPH_APP}
 	${SOURCES}
-	MainHexGraph.cpp
 	${HEADERS}
 )
 

@@ -1,8 +1,10 @@
 
 #include <stdio.h>
 #include <SDL.h>
-#include <framework/Framework.hpp>
-
+#include <hexGame/Game.hpp>
+#include <hexGame/Human.hpp>
+#include "framework/Framework.hpp"
+#include "graphicUI/GraphicUI.hpp"
 
 int beige[3] = {255, 183, 138}; //beige
 SDL_Rect rect;
@@ -64,9 +66,30 @@ void drawSquares(Framework fw)
 
 int main(int, char**)
 {
-	Framework framework = Framework(800, 800);
 
-	drawSquares(framework);
+	GameUI* gameUI = new GraphicUI();
+	Human* player1 = new Human(Color::White, gameUI);
+	Human* player2 = new Human(Color::Black, gameUI);
+	Game* game = new Game(gameUI, player1, player2, 11);
+
+
+	SDL_Event event;
+
+	while (!game->isGameFinished()) {
+		
+		SDL_PollEvent(&event);
+		
+		game->displayBoard();
+
+		if (event.type == SDL_QUIT) {
+			break;
+		}
+
+		SDL_Delay(1);
+	}
+
+
+
 
 	return 0;
 }

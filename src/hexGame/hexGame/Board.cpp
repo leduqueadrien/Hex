@@ -1,6 +1,10 @@
 
 #include "Board.hpp"
+<<<<<<< HEAD
 #include "Tile.hpp"
+=======
+#include <stdexcept>
+>>>>>>> a070196adac219250807e2336f47b050b7d70ec5
 
 
 Board::Board(int size):
@@ -8,6 +12,7 @@ Board::Board(int size):
 {
     std::vector<Tile*> tmp;
     for (int i=0; i<m_size; ++i) {
+        std::vector<Tile*> tmp;
         for (int j=0; j<m_size; ++j) {
             tmp.push_back(new Tile(i, j));
         }
@@ -18,7 +23,11 @@ Board::Board(int size):
 
 Board::~Board()
 {
+<<<<<<< HEAD
 
+=======
+    deleteBoard();
+>>>>>>> a070196adac219250807e2336f47b050b7d70ec5
 }
 
 
@@ -50,9 +59,28 @@ void Board::resetCheckup()
 }
 
 
+void Board::deleteBoard() {
+    for (int i=0; i<m_size; ++i) {
+        for (int j=0; j<m_size; j++) {
+            delete m_board.at(i).at(j);
+        }
+    }
+}
+
+
 Tile* Board::getTile(int i, int j) const
 {
-    return m_board.at(i).at(j);
+    try {
+        return m_board.at(i).at(j);
+    } catch (std::out_of_range e) {
+        return nullptr;
+    }
+}
+
+
+int Board::getSize() const
+{
+    return m_size;
 }
 
 

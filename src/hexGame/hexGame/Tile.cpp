@@ -3,10 +3,7 @@
 #include "gameUtils.hpp"
 
 Tile::Tile(int i, int j):
-    m_i(i),
-    m_j(j),
-    m_color(Undefined),
-    m_isChecked(false)
+    Tile(i, j, Undefined, false)
 {
 }
 
@@ -34,7 +31,8 @@ int Tile::getJ() const
 
 void Tile::setIndexes(int i, int j)
 {
-    i = i; j = j;
+    i = i;
+    j = j;
 }
 
 
@@ -62,7 +60,6 @@ void Tile::setIsChecked(bool isChecked)
 }
 
 
-
 Tile& Tile::operator=(const Tile& tile)
 {
 	if (this != &tile) {
@@ -77,11 +74,12 @@ Tile& Tile::operator=(const Tile& tile)
 
 bool operator==(const Tile& tile1, const Tile& tile2)
 {
-	return tile1.getI() == tile2.getJ();
+	return tile1.getI() == tile2.getI() && tile1.getJ() == tile2.getJ()
+            && tile1.getColor() == tile2.getColor();
 }
 
 
 bool operator!=(const Tile& tile1, const Tile& tile2)
 {
-	return tile1.getI() != tile2.getJ();
+	return !(tile1.getI() == tile2.getJ());
 }
