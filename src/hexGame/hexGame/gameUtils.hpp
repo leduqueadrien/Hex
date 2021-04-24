@@ -17,3 +17,14 @@ typedef struct Move {
 	{}
 
 } Move;
+
+typedef enum Neighbour {
+	NOT_INIT,
+	TOP_LEFT,
+	TOP_RIGHT,
+	RIGHT,
+	BOTTOM_RIGHT,
+	BOTTOM_LEFT,
+	LEFT,
+	END
+} Neighbour;
