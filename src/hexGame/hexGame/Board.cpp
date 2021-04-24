@@ -5,8 +5,8 @@
 Board::Board(int size):
     m_size(size)
 {
-    std::vector<Tile*> tmp;
     for (int i=0; i<m_size; ++i) {
+        std::vector<Tile*> tmp;
         for (int j=0; j<m_size; ++j) {
             tmp.push_back(new Tile(i, j));
         }
