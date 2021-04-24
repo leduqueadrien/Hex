@@ -21,6 +21,7 @@ public:
 	HEXGAMELIB_EXPORT void addMoveToBoard(Move move);
 	HEXGAMELIB_EXPORT bool isMoveValid(Move move) const;
 	HEXGAMELIB_EXPORT void resetCheckup();
+	HEXGAMELIB_EXPORT void deleteBoard();
 
 	// Getters - Setters
 	HEXGAMELIB_EXPORT Tile* getTile(int i, int j) const;

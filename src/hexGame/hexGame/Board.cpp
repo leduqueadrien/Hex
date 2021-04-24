@@ -17,6 +17,7 @@ Board::Board(int size):
 
 Board::~Board()
 {
+    deleteBoard();
 }
 
 
@@ -53,9 +54,18 @@ void Board::resetCheckup()
 }
 
 
+void Board::deleteBoard() {
+    for (int i=0; i<m_size; ++i) {
+        for (int j=0; j<m_size; j++) {
+            delete m_board.at(i).at(j);
+        }
+    }
+}
+
+
 Tile* Board::getTile(int i, int j) const
 {
-    return m_board.at(i).at(j);
+    
 }
 
 
