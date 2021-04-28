@@ -1,6 +1,7 @@
 
-#ifndef ITERNEIGHBOUR_HPP
-#define ITERNEIGHBOUR_HPP
+#pragma once
+
+#include "HexGameLib_export.hpp"
 
 #include "Tile.hpp"
 #include "Board.hpp"
