@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include "HexGameLib_export.hpp"
 
 #include "gameUtils.hpp"
