@@ -1,6 +1,7 @@
 
 #include <hexGame/GameUI.hpp>
 #include <hexGame/Board.hpp>
+#include <hexGame/Tile.hpp>
 
 class ConsoleUI final : public GameUI
 {
@@ -11,6 +12,7 @@ public:
 	ConsoleUI();
 	~ConsoleUI();
 
+	std::string displayTile(Tile * tile);
 	void displayBoard(Board* board);
 	void getPlayerMove(Move& move);
 

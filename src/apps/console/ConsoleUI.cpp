@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "ConsoleUI.hpp"
+#include "hexGame/GameUI.hpp"
 
 
 ConsoleUI::ConsoleUI(/* args */)
@@ -10,6 +11,25 @@ ConsoleUI::ConsoleUI(/* args */)
 
 ConsoleUI::~ConsoleUI()
 {
+}
+
+
+std::string ConsoleUI::displayTile(Tile * tile)
+{
+	switch ((*tile).getColor())
+	{
+	case Color::White :
+		return "B";
+		break;
+
+	case Color::Black :
+		return "N";
+		break;
+
+	default:
+		return " ";
+		break;
+	}
 }
 
 
