@@ -7,19 +7,19 @@
 #include "Board.hpp"
 # include "gameUtils.hpp"
 
-class IterNeighbour{
-	public:
+class IterNeighbour {
+	private:
 		int m_i;
 		int m_j;
 		Neighbour m_numCurrentNeighbour;
 		Board * m_board;
 
-	private :
-		IterNeighbour(Board *, int, int );
-		Tile * begin();
-		Tile * end();
-		Tile * operator++();
-		Tile * operator*();
+	public:
+		HEXGAMELIB_EXPORT IterNeighbour(Board *, int, int );
+		HEXGAMELIB_EXPORT Tile * begin();
+		HEXGAMELIB_EXPORT Tile * end();
+		HEXGAMELIB_EXPORT Tile * operator++();
+		HEXGAMELIB_EXPORT Tile * operator*();
 
 };
 
