@@ -22,5 +22,3 @@ class IterNeighbour {
 		HEXGAMELIB_EXPORT Tile * operator*();
 
 };
-
-#endif

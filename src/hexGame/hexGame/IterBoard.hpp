@@ -20,5 +20,3 @@ class IterBoard {
 		HEXGAMELIB_EXPORT Tile * operator++();
 		HEXGAMELIB_EXPORT Tile * operator*();
 };
-
-#endif
