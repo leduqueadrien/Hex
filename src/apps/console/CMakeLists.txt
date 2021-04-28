@@ -45,9 +45,21 @@ install(TARGETS ${CONS_APP} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 ############################ IMPLEMENTATION/BUILD #############################
 ###############################################################################
 
+if (STUFF_TESTING)
+
+	set(TEST_CONS testCons)
+
+	add_executable(${TEST_CONS} testCons.cpp)
+
+    target_link_libraries(${TEST_CONS} PUBLIC
+	    HexGameLib
+    )
 
 ###############################################################################
 #################################### TEST #####################################
 ############################## INSTALL/PACKAGING ##############################
 ###############################################################################
 
+	install(TARGETS ${TEST_CONS} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+
+endif()
