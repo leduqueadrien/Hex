@@ -20,6 +20,7 @@ set(SOURCES
 	hexGame/Board.cpp
 	hexGame/Human.cpp
 	hexGame/Game.cpp
+	hexGame/gameUtils.cpp
 	hexGame/IterBoard.cpp
 	hexGame/IterNeighbour.cpp
 	hexGame/Tile.cpp

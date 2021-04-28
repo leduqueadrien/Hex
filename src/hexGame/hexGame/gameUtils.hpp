@@ -28,3 +28,5 @@ typedef enum Neighbour {
 	LEFT,
 	END
 } Neighbour;
+
+Neighbour & operator++(Neighbour& n);

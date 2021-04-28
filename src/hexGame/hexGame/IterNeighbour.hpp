@@ -5,7 +5,7 @@
 
 #include "Tile.hpp"
 #include "Board.hpp"
-# include "gameUtils.hpp"
+#include "gameUtils.hpp"
 
 class IterNeighbour {
 	private:

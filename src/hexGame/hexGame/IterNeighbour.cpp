@@ -4,22 +4,17 @@
 #include "gameUtils.hpp"
 
 
-Neighbour operator++(Neighbour n) {
-    return static_cast<Neighbour>(static_cast<int>(n)+1);
-}
-
-
 IterNeighbour::IterNeighbour(Board * board, int i, int j) :
 	m_i(i),
 	m_j(j),
-	m_numCurrentNeighbour(NOT_INIT),
+	m_numCurrentNeighbour(Neighbour::NOT_INIT),
 	m_board(board)
 {
 }
 
 
 Tile * IterNeighbour::begin() {
-	m_numCurrentNeighbour = TOP_LEFT;
+	m_numCurrentNeighbour = Neighbour::TOP_LEFT;
 	return operator*();
 }
 
@@ -31,22 +26,22 @@ Tile * IterNeighbour::end() {
 
 Tile * IterNeighbour::operator*() {
 	switch (m_numCurrentNeighbour) {
-		case (TOP_LEFT) :
+		case (Neighbour::TOP_LEFT) :
 			return (*m_board).getTile(m_i-1, m_j);
 		break;
-		case (TOP_RIGHT) :
+		case (Neighbour::TOP_RIGHT) :
 			return (*m_board).getTile(m_i-1, m_j+1);
 		break;
-		case (RIGHT) :
+		case (Neighbour::RIGHT) :
 			return (*m_board).getTile(m_i, m_j+1);
 		break;
-		case (BOTTOM_RIGHT) :
+		case (Neighbour::BOTTOM_RIGHT) :
 			return (*m_board).getTile(m_i+1, m_j);
 		break;
-		case (BOTTOM_LEFT) :
+		case (Neighbour::BOTTOM_LEFT) :
 			return (*m_board).getTile(m_i+1, m_j-1);
 		break;
-		case (LEFT) :
+		case (Neighbour::LEFT) :
 			return (*m_board).getTile(m_i, m_j-1);
 		default :
 			return nullptr;
@@ -57,6 +52,6 @@ Tile * IterNeighbour::operator*() {
 
 Tile * IterNeighbour::operator++() {
 	do {
-		m_numCurrentNeighbour++;
+		++m_numCurrentNeighbour;
 	} while(operator*() == nullptr && m_numCurrentNeighbour != END);
 }	
