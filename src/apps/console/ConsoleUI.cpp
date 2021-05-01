@@ -35,16 +35,14 @@ std::string ConsoleUI::displayTile(Tile * tile)
 
 void ConsoleUI::displayBoard(Board* board)
 {
-	int boardSize = 11;
-	std::string space = "";
+	int boardSize = (*board).getSize();
 
-	std::cout << std::endl;
-	for (int i=0; i<=boardSize; ++i) {
+	std::cout << boardSize << std::endl;
 
-		space.append(" ");
-		std::cout << space;
-		for (int j=0; j<=boardSize; ++j) {
-			std::cout << "[]";
+	for (int i=0; i<boardSize; ++i) {
+
+		for (int j=0; j<boardSize; ++j) {
+			std::cout << "[" << displayTile((*board).getTile(i, j)) << "]";
 		}
 
 		std::cout << std::endl;
