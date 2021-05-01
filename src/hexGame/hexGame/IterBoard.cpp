@@ -27,10 +27,10 @@ Tile * IterBoard::operator*() {
 
 
 Tile * IterBoard::operator++() {
-	m_j++;
+	++m_j;
 	if (m_j == (*m_board).getSize()) {
-		m_j--;
-		m_i++;
+		m_j = 0;
+		++m_i;
 	}
 	return operator*();
 }
