@@ -14,7 +14,7 @@ IterNeighbour::IterNeighbour(Board * board, int i, int j) :
 
 
 Tile * IterNeighbour::begin() {
-	m_numCurrentNeighbour = Neighbour::TOP_LEFT;
+	operator++();
 	return operator*();
 }
 
@@ -45,7 +45,6 @@ Tile * IterNeighbour::operator*() {
 			return (*m_board).getTile(m_i, m_j-1);
 		default :
 			return nullptr;
-
 	}
 }
 
@@ -54,4 +53,4 @@ Tile * IterNeighbour::operator++() {
 	do {
 		++m_numCurrentNeighbour;
 	} while(operator*() == nullptr && m_numCurrentNeighbour != END);
-}	
+}
