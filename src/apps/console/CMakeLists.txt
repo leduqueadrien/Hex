@@ -49,12 +49,25 @@ if (STUFF_TESTING)
 
 	set(TEST_CONS testCons)
 
-	add_executable(${TEST_CONS} testCons.cpp)
+    set(TEST_SOURCES
+        testCons.cpp
+        ConsoleUI.cpp
+    )
+
+    set(TEST_HEADERS
+        ConsoleUI.hpp
+    )
+
+
+	add_executable(${TEST_CONS} ${TEST_SOURCES} ${TEST_HEADERS})
 
     target_link_libraries(${TEST_CONS} PUBLIC
 	    HexGameLib
     )
 
+    target_include_directories(${TEST_CONS} PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+    )
 ###############################################################################
 #################################### TEST #####################################
 ############################## INSTALL/PACKAGING ##############################
