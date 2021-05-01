@@ -10,10 +10,10 @@ typedef struct Move {
 	int j;
 	Color color;
 
-	Move(Color color=Color::Undefined):
-		i(-1),
-		j(-1),
-		color(color)
+	Move(Color _color=Color::Undefined, int _i=-1, int _j=-1):
+		i(_i),
+		j(_j),
+		color(_color)
 	{}
 
 } Move;
