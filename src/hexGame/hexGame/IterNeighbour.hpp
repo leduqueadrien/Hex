@@ -16,6 +16,7 @@ class IterNeighbour {
 
 	public:
 		HEXGAMELIB_EXPORT IterNeighbour(Board *, int, int );
+		HEXGAMELIB_EXPORT ~IterNeighbour()=default;
 		HEXGAMELIB_EXPORT Tile * begin();
 		HEXGAMELIB_EXPORT Tile * end();
 		HEXGAMELIB_EXPORT Tile * operator++();
