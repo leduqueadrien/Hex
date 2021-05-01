@@ -14,7 +14,7 @@ class IterBoard {
 
 	public:
 		HEXGAMELIB_EXPORT IterBoard(Board *);
-		HEXGAMELIB_EXPORT ~IterBoard();
+		HEXGAMELIB_EXPORT ~IterBoard()=default;
 		HEXGAMELIB_EXPORT Tile * begin();
 		HEXGAMELIB_EXPORT Tile * end();
 		HEXGAMELIB_EXPORT Tile * operator++();
