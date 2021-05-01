@@ -6,17 +6,51 @@
 #include "Tile.hpp"
 #include "Board.hpp"
 
+/**
+ * @brief iterate on the board
+ */
 class IterBoard {
-	private:
-		Board * m_board;
-		int m_i;
-		int m_j;
+private:
+	/**
+	 * @brief board on which we iterate
+	 */
+	Board * m_board;
+	/**
+	 * @brief line iterator
+	 */
+	int m_i;
+	/**
+	 * @brief column iterator
+	 */
+	int m_j;
 
-	public:
-		HEXGAMELIB_EXPORT IterBoard(Board *);
-		HEXGAMELIB_EXPORT ~IterBoard()=default;
-		HEXGAMELIB_EXPORT Tile * begin();
-		HEXGAMELIB_EXPORT Tile * end();
-		HEXGAMELIB_EXPORT Tile * operator++();
-		HEXGAMELIB_EXPORT Tile * operator*();
+public:
+	/**
+	 * @brief constructor
+	 */
+	HEXGAMELIB_EXPORT IterBoard(Board *);
+	/**
+	 * @brief destructor
+	 */
+	HEXGAMELIB_EXPORT ~IterBoard()=default;
+	/**
+	 * @brief begin the iteration
+	 * @return Tile * first tile of the board
+	 */
+	HEXGAMELIB_EXPORT Tile * begin();
+	/**
+	 * @brief  Iterator to the element following the last element
+	 * @return Tile * the element following the last element
+	 */
+	HEXGAMELIB_EXPORT Tile * end();
+	/**
+	 * @brief icremental operator
+	 * @return Tile * next tile 
+	 */
+	HEXGAMELIB_EXPORT Tile * operator++();
+	/**
+	 * @brief return current tile
+	 * @return Tile * current tile
+	 */
+	HEXGAMELIB_EXPORT Tile * operator*();
 };
