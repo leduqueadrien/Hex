@@ -38,6 +38,7 @@ public:
      * @param j column of the tile 
      */
     HEXGAMELIB_EXPORT Tile(int i, int j);
+
     /**
      * @brief constructor
      * @param i line of the tile
@@ -46,22 +47,27 @@ public:
      * @param isChecked is the tile check
      */
     HEXGAMELIB_EXPORT Tile(int i, int j, Color color, bool isChecked);
+
     /**
      * @brief destructor
      */
     HEXGAMELIB_EXPORT ~Tile()=default;
 
-    // Getters - Setters
+
+    //******************************** Getters - Setters ********************************
+
     /**
      * @brief Get the m_i property
      * @return int
      */
     HEXGAMELIB_EXPORT int getI() const;
+
     /**
      * @brief Get the m_j property
      * @return int 
      */
     HEXGAMELIB_EXPORT int getJ() const;
+
     /**
      * @brief Set the line and column property
      * @param i new line
@@ -69,22 +75,26 @@ public:
      * @return void
      */
     HEXGAMELIB_EXPORT void setIndexes(int i, int j);
+
     /**
      * @brief Get the Color property
      * @return Color
      */
     HEXGAMELIB_EXPORT Color getColor() const;
+
     /**
      * @brief Set the Color property
      * @param color new color
      * @return void 
      */
     HEXGAMELIB_EXPORT void setColor(Color color);
+
     /**
      * @brief Get the Is Checked property
      * @return bool
      */
     HEXGAMELIB_EXPORT bool getIsChecked() const;
+
     /**
      * @brief Set the Is Checked property
      * @param isChecked 
@@ -92,7 +102,9 @@ public:
      */
     HEXGAMELIB_EXPORT void setIsChecked(bool isChecked);
 
-    // Operators
+
+    //******************************** Operators ********************************
+
     /**
      * @brief operator= affectation oprator
      * @param tile tile to be copy
@@ -108,6 +120,7 @@ public:
  * @return bool
  */
 HEXGAMELIB_EXPORT bool operator==(const Tile& tile1, const Tile& tile2);
+
 /**
  * @brief operator!= difference operator for the tile class
  * @param tile1 first tile

@@ -17,6 +17,7 @@ private:
 	 * @brief size of the board
 	 */
 	int m_size;
+
 	/**
 	 * @brief board of the game. Compose of Tile
 	 */
@@ -28,6 +29,7 @@ public:
 	 * @param size size of the board
 	 */
 	HEXGAMELIB_EXPORT Board(int size);
+
 	/**
 	 * @brief Destructor of the board
 	 */
@@ -39,6 +41,7 @@ public:
 	 * @return void
 	 */
 	HEXGAMELIB_EXPORT void initBoard();
+
 	/**
 	 * @brief add a move to th board
 	 * a player had made a valid move. Add this move to the board i.e. change the color of a tile
@@ -46,6 +49,7 @@ public:
 	 * @return void
 	 */
 	HEXGAMELIB_EXPORT void addMoveToBoard(Move move);
+
 	/**
 	 * @brief check whether a move is valid
 	 * Check if the move is in the board and if any player had made a move on this tile
@@ -53,17 +57,20 @@ public:
 	 * @return bool
 	 */
 	HEXGAMELIB_EXPORT bool isMoveValid(Move move) const;
+
 	/**
 	 * @brief set all tile to unchecked
 	 * @return void
 	 */
 	HEXGAMELIB_EXPORT void resetCheckup();
+
 	/**
 	 * @brief delete the board property
 	 * 
 	 * @return void
 	 */
 	HEXGAMELIB_EXPORT void deleteBoard();
+
 
 	/**
 	 * @brief Get a tile from the board
@@ -72,12 +79,14 @@ public:
 	 * @return Tile *
 	 */
 	HEXGAMELIB_EXPORT Tile* getTile(int i, int j) const;
+
 	/**
 	 * @brief Get the Size property
 	 * 
 	 * @return int size
 	 */
 	HEXGAMELIB_EXPORT int getSize() const;
+
 
 	/**
 	 * @brief affectation operator

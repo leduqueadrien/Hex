@@ -16,10 +16,12 @@ typedef struct Move {
 	 * @brief i line of the move
 	 */
 	int i;
+
 	/**
 	 * @brief j column of the move
 	 */
 	int j;
+
 	/**
 	 * @brief color of the player that had made the move
 	 */
