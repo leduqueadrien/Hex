@@ -1,0 +1,101 @@
+
+Main du jeu :
+	On instancie un GameUI
+	On instancie un Player =>
+		Human(GameUI)
+		IA(...)
+	On instancie un Player =>
+		Human(GameUI)
+		IA(...)
+	On instancie une Game
+
+Game :
+	Game() {
+		rempli les attributs
+		Creer le board
+	}
+	initGame() {
+		Init board
+	}
+
+	launchGame() {
+		Tant que pas finit
+			affiche le plateau
+			joueur joue (verifie le coup, rejoue jusqua coup valide)
+	}
+	isGameFinished() {
+		appel les methodes de parcours necessaires dans Board
+	}
+
+
+	
+
+Player :
+	Player(Color ) {}
+	makeMove() {
+		recupere la valeur de l'input du joueur
+		(via GameUI si cest un humain / via IA... en fct du type d'IA)
+	}
+
+
+Board :
+	Board(int) {
+		creer le plateau de jeu
+	}
+	initBoard() {
+		initialise le board en mettant tous les attributs des Tiles a 0
+	}
+	getTile(int, int) {
+		renvoie la Tile de cordonnées données en parametre
+	}
+	isMoveValid(Move) {
+		renvoie si oui ou non le move est valide
+	}
+	addMoveToBoard(Move) {
+		ajoute le move au board
+	}
+	resetCheckup() {
+		reset l'attribut isChecked de toutes les Tiles (set a faux)
+	}
+	deleteBoard() {
+		detruit le plateau de jeu sans detruire l'objet boeard
+	}
+
+Tile :
+	Tile(int, int)
+	Tile(int, int, Color, bool) {
+		Creer une Tile
+	}
+	setIndexes(int, int) {
+		set X et Y
+	}
+	operator=
+	operator==
+	operator!=
+
+IterBoard :
+	IterBoard(Board)
+	begin() {
+		renvoie la premiere Tile du plateau
+	}
+	end() {
+		renvoie la dernière Tile du plateau
+	}
+	getCurrentTile() {
+		renvoie un pointeur sur la Tile courante
+	}
+	operator++
+	operator--
+
+IterNeighbour :
+	IterNeighbour(int, int, board)
+	begin() {
+		renvoie le premier neighbour de la Tile
+	}
+	end() {
+		renvoie le dernier neighbour de la Tile
+	}
+	operator++
+	operator--
+
+

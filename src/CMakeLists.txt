@@ -1,5 +1,4 @@
 
+add_subdirectory(hexGame)
 
-add_subdirectory(graphic)
-
-add_subdirectory(app)
+add_subdirectory(apps)
