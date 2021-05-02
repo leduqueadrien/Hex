@@ -31,8 +31,8 @@ int Tile::getJ() const
 
 void Tile::setIndexes(int i, int j)
 {
-    i = i;
-    j = j;
+    m_i = i;
+    m_j = j;
 }
 
 
@@ -44,7 +44,7 @@ Color Tile::getColor() const
 
 void Tile::setColor(Color color)
 {
-    color = color;
+    m_color = color;
 }
 
 
@@ -56,7 +56,7 @@ bool Tile::getIsChecked() const
 
 void Tile::setIsChecked(bool isChecked)
 {
-    isChecked = isChecked;
+    m_isChecked = isChecked;
 }
 
 

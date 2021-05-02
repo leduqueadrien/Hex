@@ -1,5 +1,6 @@
 
 #include "Board.hpp"
+#include "Tile.hpp"
 #include <stdexcept>
 
 
@@ -41,7 +42,8 @@ void Board::addMoveToBoard(Move move)
 
 bool Board::isMoveValid(Move move) const
 {
-    return m_board.at(move.i).at(move.j)->getColor() == Color::Undefined;
+    Tile * ptile = getTile(move.i, move.j);
+    return ptile != nullptr && (*ptile).getColor() == Color::Undefined;
 }
 
 
@@ -57,7 +59,7 @@ void Board::resetCheckup()
 
 void Board::deleteBoard() {
     for (int i=0; i<m_size; ++i) {
-        for (int j=0; j<m_size; j++) {
+        for (int j=0; j<m_size; ++j) {
             delete m_board.at(i).at(j);
         }
     }
@@ -83,8 +85,23 @@ int Board::getSize() const
 Board& Board::operator=(const Board& board)
 {
 	if (this != &board) {
-		if (board.m_size == m_size) {
-            //copy board.board in this.board
+		if (board.m_size != m_size) {
+            m_size = board.m_size;
+            deleteBoard();
+            for (int i=0; i<m_size; ++i) {
+                std::vector<Tile *> tmp;
+                for (int j=0; j<m_size; ++j) {
+                    Tile t = *(board.m_board.at(i).at(j));
+                    tmp.push_back(new Tile(t.getI(), t.getJ(), t.getColor(), t.getIsChecked()));
+                }
+                m_board.push_back(tmp);
+            }
+        } else {
+            for (int i=0; i<m_size; ++i) {
+                for (int j=0; j<m_size; ++j) {
+                    m_board.at(i).at(j) = board.m_board.at(i).at(j);
+                }
+            }
         }
 	}
 	return *this;

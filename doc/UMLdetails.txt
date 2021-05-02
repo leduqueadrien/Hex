@@ -57,6 +57,9 @@ Board :
 	resetCheckup() {
 		reset l'attribut isChecked de toutes les Tiles (set a faux)
 	}
+	deleteBoard() {
+		detruit le plateau de jeu sans detruire l'objet boeard
+	}
 
 Tile :
 	Tile(int, int)
