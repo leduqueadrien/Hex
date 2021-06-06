@@ -53,5 +53,10 @@ void ConsoleUI::displayBoard(Board* board)
 
 void ConsoleUI::getPlayerMove(Move& move)
 {
-	//std::cin ... 
+	
+	std::cout << "line number : ";
+	std::cin >> move.i;
+
+	std::cout << "colonne number : ";
+	std::cin >> move.j;
 }

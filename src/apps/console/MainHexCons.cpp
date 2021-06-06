@@ -13,9 +13,12 @@ int main(int, char const **)
 	GameUI* gameUI = new ConsoleUI();
 	Human* player1 = new Human(Color::White, gameUI);
 	Human* player2 = new Human(Color::Black, gameUI);
-	Game* game = new Game(gameUI, player1, player2, 11);
+	Game* game = new Game(gameUI, player1, player2, 3);
 
-	game->displayBoard();
+	(*game).initGame();
+	(*game).launchGame();
+
+	std::cout << "End Game" << std::endl;
 
 	return 0;
 }

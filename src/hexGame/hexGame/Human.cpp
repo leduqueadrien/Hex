@@ -17,6 +17,6 @@ Human::~Human()
 Move Human::makeMove()
 {
     Move move(m_color);
-    m_gameUI->getPlayerMove(move);
+    (*m_gameUI).getPlayerMove(move);
     return move;
 }
