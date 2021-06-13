@@ -2,21 +2,25 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <iostream>
 #include "Game.hpp"
 #include "IterNeighbour.hpp"
 #include "Board.hpp"
 #include "gameUtils.hpp"
 #include "Player.hpp"
-#include "iostream"
+#include "Human.hpp"
+#include "RandomAI.hpp"
 
-Game::Game(GameUI* gameUI, Player* player1, Player* player2, int boardSize):
+Game::Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize):
 	m_gameUI(gameUI),
-	m_player1(player1),
-	m_player2(player2),
 	m_boardSize(boardSize)
 {
+	m_player1 = ConvertCodeToPlayer(player1Code, Color::White);
+	m_player2 = ConvertCodeToPlayer(player2Code, Color::Black);
+
 	m_board = new Board(boardSize);
 }
+
 
 Game::~Game()
 {
@@ -50,12 +54,10 @@ void Game::launchGame()
 		}
 
 		// on recupere le move et on verifie qu'il soit correct
-		std::cout << "debut move" << std::endl;
 		Move move;
 		do {
 			move = (*playerHadMove).makeMove();
 		} while (!(*m_board).isMoveValid(move));
-		std::cout << "fin move" << std::endl;
 
 		// On joue le coup
 		(*m_board).addMoveToBoard(move);
@@ -67,9 +69,8 @@ void Game::launchGame()
 }
 
 // Pas sur que ce soit const
-bool Game::isGameFinished(Color color) const
+bool Game::isGameFinished(Color color)
 {
-	std::cout << "debut fin " << std::endl;
 	std::stack<Tile *> stack;
 	Tile * currentTile;
 	// On ajoute les premiere cases dans la pile
@@ -81,21 +82,22 @@ bool Game::isGameFinished(Color color) const
 		}
 		if ((*currentTile).getColor() == color) {
 			stack.push(currentTile);
+			(*currentTile).setIsChecked(true);
 		}
 	}
-	std::cout << "intermediaire " << std::endl;
 	// On parcour les cases de la couleur du joueur
 	while (!stack.empty()) {
 		currentTile = stack.top();
 		stack.pop();
 		IterNeighbour it(m_board, (*currentTile).getI(), (*currentTile).getJ());
+
 		for (it.begin(); *it!=it.end(); ++it) {
 			// On test si la case appartient au joueur
+			
 			if ((**it).getColor() == color) {
 				// On test si le joueur a atteint l'autre cote du board
-				if ( (color == Color::White && (**it).getJ() == m_boardSize-1) || 
-					(color == Color::Black && (**it).getI() == m_boardSize-1) ) {
-					std::cout << "fin fin " << std::endl;
+				if ( (color == Color::White && (**it).getI() == m_boardSize-1) || 
+					 (color == Color::Black && (**it).getJ() == m_boardSize-1) ) {
 					return true;
 				}
 				if (!(**it).getIsChecked()) {
@@ -107,7 +109,7 @@ bool Game::isGameFinished(Color color) const
 		}
 	}
 
-	std::cout << "fin fin " << std::endl;
+	(*m_board).resetCheckup();
 
 	return false;
 }
@@ -116,4 +118,19 @@ bool Game::isGameFinished(Color color) const
 void Game::displayBoard() const
 {
 	m_gameUI->displayBoard(m_board);
+}
+
+
+Player* Game::ConvertCodeToPlayer(int code, Color color) {
+	if (code == 1) {
+		return new Human(color, m_gameUI);
+	} else if (code == 21) {
+		return new RandomAI(color, this);
+	}
+	return nullptr;
+}
+
+
+Board* Game::getBoard() const{
+	return m_board;
 }

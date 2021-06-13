@@ -23,10 +23,13 @@ set(SOURCES
 	hexGame/gameUtils.cpp
 	hexGame/IterBoard.cpp
 	hexGame/IterNeighbour.cpp
+	hexGame/Player.cpp
+	hexGame/RandomAI.cpp
 	hexGame/Tile.cpp
 )
 
 set(HEADERS
+	hexGame/AI.hpp
 	hexGame/Board.hpp
 	hexGame/Human.hpp
 	hexGame/Game.hpp
@@ -35,6 +38,7 @@ set(HEADERS
 	hexGame/IterBoard.hpp
 	hexGame/IterNeighbour.hpp
 	hexGame/Player.hpp
+	hexGame/RandomAI.hpp
 	hexGame/Tile.hpp
 )
 

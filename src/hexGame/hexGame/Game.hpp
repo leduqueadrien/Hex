@@ -24,12 +24,15 @@ private:
 	Player* m_turn = nullptr;
 
 public:
-	HEXGAMELIB_EXPORT Game(GameUI* gameUI, Player* player1, Player* player2, int boardSize = 11);
+	HEXGAMELIB_EXPORT Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize = 11);
 	HEXGAMELIB_EXPORT ~Game();
+
+	HEXGAMELIB_EXPORT Board* getBoard() const;
 
 	HEXGAMELIB_EXPORT void displayBoard() const;
 
 	HEXGAMELIB_EXPORT void initGame();
 	HEXGAMELIB_EXPORT void launchGame();
-	HEXGAMELIB_EXPORT bool isGameFinished(Color) const;
+	HEXGAMELIB_EXPORT bool isGameFinished(Color);
+	HEXGAMELIB_EXPORT Player* ConvertCodeToPlayer(int code, Color color);
 };
