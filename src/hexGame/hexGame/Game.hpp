@@ -34,6 +34,7 @@ public:
 
 	HEXGAMELIB_EXPORT void displayBoard() const;
 	HEXGAMELIB_EXPORT void incrementNumTurn();
+	HEXGAMELIB_EXPORT void changePlayerTurn();
 
 	HEXGAMELIB_EXPORT void initGame();
 	HEXGAMELIB_EXPORT void launchGame();

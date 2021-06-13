@@ -48,13 +48,12 @@ void Game::launchGame()
 	while(!isGameFinished((*m_player_turn).getColor())) {
 		
 		// On change le joueur qui a le trait
-		if ((*m_player1).getColor() == (*m_player_turn).getColor()) {
-			m_player_turn = m_player2;
-		} else {
-			m_player_turn = m_player1;
-		}
+		changePlayerTurn();
+
+		// On change le numero du tour
 		incrementNumTurn();
 		
+		// On affiche les informations du tour
 		(*m_gameUI).displayTurnInfo(m_numTurn, (*m_player_turn).getColor());
 
 		// on recupere le move et on verifie qu'il soit correct
@@ -131,6 +130,15 @@ void Game::displayBoard() const
 void Game::incrementNumTurn() {
 	if ((*m_player_turn).getColor() == Color::White) {
 		++m_numTurn;
+	}
+}
+
+
+void Game::changePlayerTurn() {
+	if ((*m_player1).getColor() == (*m_player_turn).getColor()) {
+		m_player_turn = m_player2;
+	} else {
+		m_player_turn = m_player1;
 	}
 }
 
