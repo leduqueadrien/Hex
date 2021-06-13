@@ -51,6 +51,23 @@ void ConsoleUI::displayBoard(Board* board)
 }
 
 
+void ConsoleUI::displayTurnInfo(int numTurn, Color color) {
+	std::cout << "Turn number " << numTurn << ", ";
+	if (color == Color::White) {
+		std::cout << "White";
+	} else {
+		std::cout << "Black";
+	}
+	std::cout << " turn" << std::endl;
+}
+
+
+void ConsoleUI::displayMove(Move move) {
+	std::cout << "player's move : ";
+	std::cout <<  "(" << move.i+1 << "," << move.j+1 << ")" << std::endl;
+}
+
+
 void ConsoleUI::getPlayerMove(Move& move)
 {
 	

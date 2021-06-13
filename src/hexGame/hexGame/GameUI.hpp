@@ -19,5 +19,7 @@ public:
 	HEXGAMELIB_EXPORT virtual ~GameUI() = default;
 
 	HEXGAMELIB_EXPORT virtual void displayBoard(Board*) = 0;
+	HEXGAMELIB_EXPORT virtual void displayTurnInfo(int, Color) = 0;
+	HEXGAMELIB_EXPORT virtual void displayMove(Move) = 0;
 	HEXGAMELIB_EXPORT virtual void getPlayerMove(Move& move) = 0;
 };

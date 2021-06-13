@@ -20,16 +20,20 @@ private:
 	GameUI* m_gameUI = nullptr;
 	Player* m_player1 = nullptr;
 	Player* m_player2 = nullptr;
+	int m_numTurn;
 
-	Player* m_turn = nullptr;
+	Player* m_player_turn = nullptr;
 
 public:
 	HEXGAMELIB_EXPORT Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize = 11);
 	HEXGAMELIB_EXPORT ~Game();
 
 	HEXGAMELIB_EXPORT Board* getBoard() const;
+	HEXGAMELIB_EXPORT int getNumTurn() const;
+	HEXGAMELIB_EXPORT Player* getPlayerTurn() const;
 
 	HEXGAMELIB_EXPORT void displayBoard() const;
+	HEXGAMELIB_EXPORT void incrementNumTurn();
 
 	HEXGAMELIB_EXPORT void initGame();
 	HEXGAMELIB_EXPORT void launchGame();
