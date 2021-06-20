@@ -53,4 +53,5 @@ Tile * IterNeighbour::operator++() {
 	do {
 		++m_numCurrentNeighbour;
 	} while(operator*() == nullptr && m_numCurrentNeighbour != END);
+	return operator*();
 }
