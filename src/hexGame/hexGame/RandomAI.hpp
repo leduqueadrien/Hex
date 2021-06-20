@@ -4,13 +4,32 @@
 #include "AI.hpp"
 #include "GameUI.hpp"
 
+
+/**
+ * @brief random AI player class
+ * 
+ */
 class RandomAI : public AI
 {
 
 public:
-	HEXGAMELIB_EXPORT RandomAI(Color, Game*);
+
+	/**
+	 * @brief constructor
+	 * @param color player's color
+	 * @param game game
+	 */
+	HEXGAMELIB_EXPORT RandomAI(Color color , Game* game);
+
+	/**
+	 * @brief destructor
+	 */
 	HEXGAMELIB_EXPORT ~RandomAI();
 
+	/**
+	 * @brief choose the move to make
+	 * @return Move move made 
+	 */
 	HEXGAMELIB_EXPORT Move makeMove();
 
 };

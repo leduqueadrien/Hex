@@ -28,10 +28,12 @@ private:
 
 
 public:
+
 	/**
 	 * @brief constructor
+	 * @param board : pointeur on the board 
 	 */
-	HEXGAMELIB_EXPORT IterBoard(Board *);
+	HEXGAMELIB_EXPORT IterBoard(Board * board);
 
 	/**
 	 * @brief destructor
