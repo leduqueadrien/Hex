@@ -31,8 +31,7 @@ public:
 
 	/**
 	 * @brief constructor
-	 * @param board : pointeur on the board
-	 * @return HEXGAMELIB_EXPORT 
+	 * @param board : pointeur on the board 
 	 */
 	HEXGAMELIB_EXPORT IterBoard(Board * board);
 
