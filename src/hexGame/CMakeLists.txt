@@ -17,6 +17,7 @@ set(HEX_GAME_TARGET_NAME "${HEX_GAME_LIB_NAME}Targets")
 
 
 set(SOURCES
+	AI/RandomAI.cpp
 	hexGame/Board.cpp
 	hexGame/Human.cpp
 	hexGame/Game.cpp
@@ -24,12 +25,12 @@ set(SOURCES
 	hexGame/IterBoard.cpp
 	hexGame/IterNeighbour.cpp
 	hexGame/Player.cpp
-	hexGame/RandomAI.cpp
 	hexGame/Tile.cpp
 )
 
 set(HEADERS
-	hexGame/AI.hpp
+	AI/AI.hpp
+	AI/RandomAI.hpp
 	hexGame/Board.hpp
 	hexGame/Human.hpp
 	hexGame/Game.hpp
@@ -38,7 +39,6 @@ set(HEADERS
 	hexGame/IterBoard.hpp
 	hexGame/IterNeighbour.hpp
 	hexGame/Player.hpp
-	hexGame/RandomAI.hpp
 	hexGame/Tile.hpp
 )
 

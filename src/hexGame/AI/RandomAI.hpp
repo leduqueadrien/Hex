@@ -2,7 +2,7 @@
 #include "HexGameLib_export.hpp"
 
 #include "AI.hpp"
-#include "GameUI.hpp"
+#include <hexgame/GameUI.hpp>
 
 
 /**

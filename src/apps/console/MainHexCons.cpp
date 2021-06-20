@@ -3,7 +3,7 @@
 #include <string>
 #include <hexGame/Game.hpp>
 #include <hexGame/Human.hpp>
-#include <hexGame/RandomAI.hpp>
+#include <AI/RandomAI.hpp>
 #include "ConsoleUI.hpp"
 
 
