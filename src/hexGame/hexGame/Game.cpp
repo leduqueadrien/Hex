@@ -122,7 +122,7 @@ bool Game::hasPlayerWon(Color color)
 }
 
 
-bool Game::isGameFinished(Color color) const
+bool Game::isGameFinished()
 {
 	// code
 	return false;
