@@ -56,14 +56,14 @@ install(TARGETS ${GRAPH_APP} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 
 if (STUFF_TESTING)
 
-	set(TEST_APP test)
+	set(TEST_GRAPH testGraph)
 
-	add_executable(${TEST_APP} test.cpp)
+	add_executable(${TEST_GRAPH} testGraph.cpp)
 
-	target_include_directories(${TEST_APP} PUBLIC
+	target_include_directories(${TEST_GRAPH} PUBLIC
 		${SDL2_INCLUDE_DIRS}
 	)
-	target_link_libraries(${TEST_APP} ${SDL2_LIBRARIES})
+	target_link_libraries(${TEST_GRAPH} ${SDL2_LIBRARIES})
 
 
 ###############################################################################
@@ -71,6 +71,6 @@ if (STUFF_TESTING)
 ############################## INSTALL/PACKAGING ##############################
 ###############################################################################
 
-	install(TARGETS ${TEST_APP} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+	install(TARGETS ${TEST_GRAPH} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 
 endif()
