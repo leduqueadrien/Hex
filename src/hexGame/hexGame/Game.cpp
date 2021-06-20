@@ -45,7 +45,7 @@ void Game::launchGame()
 	displayBoard();
 
 	// boucle de jeu
-	while(!isGameFinished((*m_player_turn).getColor())) {
+	while(!hasPlayerWon((*m_player_turn).getColor())) {
 		
 		// On change le joueur qui a le trait
 		changePlayerTurn();
@@ -74,8 +74,9 @@ void Game::launchGame()
 	}
 }
 
-// Pas sur que ce soit const
-bool Game::isGameFinished(Color color)
+
+// const ?
+bool Game::hasPlayerWon(Color color)
 {
 	std::stack<Tile *> stack;
 	Tile * currentTile;
@@ -117,6 +118,13 @@ bool Game::isGameFinished(Color color)
 
 	(*m_board).resetCheckup();
 
+	return false;
+}
+
+
+bool Game::isGameFinished(Color color) const
+{
+	// code
 	return false;
 }
 

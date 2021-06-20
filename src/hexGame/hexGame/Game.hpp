@@ -38,6 +38,7 @@ public:
 
 	HEXGAMELIB_EXPORT void initGame();
 	HEXGAMELIB_EXPORT void launchGame();
-	HEXGAMELIB_EXPORT bool isGameFinished(Color);
+	HEXGAMELIB_EXPORT bool isGameFinished();
+	HEXGAMELIB_EXPORT bool hasPlayerWon(Color);
 	HEXGAMELIB_EXPORT Player* ConvertCodeToPlayer(int code, Color color);
 };
