@@ -34,10 +34,14 @@ private:
 	Board * m_board;
 
 public:
+
 	/**
 	 * @brief constructor
+	 * @param board : board of the tile on which we iterate
+	 * @param i : tile line on which we iterate
+	 * @param j : tile columns on which we iterate
 	 */
-	HEXGAMELIB_EXPORT IterNeighbour(Board *, int, int );
+	HEXGAMELIB_EXPORT IterNeighbour(Board * board, int i, int j);
 
 	/**
 	 * @brief destructor
