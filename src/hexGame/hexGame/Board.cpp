@@ -2,6 +2,7 @@
 #include "Board.hpp"
 #include "Tile.hpp"
 #include <stdexcept>
+#include <iostream>
 
 
 Board::Board(int size):

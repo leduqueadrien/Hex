@@ -1,4 +1,6 @@
 
+#pragma onces
+
 #include "HexGameLib_export.hpp"
 
 #include "Player.hpp"
