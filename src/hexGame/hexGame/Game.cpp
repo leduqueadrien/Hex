@@ -9,16 +9,17 @@
 #include "gameUtils.hpp"
 #include "Player.hpp"
 #include "Human.hpp"
-#include "RandomAI.hpp"
+#include <AI/RandomAI.hpp>
+#include <AI/MonteCarlo.hpp>
 
 Game::Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize):
 	m_gameUI(gameUI),
 	m_boardSize(boardSize)
 {
+	m_board = new Board(boardSize);
+
 	m_player1 = ConvertCodeToPlayer(player1Code, Color::White);
 	m_player2 = ConvertCodeToPlayer(player2Code, Color::Black);
-
-	m_board = new Board(boardSize);
 }
 
 
@@ -122,7 +123,7 @@ bool Game::hasPlayerWon(Color color)
 }
 
 
-bool Game::isGameFinished(Color color) const
+bool Game::isGameFinished()
 {
 	// code
 	return false;
