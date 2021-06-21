@@ -9,7 +9,7 @@
 #include "gameUtils.hpp"
 #include "Player.hpp"
 #include "Human.hpp"
-#include "RandomAI.hpp"
+#include <AI/RandomAI.hpp>
 
 Game::Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize):
 	m_gameUI(gameUI),
@@ -122,7 +122,7 @@ bool Game::hasPlayerWon(Color color)
 }
 
 
-bool Game::isGameFinished(Color color) const
+bool Game::isGameFinished()
 {
 	// code
 	return false;

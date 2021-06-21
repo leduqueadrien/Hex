@@ -43,4 +43,3 @@ public:
 	HEXGAMELIB_EXPORT virtual Move makeMove() = 0;
 	
 };
-s

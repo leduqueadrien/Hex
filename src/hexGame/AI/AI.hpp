@@ -3,8 +3,8 @@
 
 #include "HexGameLib_export.hpp"
 
-#include "Player.hpp"
-#include "Game.hpp"
+#include <hexGame/Player.hpp>
+#include <hexGame/Game.hpp>
 
 class AI: public Player {
 	protected:
