@@ -25,6 +25,9 @@ Game::Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize):
 Game::~Game()
 {
 	delete m_board;
+	delete m_player1;
+	delete m_player2;
+
 }
 
 

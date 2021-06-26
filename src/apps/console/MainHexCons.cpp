@@ -23,5 +23,8 @@ int main(int, char const **)
 
 	std::cout << "End Game" << std::endl;
 
+	delete game;
+	delete gameUI;
+
 	return 0;
 }
