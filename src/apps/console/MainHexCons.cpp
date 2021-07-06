@@ -16,7 +16,7 @@ int main(int, char const **)
 	// Human* player2 = new Human(Color::Black, gameUI);
 
 
-	Game* game = new Game(gameUI, 21, 21, 7);
+	Game* game = new Game(gameUI, 22, 1, 7);
 
 	(*game).initGame();
 	(*game).launchGame();
