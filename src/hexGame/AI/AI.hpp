@@ -1,5 +1,12 @@
 
-#pragma ones
+// #pragma ones
+
+
+#ifndef AI_HPP
+#define AI_HPP
+
+
+
 
 #include "HexGameLib_export.hpp"
 
@@ -14,3 +21,5 @@ class AI: public Player {
 		HEXGAMELIB_EXPORT AI(Color color, Game* game) : Player::Player(color), m_game(game) {}
 		HEXGAMELIB_EXPORT ~AI() = default;
 };
+
+#endif
