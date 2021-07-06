@@ -10,15 +10,16 @@
 #include "Player.hpp"
 #include "Human.hpp"
 #include <AI/RandomAI.hpp>
+#include <AI/MonteCarlo.hpp>
 
 Game::Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize):
 	m_gameUI(gameUI),
 	m_boardSize(boardSize)
 {
+	m_board = new Board(boardSize);
+
 	m_player1 = ConvertCodeToPlayer(player1Code, Color::White);
 	m_player2 = ConvertCodeToPlayer(player2Code, Color::Black);
-
-	m_board = new Board(boardSize);
 }
 
 
@@ -159,6 +160,8 @@ Player* Game::ConvertCodeToPlayer(int code, Color color) {
 		return new Human(color, m_gameUI);
 	} else if (code == 21) {
 		return new RandomAI(color, this);
+	} else if (code == 22) {
+		return new MonteCarlo(color, this);
 	}
 	return nullptr;
 }
