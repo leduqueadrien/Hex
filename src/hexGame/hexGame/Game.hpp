@@ -59,11 +59,10 @@ public:
 	/**
 	 * @brief constructor
 	 * @param gameUI user interface use on the game
-	 * @param player1Code player 1 code type
-	 * @param player2Code player 2 code type
-	 * @param boardSize size of the board game 
+	 * @param player1 player 1
+	 * @param player2 player 2
 	 */
-	HEXGAMELIB_EXPORT Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize = 11);
+	HEXGAMELIB_EXPORT Game(GameUI* gameUI, Player * player1, Player * player2, int boardSize = 11);
 	
 	/**
 	 * @brief destructor
