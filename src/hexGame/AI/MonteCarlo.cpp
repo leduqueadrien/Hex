@@ -39,7 +39,7 @@ MonteCarlo::~MonteCarlo() {}
 
 void printVector(std::vector<std::vector<int>>& vecteur)
 {
-	int boardSize = vecteur.size();
+	int boardSize = (int)vecteur.size();
 	std::string space = "";
 
 	for (int i=0; i<boardSize; ++i) {
