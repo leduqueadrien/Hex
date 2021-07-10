@@ -1,9 +1,9 @@
 
-// #pragma ones
+#pragma once
 
 
-#ifndef AI_HPP
-#define AI_HPP
+// #ifndef AI_HPP
+// #define AI_HPP
 
 
 
@@ -22,4 +22,4 @@ class AI: public Player {
 		HEXGAMELIB_EXPORT ~AI() = default;
 };
 
-#endif
+// #endif

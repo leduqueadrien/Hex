@@ -1,11 +1,5 @@
 
-#pragma onces
-
-
-// #ifndef MONTECARLO_HPP
-// #define MONTECARLO_HPP
-
-
+#pragma once
 
 
 #include "HexGameLib_export.hpp"
@@ -53,9 +47,9 @@ public :
 
 	HEXGAMELIB_EXPORT bool isPlayerWin(int color);
 
-	HEXGAMELIB_EXPORT Point& getNextNeighbour(int tile_i, int tile_j, int num_neighbour);
+	HEXGAMELIB_EXPORT Point getNextNeighbour(int tile_i, int tile_j, int num_neighbour);
 
-	HEXGAMELIB_EXPORT Point& constructPoint(int i, int j);
+	HEXGAMELIB_EXPORT Point constructPoint(int i, int j);
 
 	HEXGAMELIB_EXPORT void MajBoard();
 
@@ -66,10 +60,5 @@ Amelioration :
 	
 */
 
-// erreur de compilation pas claire
-// Visual C++ n'a pas l'aire de connaitre pragma once
-//			https://docs.microsoft.com/fr-fr/cpp/preprocessor/once?view=msvc-160
 // Le fait qu'aucun message d'erreur est afficher doit venir d'une option de compilation (pb pour le graphique avec ninja)
 
-
-// #endif
