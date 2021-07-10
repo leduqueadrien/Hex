@@ -234,7 +234,7 @@ bool MonteCarlo::isPlayerWin(int color) {
 	return false;
 }
 
-Point& MonteCarlo::getNextNeighbour(int tile_i, int tile_j, int num_neighbour) {
+Point MonteCarlo::getNextNeighbour(int tile_i, int tile_j, int num_neighbour) {
 		Point p;
 		p.i = -1;
 		p.j = -1;
@@ -266,7 +266,7 @@ Point& MonteCarlo::getNextNeighbour(int tile_i, int tile_j, int num_neighbour) {
 	return p;
 }
 
-Point& MonteCarlo::constructPoint(int i, int j) {
+Point MonteCarlo::constructPoint(int i, int j) {
 	Point p;
 	p.i =i;
 	p.j = j;

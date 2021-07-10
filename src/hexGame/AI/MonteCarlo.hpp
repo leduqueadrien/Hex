@@ -53,9 +53,9 @@ public :
 
 	HEXGAMELIB_EXPORT bool isPlayerWin(int color);
 
-	HEXGAMELIB_EXPORT Point& getNextNeighbour(int tile_i, int tile_j, int num_neighbour);
+	HEXGAMELIB_EXPORT Point getNextNeighbour(int tile_i, int tile_j, int num_neighbour);
 
-	HEXGAMELIB_EXPORT Point& constructPoint(int i, int j);
+	HEXGAMELIB_EXPORT Point constructPoint(int i, int j);
 
 	HEXGAMELIB_EXPORT void MajBoard();
 
