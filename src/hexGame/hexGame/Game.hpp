@@ -28,22 +28,22 @@ private:
 	/**
 	 * @brief board of the game
 	 */
-	Board* m_board = nullptr;
+	Board* m_board;
 
 	/**
 	 * @brief user interface use on the game
 	 */
-	GameUI* m_gameUI = nullptr;
+	GameUI* m_gameUI;
 
 	/**
 	 * @brief player 1
 	 */
-	Player* m_player1 = nullptr;
+	Player* m_player1;
 
 	/**
 	 * @brief player 2
 	 */
-	Player* m_player2 = nullptr;
+	Player* m_player2;
 
 	/**
 	 * @brief the number of the current tunr
@@ -53,17 +53,16 @@ private:
 	/**
 	 * @brief pointer on the player who had to play
 	 */
-	Player* m_player_turn = nullptr;
+	Player* m_player_turn;
 
 public:
 	/**
 	 * @brief constructor
 	 * @param gameUI user interface use on the game
-	 * @param player1Code player 1 code type
-	 * @param player2Code player 2 code type
-	 * @param boardSize size of the board game 
+	 * @param player1 player 1
+	 * @param player2 player 2
 	 */
-	HEXGAMELIB_EXPORT Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize = 11);
+	HEXGAMELIB_EXPORT Game(GameUI* gameUI, Player * player1, Player * player2, int boardSize = 11);
 	
 	HEXGAMELIB_EXPORT Game(GameUI* gameUI, Player* player1, Player* player2, int boardSize = 11);
 
