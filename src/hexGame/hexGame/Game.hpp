@@ -64,8 +64,6 @@ public:
 	 */
 	HEXGAMELIB_EXPORT Game(GameUI* gameUI, Player * player1, Player * player2, int boardSize = 11);
 	
-	HEXGAMELIB_EXPORT Game(GameUI* gameUI, Player* player1, Player* player2, int boardSize = 11);
-
 	/**
 	 * @brief destructor
 	 */
