@@ -1,5 +1,5 @@
 
-#pragma onces
+#pragma once
 
 #include "HexGameLib_export.hpp"
 
