@@ -43,4 +43,8 @@ public:
 	 */
 	void getPlayerMove(Move& move);
 
+
+	void displayTurnInfo(int, Color) {};
+	void displayMove(Move move) {};
+
 };

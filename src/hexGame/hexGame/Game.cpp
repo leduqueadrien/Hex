@@ -33,6 +33,16 @@ Game::Game(GameUI* gameUI, Player * player1, Player * player2, int boardSize):
 }
 
 
+Game::Game(GameUI* gameUI, Player* player1, Player* player2, int boardSize):
+	m_gameUI(gameUI),
+	m_player1(player1),
+	m_player2(player2),
+	m_boardSize(boardSize)
+{
+	m_board = new Board(boardSize);
+}
+
+
 Game::~Game()
 {
 	delete m_board;
