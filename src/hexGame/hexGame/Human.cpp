@@ -3,7 +3,7 @@
 
 
 Human::Human(Color color, GameUI* gameUI):
-    Player::Player(color),
+    Player::Player(color, true),
     m_gameUI(gameUI)
 {
 }
