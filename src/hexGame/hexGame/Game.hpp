@@ -28,22 +28,22 @@ private:
 	/**
 	 * @brief board of the game
 	 */
-	Board* m_board = nullptr;
+	Board* m_board;
 
 	/**
 	 * @brief user interface use on the game
 	 */
-	GameUI* m_gameUI = nullptr;
+	GameUI* m_gameUI;
 
 	/**
 	 * @brief player 1
 	 */
-	Player* m_player1 = nullptr;
+	Player* m_player1;
 
 	/**
 	 * @brief player 2
 	 */
-	Player* m_player2 = nullptr;
+	Player* m_player2;
 
 	/**
 	 * @brief the number of the current tunr
@@ -53,7 +53,7 @@ private:
 	/**
 	 * @brief pointer on the player who had to play
 	 */
-	Player* m_player_turn = nullptr;
+	Player* m_player_turn;
 
 public:
 	/**
