@@ -12,14 +12,24 @@
 #include <AI/RandomAI.hpp>
 #include <AI/MonteCarlo.hpp>
 
-Game::Game(GameUI* gameUI, int player1Code, int player2Code, int boardSize):
+Game::Game(GameUI* gameUI, Player * player1, Player * player2, int boardSize):
+	m_boardSize(boardSize),
+	m_board(nullptr),
 	m_gameUI(gameUI),
-	m_boardSize(boardSize)
+	m_player1(player1),
+	m_player2(player2),
+	m_numTurn(0),
+	m_player_turn(nullptr)
 {
 	m_board = new Board(boardSize);
 
-	m_player1 = ConvertCodeToPlayer(player1Code, Color::White);
-	m_player2 = ConvertCodeToPlayer(player2Code, Color::Black);
+	if (!(*m_player1).getIsHuman()) {
+		(*static_cast<AI*>(m_player1)).setGame(this);
+	}
+	if (!(*m_player2).getIsHuman()) {
+		(*static_cast<AI*>(m_player2)).setGame(this);
+	}
+
 }
 
 

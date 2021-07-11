@@ -18,8 +18,10 @@ class AI: public Player {
 		Game * m_game;
 
 	public:
-		HEXGAMELIB_EXPORT AI(Color color, Game* game) : Player::Player(color), m_game(game) {}
+		HEXGAMELIB_EXPORT AI(Color color, Game* game) : Player::Player(color, false), m_game(game) {}
+		HEXGAMELIB_EXPORT AI(Color color) : AI(color, nullptr) {}
 		HEXGAMELIB_EXPORT ~AI() = default;
+		HEXGAMELIB_EXPORT void setGame(Game * game) {m_game = game;}
 };
 
 // #endif
