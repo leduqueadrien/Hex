@@ -6,7 +6,7 @@
 RandomAI::RandomAI(Color color, Game* game):
     AI::AI(color, game)
 {
-	std::srand(std::time(nullptr));
+	std::srand((int)std::time(nullptr));
 }
 
 
