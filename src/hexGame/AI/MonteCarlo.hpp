@@ -41,7 +41,7 @@ public :
 
 	HEXGAMELIB_EXPORT void updateProba(int winnerColor);
 
-	HEXGAMELIB_EXPORT void restVectorOfVectorOfInt(std::vector<std::vector<int>>& vector);
+	HEXGAMELIB_EXPORT void restVector(std::vector<std::vector<int>>& vector);
 
 	HEXGAMELIB_EXPORT bool isMoveValid(int i, int j) const;
 

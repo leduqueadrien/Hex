@@ -163,7 +163,7 @@ void MonteCarlo::updateProba(int winnerColor) {
 
 }
 
-void MonteCarlo::restVectorOfVectorOfInt(std::vector<std::vector<int>>& vector) {
+void MonteCarlo::restVector(std::vector<std::vector<int>>& vector) {
 	for(int i=0; i<m_size; ++i) {
 		for(int j=0; j<m_size; ++j) {
 			vector.at(i).at(j) = 0;
@@ -229,7 +229,7 @@ bool MonteCarlo::isPlayerWin(int color) {
 		}
 	}
 
-	restVectorOfVectorOfInt(m_isChecked);
+	restVector(m_isChecked);
 
 	return false;
 }
