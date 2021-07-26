@@ -59,6 +59,3 @@ public :
 Amelioration :
 	
 */
-
-// Le fait qu'aucun message d'erreur est afficher doit venir d'une option de compilation (pb pour le graphique avec ninja)
-
