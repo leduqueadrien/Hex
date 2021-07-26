@@ -95,3 +95,9 @@ public:
 	 */
 	HEXGAMELIB_EXPORT Board& operator=(const Board& board);
 };
+
+
+/*
+To Do :
+Constructeur par copie
+*/
