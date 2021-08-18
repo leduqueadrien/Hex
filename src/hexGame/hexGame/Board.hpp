@@ -31,6 +31,12 @@ public:
 	HEXGAMELIB_EXPORT Board(int size);
 
 	/**
+	 * @brief Constructor par copie
+	 * @param size size of the board
+	 */
+	HEXGAMELIB_EXPORT Board(Board * board);
+
+	/**
 	 * @brief Destructor of the board
 	 */
 	HEXGAMELIB_EXPORT ~Board();

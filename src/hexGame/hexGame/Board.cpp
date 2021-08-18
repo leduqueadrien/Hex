@@ -20,6 +20,19 @@ Board::Board(int size):
 }
 
 
+Board::Board(Board * board):
+    m_size((*board).getSize())
+{
+    for (int i=0; i<m_size; ++i) {
+        std::vector<Tile*> tmp;
+        for (int j=0; j<m_size; ++j) {
+            tmp.push_back(new Tile((*board).getTile(i, j)));
+        }
+        m_board.push_back(tmp);
+    }
+}
+
+
 Board::~Board()
 {
     deleteBoard();
