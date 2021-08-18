@@ -1,8 +1,10 @@
 
 #include "Board.hpp"
 #include "Tile.hpp"
+#include "IterNeighbour.hpp"
 #include <stdexcept>
 #include <iostream>
+#include <stack>
 
 
 Board::Board(int size):
@@ -45,6 +47,52 @@ bool Board::isMoveValid(Move move) const
 {
     Tile * ptile = getTile(move.i, move.j);
     return ptile != nullptr && (*ptile).getColor() == Color::Undefined;
+}
+
+
+bool Board::hasPlayerWon(Color color)
+{
+	std::stack<Tile *> stack;
+	Tile * currentTile;
+	// On ajoute les premiere cases dans la pile
+	for (int i=0; i<m_size; ++i) {
+		if (color == Color::White) {
+			currentTile = getTile(0, i);
+		} else {
+			currentTile = getTile(i, 0);
+		}
+		if ((*currentTile).getColor() == color) {
+			stack.push(currentTile);
+			(*currentTile).setIsChecked(true);
+		}
+	}
+	// On parcour les cases de la couleur du joueur
+	while (!stack.empty()) {
+		currentTile = stack.top();
+		stack.pop();
+		IterNeighbour it(this, (*currentTile).getI(), (*currentTile).getJ());
+
+		for (it.begin(); *it!=it.end(); ++it) {
+			// On test si la case appartient au joueur
+			
+			if ((**it).getColor() == color) {
+				// On test si le joueur a atteint l'autre cote du board
+				if ( (color == Color::White && (**it).getI() == m_size-1) || 
+					 (color == Color::Black && (**it).getJ() == m_size-1) ) {
+					return true;
+				}
+				if (!(**it).getIsChecked()) {
+					stack.push(*it);
+					(**it).setIsChecked(true);
+				}
+			}
+			
+		}
+	}
+
+	resetCheckup();
+
+	return false;
 }
 
 

@@ -58,7 +58,7 @@ void Game::launchGame()
 	displayBoard();
 
 	// boucle de jeu
-	while(!hasPlayerWon((*m_player_turn).getColor())) {
+	while(!(*m_board).hasPlayerWon((*m_player_turn).getColor())) {
 		
 		// On change le joueur qui a le trait
 		changePlayerTurn();
@@ -88,57 +88,9 @@ void Game::launchGame()
 }
 
 
-// const ?
-bool Game::hasPlayerWon(Color color)
-{
-	std::stack<Tile *> stack;
-	Tile * currentTile;
-	// On ajoute les premiere cases dans la pile
-	for (int i=0; i<m_boardSize; ++i) {
-		if (color == Color::White) {
-			currentTile = (*m_board).getTile(0, i);
-		} else {
-			currentTile = (*m_board).getTile(i, 0);
-		}
-		if ((*currentTile).getColor() == color) {
-			stack.push(currentTile);
-			(*currentTile).setIsChecked(true);
-		}
-	}
-	// On parcour les cases de la couleur du joueur
-	while (!stack.empty()) {
-		currentTile = stack.top();
-		stack.pop();
-		IterNeighbour it(m_board, (*currentTile).getI(), (*currentTile).getJ());
-
-		for (it.begin(); *it!=it.end(); ++it) {
-			// On test si la case appartient au joueur
-			
-			if ((**it).getColor() == color) {
-				// On test si le joueur a atteint l'autre cote du board
-				if ( (color == Color::White && (**it).getI() == m_boardSize-1) || 
-					 (color == Color::Black && (**it).getJ() == m_boardSize-1) ) {
-					return true;
-				}
-				if (!(**it).getIsChecked()) {
-					stack.push(*it);
-					(**it).setIsChecked(true);
-				}
-			}
-			
-		}
-	}
-
-	(*m_board).resetCheckup();
-
-	return false;
-}
-
-
 bool Game::isGameFinished()
 {
-	// code
-	return false;
+	return (*m_board).hasPlayerWon(Color::White) || (*m_board).hasPlayerWon(Color::Black);
 }
 
 

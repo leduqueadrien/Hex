@@ -119,13 +119,6 @@ public:
 	HEXGAMELIB_EXPORT bool isGameFinished();
 
 	/**
-	 * @brief is a player have win
-	 * @param color color of the player we want to know
-	 * @return bool 
-	 */
-	HEXGAMELIB_EXPORT bool hasPlayerWon(Color color);
-
-	/**
 	 * @brief convert a player's code to a player
 	 * @param code player code
 	 * @param color player color

@@ -57,6 +57,13 @@ public:
 	 * @return bool
 	 */
 	HEXGAMELIB_EXPORT bool isMoveValid(Move move) const;
+	
+	/**
+	 * @brief is a player have win
+	 * @param color color of the player we want to know
+	 * @return bool 
+	 */
+	HEXGAMELIB_EXPORT bool hasPlayerWon(Color color);
 
 	/**
 	 * @brief set all tile to unchecked
