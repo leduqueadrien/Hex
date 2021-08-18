@@ -4,6 +4,7 @@
 #include <hexGame/Game.hpp>
 #include <hexGame/Human.hpp>
 #include <AI/RandomAI.hpp>
+#include <AI/MonteCarlo.hpp>
 #include "ConsoleUI.hpp"
 
 
