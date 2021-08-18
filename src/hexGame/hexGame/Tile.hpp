@@ -49,6 +49,12 @@ public:
     HEXGAMELIB_EXPORT Tile(int i, int j, Color color, bool isChecked);
 
     /**
+     * @brief Constructor par copie
+     */
+    HEXGAMELIB_EXPORT Tile(Tile * tile);
+
+
+    /**
      * @brief destructor
      */
     HEXGAMELIB_EXPORT ~Tile()=default;
