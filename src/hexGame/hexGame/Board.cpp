@@ -161,7 +161,7 @@ Board& Board::operator=(const Board& board)
         } else {
             for (int i=0; i<m_size; ++i) {
                 for (int j=0; j<m_size; ++j) {
-                    m_board.at(i).at(j) = board.m_board.at(i).at(j);
+                    *(m_board.at(i).at(j)) = *(board.m_board.at(i).at(j));
                 }
             }
         }
