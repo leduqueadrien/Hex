@@ -43,6 +43,9 @@ public:
 	 */
 	HEXGAMELIB_EXPORT virtual ~Player() = default;
 
+
+	HEXGAMELIB_EXPORT virtual void initPlayer();
+
 	/**
 	 * @brief Get the Color object
 	 * @return the player's color

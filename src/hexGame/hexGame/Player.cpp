@@ -14,3 +14,5 @@ Color Player::getColor() const {
 bool Player::getIsHuman() const {
 	return m_isHuman;
 }
+
+void Player::initPlayer() {}
