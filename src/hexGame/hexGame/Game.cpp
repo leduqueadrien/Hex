@@ -44,11 +44,16 @@ Game::~Game()
 void Game::initGame()
 {
 	(*m_board).initBoard();
+	(*m_player1).initPlayer();
+	(*m_player2).initPlayer();
 }
 
 
 void Game::launchGame()
 {
+	// On itinialise le board et les joueurs
+	initGame();
+
 	// On definie le joueur qui ne commence pas : noire
 	m_numTurn = 0;
 	m_player_turn = m_player1;
