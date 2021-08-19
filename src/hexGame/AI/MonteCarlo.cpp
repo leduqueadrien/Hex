@@ -27,7 +27,7 @@ MonteCarlo::~MonteCarlo() {
 Move MonteCarlo::makeMove() {
 
 	// On choisie le nombre de partie a jouer
-	int npGameOfExploration = 10;
+	int npGameOfExploration = 100;
 	int board_size = (*(*m_game).getBoard()).getSize();
 	Color colorWinner;
 	int nbWin;
@@ -71,14 +71,14 @@ Move MonteCarlo::makeMove() {
 
 Color MonteCarlo::playUntilEnd() {
 	Color color = m_color;
-	do {
+	while(!(*m_explore_board).hasPlayerWon(color)) {
 		if (color == Color::Black) {
 			color = Color::White;
 		} else {
 			color = Color::Black;
 		}
 		simulateMove(color);
-	} while(!(*m_explore_board).hasPlayerWon(color));
+	}
 	return color;
 }
 
