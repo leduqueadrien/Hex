@@ -121,18 +121,6 @@ void Game::changePlayerTurn() {
 }
 
 
-Player* Game::ConvertCodeToPlayer(int code, Color color) {
-	if (code == 1) {
-		return new Human(color, m_gameUI);
-	} else if (code == 21) {
-		return new RandomAI(color, this);
-	} else if (code == 22) {
-		return new MonteCarlo(color, this);
-	}
-	return nullptr;
-}
-
-
 Board* Game::getBoard() const{
 	return m_board;
 }

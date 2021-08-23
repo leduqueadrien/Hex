@@ -117,12 +117,4 @@ public:
 	 * @return bool 
 	 */
 	HEXGAMELIB_EXPORT bool isGameFinished();
-
-	/**
-	 * @brief convert a player's code to a player
-	 * @param code player code
-	 * @param color player color
-	 * @return Player 
-	 */
-	HEXGAMELIB_EXPORT Player* ConvertCodeToPlayer(int code, Color color);
 };
