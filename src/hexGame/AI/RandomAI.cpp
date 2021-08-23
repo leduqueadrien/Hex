@@ -9,6 +9,11 @@ RandomAI::RandomAI(Color color, Game* game):
 	std::srand((int)std::time(nullptr));
 }
 
+RandomAI::RandomAI(Color color):
+    AI::AI(color, nullptr)
+{
+}
+
 
 RandomAI::~RandomAI()
 {

@@ -22,6 +22,13 @@ public:
 	HEXGAMELIB_EXPORT RandomAI(Color color , Game* game);
 
 	/**
+	 * @brief constructor
+	 * @param color player's color
+	 * @param game game
+	 */
+	HEXGAMELIB_EXPORT RandomAI(Color color);
+
+	/**
 	 * @brief destructor
 	 */
 	HEXGAMELIB_EXPORT ~RandomAI();
