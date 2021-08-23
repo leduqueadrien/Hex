@@ -109,7 +109,3 @@ void MonteCarlo::initPlayer() {
 	m_explore_board = new Board((*m_game).getBoard());
 }
 
-
-/*
-	Il faut allouer la mémoire du board
-*/
