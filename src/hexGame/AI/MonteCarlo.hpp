@@ -28,7 +28,7 @@ public :
 
 	HEXGAMELIB_EXPORT void MajBoard();
 
-	HEXGAMELIB_EXPORT void MonteCarlo::initPlayer() override;
+	HEXGAMELIB_EXPORT void initPlayer() override;
 
 };
 

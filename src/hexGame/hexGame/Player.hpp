@@ -56,7 +56,7 @@ public:
 	 * @brief Get is the player is human
 	 * @return is the player a human 
 	 */
-	HEXGAMELIB_EXPORT bool Player::getIsHuman() const;
+	HEXGAMELIB_EXPORT bool getIsHuman() const;
 
 	/**
 	 * @brief choose the move to make

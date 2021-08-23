@@ -47,7 +47,7 @@ Move MonteCarlo::makeMove() {
 				for (int k=0; k<npGameOfExploration; ++k) {
 					
 					// On joue le premier coup de l'IA
-					(*m_explore_board).addMoveToBoard(Move::Move(m_color, i, j));
+					(*m_explore_board).addMoveToBoard(Move(m_color, i, j));
 
 					// On joue jusqu'a la fin d'une partie
 					colorWinner = playUntilEnd();
