@@ -51,8 +51,6 @@ void Game::initGame()
 
 void Game::launchGame()
 {
-	// On itinialise le board et les joueurs
-	initGame();
 
 	// On definie le joueur qui ne commence pas : noire
 	m_numTurn = 0;
