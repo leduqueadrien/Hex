@@ -10,8 +10,10 @@
 Board::Board(int size):
     m_size(size)
 {
+    m_board.reserve(m_size);
     for (int i=0; i<m_size; ++i) {
         std::vector<Tile*> tmp;
+        tmp.reserve(m_size);
         for (int j=0; j<m_size; ++j) {
             tmp.push_back(new Tile(i, j));
         }
@@ -23,8 +25,10 @@ Board::Board(int size):
 Board::Board(Board * board):
     m_size((*board).getSize())
 {
+    m_board.reserve(m_size);
     for (int i=0; i<m_size; ++i) {
         std::vector<Tile*> tmp;
+        tmp.reserve(m_size);
         for (int j=0; j<m_size; ++j) {
             tmp.push_back(new Tile((*board).getTile(i, j)));
         }
@@ -152,6 +156,7 @@ Board& Board::operator=(const Board& board)
             deleteBoard();
             for (int i=0; i<m_size; ++i) {
                 std::vector<Tile *> tmp;
+                tmp.reserve(m_size);
                 for (int j=0; j<m_size; ++j) {
                     Tile t = *(board.m_board.at(i).at(j));
                     tmp.push_back(new Tile(t.getI(), t.getJ(), t.getColor(), t.getIsChecked()));
