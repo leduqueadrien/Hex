@@ -104,4 +104,6 @@ void ConsoleUI::getPlayerMove(Move& move)
 
 	std::cout << "colonne number : ";
 	std::cin >> move.j;
+	move.i -= 1;
+	move.j -= 1;
 }
