@@ -30,7 +30,7 @@ Board::Board(Board * board):
         std::vector<Tile*> tmp;
         tmp.reserve(m_size);
         for (int j=0; j<m_size; ++j) {
-            tmp.push_back(new Tile((*board).getTile(i, j)));
+            tmp.push_back(new Tile(*(*board).getTile(i, j)));
         }
         m_board.push_back(tmp);
     }

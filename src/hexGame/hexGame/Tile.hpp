@@ -51,7 +51,7 @@ public:
     /**
      * @brief Constructor par copie
      */
-    HEXGAMELIB_EXPORT Tile(Tile * tile);
+    HEXGAMELIB_EXPORT Tile(const Tile& tile);
 
 
     /**
