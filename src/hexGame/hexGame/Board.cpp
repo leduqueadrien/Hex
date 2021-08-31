@@ -132,10 +132,10 @@ void Board::deleteBoard() {
 }
 
 
-Tile const * Board::getTile(int i, int j) const
+Tile * Board::getTile(int i, int j) const
 {
     try {
-        return *(m_board.at(i).at(j));
+        return m_board.at(i).at(j);
     } catch (std::out_of_range e) {
         return nullptr;
     }
