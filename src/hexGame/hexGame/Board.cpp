@@ -47,8 +47,8 @@ void Board::initBoard()
 {
     for (int i=0; i<m_size; ++i) {
         for (int j=0; j<m_size; ++j) {
-            m_board.at(i).at(j)->setColor(Color::Undefined);
-            m_board.at(i).at(j)->setIsChecked(false);
+            getTile(i, j)->setColor(Color::Undefined);
+            getTile(i, j)->setIsChecked(false);
         }
     }
 }
@@ -117,7 +117,7 @@ void Board::resetCheckup()
 {
     for (int i=0; i<m_size; ++i) {
         for (int j=0; j<m_size; ++j) {
-            m_board.at(i).at(j)->setIsChecked(false);
+            getTile(i, j)->setIsChecked(false);
         }
     }
 }
@@ -126,16 +126,16 @@ void Board::resetCheckup()
 void Board::deleteBoard() {
     for (int i=0; i<m_size; ++i) {
         for (int j=0; j<m_size; ++j) {
-            delete m_board.at(i).at(j);
+            delete getTile(i, j);
         }
     }
 }
 
 
-Tile* Board::getTile(int i, int j) const
+Tile const * Board::getTile(int i, int j) const
 {
     try {
-        return m_board.at(i).at(j);
+        return *(m_board.at(i).at(j));
     } catch (std::out_of_range e) {
         return nullptr;
     }
@@ -158,7 +158,7 @@ Board& Board::operator=(const Board& board)
                 std::vector<Tile *> tmp;
                 tmp.reserve(m_size);
                 for (int j=0; j<m_size; ++j) {
-                    Tile t = *(board.m_board.at(i).at(j));
+                    Tile t = *(board.getTile(i, j));
                     tmp.push_back(new Tile(t.getI(), t.getJ(), t.getColor(), t.getIsChecked()));
                 }
                 m_board.push_back(tmp);
@@ -166,7 +166,7 @@ Board& Board::operator=(const Board& board)
         } else {
             for (int i=0; i<m_size; ++i) {
                 for (int j=0; j<m_size; ++j) {
-                    *(m_board.at(i).at(j)) = *(board.m_board.at(i).at(j));
+                    *(getTile(i, j)) = *(board.getTile(i, j));
                 }
             }
         }
