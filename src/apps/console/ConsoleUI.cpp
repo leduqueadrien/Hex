@@ -36,14 +36,19 @@ std::string ConsoleUI::displayTile(Tile * tile)
 
 void ConsoleUI::displayBoard(Board* board)
 {
+	// On recupere la taille du plateau
 	int boardSize = (*board).getSize();
+	// On calcul sur combien de caractere est la taille
 	int roughSize = (int)log10(boardSize);
 
 
 	// On affiche les numeros des colones
-	int current10Power = roughSize;
-	for (int Power10=0; Power10<=roughSize; ++Power10) {
+	for (int current10Power=roughSize; current10Power>=0; --current10Power) {
+		//On affiche les espaces en plus pour l'affichage des lignes
 		std::cout << " ";
+		for (int i=roughSize; i>=0; --i)
+			std::cout << " ";
+		//On affiche les chiffres de la puissance de 10 courantes.
 		for(int i=1; i<=boardSize; ++i) {
 			char c;
 			if (i < pow(10, current10Power)) {
@@ -55,7 +60,6 @@ void ConsoleUI::displayBoard(Board* board)
 			std::cout << " " << c << " ";
 		}
 		std::cout << std::endl;
-		--current10Power;
 	}
 	
 	std::string space = "";
