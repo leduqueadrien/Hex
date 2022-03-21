@@ -101,7 +101,15 @@ void MonteCarlo::simulateMove(Color color) {
 
 
 void MonteCarlo::ResetExploreBoard(Board* current_board) {
-	*(m_explore_board) = *(current_board);
+	Color c;
+	int size_board = (*m_explore_board).getSize();
+	for (int i=0; i<size_board; ++i) {
+		for (int j=0; j<size_board; ++j) {
+			c = (*(*current_board).getTile(i, j)).getColor();
+			(*(*m_explore_board).getTile(i, j)).setColor(c);
+			(*(*m_explore_board).getTile(i, j)).setIsChecked(false);
+		}
+	}
 }
 
 void MonteCarlo::initPlayer(Board* board) {
