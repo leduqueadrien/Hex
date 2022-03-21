@@ -5,7 +5,7 @@
 #include "HexGameLib_export.hpp"
 
 #include <vector>
-#include <hexgame/gameUtils.hpp>
+#include <hexgame/Board.hpp>
 #include "AI.hpp"
 
 
@@ -14,13 +14,13 @@ private:
 	Board * m_explore_board;
 
 public :
-	HEXGAMELIB_EXPORT MonteCarlo(Color color, Game* game);
+	HEXGAMELIB_EXPORT MonteCarlo(Color color, Board* board);
 
 	HEXGAMELIB_EXPORT MonteCarlo(Color color);
 
 	HEXGAMELIB_EXPORT ~MonteCarlo();
 
-	HEXGAMELIB_EXPORT Move makeMove();
+	HEXGAMELIB_EXPORT Move makeMove(Board* current_board);
 
 	HEXGAMELIB_EXPORT Color playUntilEnd();
 

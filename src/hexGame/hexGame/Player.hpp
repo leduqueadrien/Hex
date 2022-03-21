@@ -4,6 +4,7 @@
 #include "HexGameLib_export.hpp"
 
 #include "gameUtils.hpp"
+#include "Board.hpp"
 
 
 /**
@@ -15,7 +16,7 @@ protected:
 	/**
 	 * @brief color of the player
 	 */
-    Color m_color;
+	Color m_color;
 
 	/**
 	 * @brief is the player a human
@@ -60,8 +61,9 @@ public:
 
 	/**
 	 * @brief choose the move to make
-	 * @return Move move made 
+	 * @param current_board current state of the board
+	 * @return Move move made
 	 */
-	HEXGAMELIB_EXPORT virtual Move makeMove() = 0;
+	HEXGAMELIB_EXPORT virtual Move makeMove(Board* current_board) = 0;
 	
 };

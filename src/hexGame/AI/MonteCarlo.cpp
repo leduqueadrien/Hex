@@ -9,9 +9,9 @@
 #include <string>
 
 
-MonteCarlo::MonteCarlo(Color color, Game* game) :
-	AI::AI(color, game),
-	m_explore_board(nullptr)
+MonteCarlo::MonteCarlo(Color color, Board* board) :
+	AI::AI(color),
+	m_explore_board(board)
 {
 	// On initialise la graine
 	std::srand((int)std::time(nullptr));
@@ -24,11 +24,11 @@ MonteCarlo::~MonteCarlo() {
 }
 
 
-Move MonteCarlo::makeMove() {
+Move MonteCarlo::makeMove(Board* current_board) {
 
 	// On choisie le nombre de partie a jouer
 	int npGameOfExploration = 100;
-	int board_size = (*(*m_game).getBoard()).getSize();
+	int board_size = (*current_board).getSize();
 	Color colorWinner;
 	int nbWin;
 	int maxNbWin = -1;
@@ -70,7 +70,6 @@ Move MonteCarlo::makeMove() {
 	}
 	return move;
 }
-
 Color MonteCarlo::playUntilEnd() {
 	Color color = m_color;
 	while(!(*m_explore_board).hasPlayerWon(color)) {
@@ -86,7 +85,7 @@ Color MonteCarlo::playUntilEnd() {
 
 
 void MonteCarlo::simulateMove(Color color) {
-	int board_size = (*(*m_game).getBoard()).getSize();
+	int board_size = (*m_explore_board).getSize();
 	Move move;
 	move.color = color;
 	
@@ -102,10 +101,10 @@ void MonteCarlo::simulateMove(Color color) {
 
 
 void MonteCarlo::MajBoard() {
-	*(m_explore_board) = *((*m_game).getBoard());
+	*(m_explore_board) = *(m_explore_board);
 }
 
 void MonteCarlo::initPlayer() {
-	m_explore_board = new Board((*m_game).getBoard());
+	m_explore_board = new Board(m_explore_board);
 }
 
