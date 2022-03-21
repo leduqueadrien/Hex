@@ -16,7 +16,7 @@ protected:
 	/**
 	 * @brief color of the player
 	 */
-    Color m_color;
+	Color m_color;
 
 	/**
 	 * @brief is the player a human

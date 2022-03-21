@@ -4,7 +4,7 @@
 #include <ctime>
 
 RandomAI::RandomAI(Color color):
-    AI::AI(color)
+	AI::AI(color)
 {
 	std::srand((int)std::time(nullptr));
 }
@@ -18,8 +18,8 @@ RandomAI::~RandomAI()
 Move RandomAI::makeMove(Board* current_board)
 {
 	int n = (*current_board).getSize();
-    Move move(m_color);
-    
+	Move move(m_color);
+	
 	move.i = -1;
 	move.j = -1;
 
@@ -28,5 +28,5 @@ Move RandomAI::makeMove(Board* current_board)
 		move.j = std::rand() % n;
 	}
 
-    return move;
+	return move;
 }

@@ -17,7 +17,7 @@ private:
 	/**
 	 * @brief user interface of the game
 	 */
-    GameUI* m_gameUI;
+	GameUI* m_gameUI;
 
 public:
 
