@@ -35,8 +35,9 @@ public:
 
 	/**
 	 * @brief choose the move to make
-	 * @return Move move made 
+	 * @param current_board unused parameter
+	 * @return Move move made
 	 */
-	HEXGAMELIB_EXPORT Move makeMove();
+	HEXGAMELIB_EXPORT Move makeMove(Board* current_board);
 
 };

@@ -14,7 +14,7 @@ Human::~Human()
 }
 
 
-Move Human::makeMove()
+Move Human::makeMove(Board* current_board)
 {
     Move move(m_color);
     (*m_gameUI).getPlayerMove(move);

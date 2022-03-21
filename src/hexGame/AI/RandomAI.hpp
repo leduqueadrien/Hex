@@ -2,8 +2,7 @@
 #include "HexGameLib_export.hpp"
 
 #include "AI.hpp"
-#include <hexgame/GameUI.hpp>
-
+#include <hexgame/Board.hpp>
 
 /**
  * @brief random AI player class
@@ -17,14 +16,6 @@ public:
 	/**
 	 * @brief constructor
 	 * @param color player's color
-	 * @param game game
-	 */
-	HEXGAMELIB_EXPORT RandomAI(Color color , Game* game);
-
-	/**
-	 * @brief constructor
-	 * @param color player's color
-	 * @param game game
 	 */
 	HEXGAMELIB_EXPORT RandomAI(Color color);
 
@@ -35,8 +26,9 @@ public:
 
 	/**
 	 * @brief choose the move to make
-	 * @return Move move made 
+	 * @param current_board current state of the board
+	 * @return Move move made
 	 */
-	HEXGAMELIB_EXPORT Move makeMove();
+	HEXGAMELIB_EXPORT Move makeMove(Board* current_board);
 
 };

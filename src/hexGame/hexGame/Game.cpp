@@ -23,13 +23,6 @@ Game::Game(GameUI* gameUI, Player * player1, Player * player2, int boardSize):
 {
 	m_board = new Board(boardSize);
 
-	if (!(*m_player1).getIsHuman()) {
-		(*static_cast<AI*>(m_player1)).setGame(this);
-	}
-	if (!(*m_player2).getIsHuman()) {
-		(*static_cast<AI*>(m_player2)).setGame(this);
-	}
-
 }
 
 Game::~Game()
@@ -75,7 +68,7 @@ void Game::launchGame()
 		// on recupere le move et on verifie qu'il soit correct
 		Move move;
 		do {
-			move = (*m_player_turn).makeMove();
+			move = (*m_player_turn).makeMove(m_board);
 		} while (!(*m_board).isMoveValid(move));
 
 		// On joue le coup
