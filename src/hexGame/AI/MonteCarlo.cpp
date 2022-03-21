@@ -36,14 +36,14 @@ Move MonteCarlo::makeMove(Board* current_board) {
 	move.color = m_color;
 
 	// On remet le plateau d'exploration a zeros
-	MajBoard();
+	ResetExploreBoard(current_board);
 
 	for (int i=0; i<board_size; ++i) {
 		for (int j=0; j<board_size; ++j) {
 			if ((*(*m_explore_board).getTile(i, j)).getColor() == Color::Undefined) {
 				nbWin = 0;
 				// On remet le plateau d'exploration a zeros
-				MajBoard();
+				ResetExploreBoard(current_board);
 				for (int k=0; k<npGameOfExploration; ++k) {
 					
 					// On joue le premier coup de l'IA
@@ -56,7 +56,7 @@ Move MonteCarlo::makeMove(Board* current_board) {
 						nbWin += colorWinner == 1;
 					}
 					// On remet le plateau d'exploration a zeros
-					MajBoard();
+					ResetExploreBoard(current_board);
 
 				}
 				// On regarde si c'est le meilleur coup trouver pour le moment
@@ -100,8 +100,8 @@ void MonteCarlo::simulateMove(Color color) {
 }
 
 
-void MonteCarlo::MajBoard() {
-	*(m_explore_board) = *(m_explore_board);
+void MonteCarlo::ResetExploreBoard(Board* current_board) {
+	*(m_explore_board) = *(current_board);
 }
 
 void MonteCarlo::initPlayer() {

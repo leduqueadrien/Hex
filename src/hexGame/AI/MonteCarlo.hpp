@@ -26,7 +26,7 @@ public :
 
 	HEXGAMELIB_EXPORT void simulateMove(Color color);
 
-	HEXGAMELIB_EXPORT void MajBoard();
+	HEXGAMELIB_EXPORT void ResetExploreBoard(Board* current_board);
 
 	HEXGAMELIB_EXPORT void initPlayer() override;
 
