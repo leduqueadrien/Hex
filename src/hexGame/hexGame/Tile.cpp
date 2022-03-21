@@ -8,11 +8,16 @@ Tile::Tile(int i, int j):
 }
 
 
-Tile::Tile(int i, int j, Color color, bool isChecked):
+Tile::Tile(int i, int j, Color color, bool isChecked) :
     m_i(i),
     m_j(j),
     m_color(color),
     m_isChecked(isChecked)
+{
+}
+
+Tile::Tile(const Tile& tile) :
+    Tile((tile).m_i, (tile).m_j, (tile).m_color, (tile).m_isChecked)
 {
 }
 

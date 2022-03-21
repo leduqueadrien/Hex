@@ -31,6 +31,12 @@ public:
 	HEXGAMELIB_EXPORT Board(int size);
 
 	/**
+	 * @brief Constructor par copie
+	 * @param size size of the board
+	 */
+	HEXGAMELIB_EXPORT Board(Board * board);
+
+	/**
 	 * @brief Destructor of the board
 	 */
 	HEXGAMELIB_EXPORT ~Board();
@@ -57,6 +63,13 @@ public:
 	 * @return bool
 	 */
 	HEXGAMELIB_EXPORT bool isMoveValid(Move move) const;
+	
+	/**
+	 * @brief is a player have win
+	 * @param color color of the player we want to know
+	 * @return bool 
+	 */
+	HEXGAMELIB_EXPORT bool hasPlayerWon(Color color);
 
 	/**
 	 * @brief set all tile to unchecked
@@ -95,3 +108,9 @@ public:
 	 */
 	HEXGAMELIB_EXPORT Board& operator=(const Board& board);
 };
+
+
+/*
+To Do :
+Constructeur par copie
+*/
