@@ -44,8 +44,13 @@ public:
 	 */
 	HEXGAMELIB_EXPORT virtual ~Player() = default;
 
-
-	HEXGAMELIB_EXPORT virtual void initPlayer();
+	/**
+	 * @brief Initialise the player
+	 * 
+	 * @param board the board on which the player will play
+	 * @return HEXGAMELIB_EXPORT 
+	 */
+	HEXGAMELIB_EXPORT virtual void initPlayer(Board* board) = 0;
 
 	/**
 	 * @brief Get the Color object

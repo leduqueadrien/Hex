@@ -104,7 +104,6 @@ void MonteCarlo::ResetExploreBoard(Board* current_board) {
 	*(m_explore_board) = *(current_board);
 }
 
-void MonteCarlo::initPlayer() {
-	m_explore_board = new Board(m_explore_board);
+void MonteCarlo::initPlayer(Board* board) {
+	m_explore_board = new Board(board);
 }
-
