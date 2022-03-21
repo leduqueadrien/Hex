@@ -34,5 +34,26 @@ public :
 
 /*
 Amelioration :
+	- Utilisation de mutex et qu'un seul tableau compteur ou plusieur tableau compteur et pas de mutex
+		A decider avec du benchmark
+
+	- Ne pas faire un check de fin de partie a chaque coup.
+		Le faire tous les 2, 3, ... coup
+		A la fin de la partie, quand toutes les pieces ont ete posse
 	
+	- Trouver un algo opti de recherche de chemin dans un graph
+
+	- Utiliser namespace pour la librairie
+
+	-Utiliser Smart Pointer
+
+	- Regarder goulot d'etranglement pour savoir ou optimiser
+		Savoir si la partie a ete gagne en est un, c'est sur
+		Un trouver d'autre
+	
+	- Utiliser patron de conception pour :
+		Creation des Tiles : fabrique
+		Utilisation AI : Strategie
+		Utilisation de lalgo de MT : Strategie
+		Pour IHM : fabrique
 */
