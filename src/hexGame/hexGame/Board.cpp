@@ -156,6 +156,11 @@ int Board::getNbFreeTiles() const
 	return m_nbFreeTiles;
 }
 
+void Board::setNbFreeTiles(int nbFreeTiles)
+{
+	m_nbFreeTiles = nbFreeTiles;
+}
+
 Board& Board::operator=(const Board& board)
 {
 	if (this != &board) {

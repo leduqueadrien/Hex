@@ -114,6 +114,13 @@ public:
 	int getNbFreeTiles() const;
 
 	/**
+	 * @brief Set the Nb Free Tiles object
+	 * 
+	 * @param nbFreeTiles 
+	 */
+	void setNbFreeTiles(int nbFreeTiles);
+
+	/**
 	 * @brief affectation operator
 	 * @param board target board
 	 * @return board & 
