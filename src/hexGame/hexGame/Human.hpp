@@ -34,10 +34,18 @@ public:
 	HEXGAMELIB_EXPORT ~Human();
 
 	/**
+	 * @brief Initialise the player
+	 * 
+	 * @param board the board on which the player will play
+	 * @return HEXGAMELIB_EXPORT 
+	 */
+	HEXGAMELIB_EXPORT virtual void initPlayer(Board* board) override;
+
+	/**
 	 * @brief choose the move to make
 	 * @param current_board unused parameter
 	 * @return Move move made
 	 */
-	HEXGAMELIB_EXPORT Move makeMove(Board* current_board);
+	HEXGAMELIB_EXPORT Move makeMove(Board* current_board) override;
 
 };

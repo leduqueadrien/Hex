@@ -15,6 +15,9 @@ RandomAI::~RandomAI()
 }
 
 
+void RandomAI::initPlayer(Board* board) {}
+
+
 Move RandomAI::makeMove(Board* current_board)
 {
 	int n = (*current_board).getSize();

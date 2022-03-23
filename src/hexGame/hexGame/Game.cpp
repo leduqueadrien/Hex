@@ -37,8 +37,8 @@ Game::~Game()
 void Game::initGame()
 {
 	(*m_board).initBoard();
-	(*m_player1).initPlayer();
-	(*m_player2).initPlayer();
+	(*m_player1).initPlayer(m_board);
+	(*m_player2).initPlayer(m_board);
 }
 
 

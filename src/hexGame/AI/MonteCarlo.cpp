@@ -53,12 +53,12 @@ Move MonteCarlo::makeMove(Board* current_board) {
 					colorWinner = playUntilEnd();
 					
 					if (colorWinner == m_color) {
-						nbWin += colorWinner == 1;
+						++nbWin;
 					}
 					// On remet le plateau d'exploration a zeros
 					ResetExploreBoard(current_board);
-
 				}
+				
 				// On regarde si c'est le meilleur coup trouver pour le moment
 				if (nbWin > maxNbWin) {
 					maxNbWin = nbWin;
@@ -72,7 +72,10 @@ Move MonteCarlo::makeMove(Board* current_board) {
 }
 Color MonteCarlo::playUntilEnd() {
 	Color color = m_color;
-	while(!(*m_explore_board).hasPlayerWon(color)) {
+	int size = (*m_explore_board).getSize();
+
+	while ((*m_explore_board).getNbFreeTiles() != size*size)
+	{
 		if (color == Color::Black) {
 			color = Color::White;
 		} else {
@@ -80,7 +83,14 @@ Color MonteCarlo::playUntilEnd() {
 		}
 		simulateMove(color);
 	}
-	return color;
+	if ((*m_explore_board).hasPlayerWon(color)) {
+		return color;
+	} else {
+		if (color == Color::Black)
+			return Color::White;
+		else
+			return Color::Black;
+	}
 }
 
 
@@ -101,10 +111,18 @@ void MonteCarlo::simulateMove(Color color) {
 
 
 void MonteCarlo::ResetExploreBoard(Board* current_board) {
-	*(m_explore_board) = *(current_board);
+	Color c;
+	int size_board = (*m_explore_board).getSize();
+	for (int i=0; i<size_board; ++i) {
+		for (int j=0; j<size_board; ++j) {
+			c = (*(*current_board).getTile(i, j)).getColor();
+			(*(*m_explore_board).getTile(i, j)).setColor(c);
+			(*(*m_explore_board).getTile(i, j)).setIsChecked(false);
+		}
+	}
+	(*m_explore_board).setNbFreeTiles((*current_board).getNbFreeTiles());
 }
 
-void MonteCarlo::initPlayer() {
-	m_explore_board = new Board(m_explore_board);
+void MonteCarlo::initPlayer(Board* board) {
+	m_explore_board = new Board(board);
 }
-

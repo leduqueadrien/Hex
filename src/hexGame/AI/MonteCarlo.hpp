@@ -28,7 +28,7 @@ public :
 
 	HEXGAMELIB_EXPORT void ResetExploreBoard(Board* current_board);
 
-	HEXGAMELIB_EXPORT void initPlayer() override;
+	HEXGAMELIB_EXPORT void initPlayer(Board* board) override;
 
 };
 

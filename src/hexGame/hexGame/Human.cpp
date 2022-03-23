@@ -20,3 +20,6 @@ Move Human::makeMove(Board* current_board)
 	(*m_gameUI).getPlayerMove(move);
 	return move;
 }
+
+
+void Human::initPlayer(Board* board) {}
