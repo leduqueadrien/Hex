@@ -23,6 +23,11 @@ private:
 	 */
 	std::vector<std::vector<Tile*>> m_board;
 
+	/**
+	 * @brief number of tile remaining
+	 */
+	int m_nbFreeTiles;
+
 public:
 	/**
 	 * @brief Constructor
@@ -100,6 +105,13 @@ public:
 	 */
 	HEXGAMELIB_EXPORT int getSize() const;
 
+
+	/**
+	 * @brief Get the Nb Free Tiles object
+	 * 
+	 * @return int 
+	 */
+	int getNbFreeTiles() const;
 
 	/**
 	 * @brief affectation operator

@@ -8,7 +8,8 @@
 
 
 Board::Board(int size):
-	m_size(size)
+	m_size(size),
+	m_nbFreeTiles(0)
 {
 	m_board.reserve(m_size);
 	for (int i=0; i<m_size; ++i) {
@@ -23,7 +24,8 @@ Board::Board(int size):
 
 
 Board::Board(Board * board):
-	m_size((*board).getSize())
+	m_size((*board).getSize()),
+	m_nbFreeTiles((*board).getNbFreeTiles())
 {
 	m_board.reserve(m_size);
 	for (int i=0; i<m_size; ++i) {
@@ -45,6 +47,7 @@ Board::~Board()
 
 void Board::initBoard()
 {
+	m_nbFreeTiles = 0;
 	for (int i=0; i<m_size; ++i) {
 		for (int j=0; j<m_size; ++j) {
 			getTile(i, j)->setColor(Color::Undefined);
@@ -57,6 +60,7 @@ void Board::initBoard()
 void Board::addMoveToBoard(Move move)
 {
 	m_board.at(move.i).at(move.j)->setColor(move.color);
+	++m_nbFreeTiles;
 }
 
 
@@ -147,6 +151,10 @@ int Board::getSize() const
 	return m_size;
 }
 
+int Board::getNbFreeTiles() const
+{
+	return m_nbFreeTiles;
+}
 
 Board& Board::operator=(const Board& board)
 {
