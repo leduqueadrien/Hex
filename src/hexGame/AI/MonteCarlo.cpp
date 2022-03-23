@@ -72,7 +72,10 @@ Move MonteCarlo::makeMove(Board* current_board) {
 }
 Color MonteCarlo::playUntilEnd() {
 	Color color = m_color;
-	while(!(*m_explore_board).hasPlayerWon(color)) {
+	int size = (*m_explore_board).getSize();
+
+	while ((*m_explore_board).getNbFreeTiles() != size*size)
+	{
 		if (color == Color::Black) {
 			color = Color::White;
 		} else {
@@ -80,7 +83,14 @@ Color MonteCarlo::playUntilEnd() {
 		}
 		simulateMove(color);
 	}
-	return color;
+	if ((*m_explore_board).hasPlayerWon(color)) {
+		return color;
+	} else {
+		if (color == Color::Black)
+			return Color::White;
+		else
+			return Color::Black;
+	}
 }
 
 
