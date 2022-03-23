@@ -53,12 +53,12 @@ Move MonteCarlo::makeMove(Board* current_board) {
 					colorWinner = playUntilEnd();
 					
 					if (colorWinner == m_color) {
-						nbWin += colorWinner == 1;
+						++nbWin;
 					}
 					// On remet le plateau d'exploration a zeros
 					ResetExploreBoard(current_board);
-
 				}
+				
 				// On regarde si c'est le meilleur coup trouver pour le moment
 				if (nbWin > maxNbWin) {
 					maxNbWin = nbWin;
@@ -120,6 +120,7 @@ void MonteCarlo::ResetExploreBoard(Board* current_board) {
 			(*(*m_explore_board).getTile(i, j)).setIsChecked(false);
 		}
 	}
+	(*m_explore_board).setNbFreeTiles((*current_board).getNbFreeTiles());
 }
 
 void MonteCarlo::initPlayer(Board* board) {
