@@ -25,6 +25,21 @@ void AdjacentList::push_back(Tile* p) {
 	++m_size;
 }
 
+void AdjacentList::fillWithBoard(Board* board)
+{
+	int board_size = (*board).getSize();
+	Tile* t;
+
+	for (int i=0; i<board_size; ++i) {
+		for (int j=0; j<board_size; ++j) {
+			t = (*board).getTile(i, j);
+			if ((*t).getColor() == Color::Undefined)
+				push_back(t);
+		}
+	}
+}
+
+
 void AdjacentList::remove(int index) {
 	--m_size;
 	m_tab[index] = m_tab[m_size];
@@ -40,6 +55,7 @@ AdjacentList& AdjacentList::operator=(const AdjacentList& adjList)
 		}
 		for(int i=0; i<m_max_size; ++i)
 			m_tab[i] = adjList.m_tab[i];
+		m_size = adjList.m_size;
 	}
 	return *this;
 }

@@ -23,7 +23,7 @@ public :
 
 	HEXGAMELIB_EXPORT Move makeMove(Board* current_board);
 
-	HEXGAMELIB_EXPORT Color playUntilEnd();
+	HEXGAMELIB_EXPORT Color playUntilEnd(AdjacentList& adjlist);
 
 	HEXGAMELIB_EXPORT void simulateMove(Color color, AdjacentList& adjList);
 

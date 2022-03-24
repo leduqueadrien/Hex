@@ -4,6 +4,7 @@
 #include "HexGameLib_export.hpp"
 
 #include <hexGame/Tile.hpp>
+#include <hexGame/Board.hpp>
 
 
 class AdjacentList
@@ -23,6 +24,8 @@ public:
 	int size();
 
 	void push_back(Tile* p);
+
+	void fillWithBoard(Board* board);
 
 	void remove(int index);
 

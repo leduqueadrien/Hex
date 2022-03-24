@@ -28,59 +28,67 @@ MonteCarlo::~MonteCarlo() {
 Move MonteCarlo::makeMove(Board* current_board) {
 
 	// On choisie le nombre de partie a jouer
-	int npGameOfExploration = 100;
+	int nbGameOfExploration = 100;
 	int board_size = (*current_board).getSize();
 	Color colorWinner;
 	int nbWin;
 	int maxNbWin = -1;
-	Move move;
-	move.color = m_color;
+	Move move_play;
+	Move move_save;
+	move_play.color = m_color;
+	move_save.color = m_color;
+	AdjacentList adjList_save(board_size*board_size);
+	AdjacentList adjList_play(board_size*board_size);
+	Tile* current_tile;
+
 
 	// On remet le plateau d'exploration a zeros
 	ResetExploreBoard(current_board);
 
-	for (int i=0; i<board_size; ++i) {
-		for (int j=0; j<board_size; ++j) {
-			if ((*(*m_explore_board).getTile(i, j)).getColor() == Color::Undefined) {
-				nbWin = 0;
-				// On remet le plateau d'exploration a zeros
-				ResetExploreBoard(current_board);
-				for (int k=0; k<npGameOfExploration; ++k) {
-					
-					// On joue le premier coup de l'IA
-					(*m_explore_board).addMoveToBoard(Move(m_color, i, j));
+	// On sauvegarde les tiles qui n'ont pas ete jouees
+	adjList_save.fillWithBoard(m_explore_board);
 
-					// On joue jusqu'a la fin d'une partie
-					colorWinner = playUntilEnd();
-					
-					if (colorWinner == m_color) {
-						++nbWin;
-					}
-					// On remet le plateau d'exploration a zeros
-					ResetExploreBoard(current_board);
-				}
-				
-				// On regarde si c'est le meilleur coup trouver pour le moment
-				if (nbWin > maxNbWin) {
-					maxNbWin = nbWin;
-					move.i = i;
-					move.j = j;
-				}
-			}
+	for (int i=0; i<adjList_save.size(); ++i) {
+		// On recupere la tile qui va etre jouer
+		current_tile = adjList_save[i];
+
+		// On enleve la tile de celle qui peuvent etre jouees
+		move_play.i = (*current_tile).getI();
+		move_play.j = (*current_tile).getJ();
+		nbWin = 0;
+
+		// On explore les parties
+		for (int k=0; k<nbGameOfExploration; ++k) {
+			// On joue le coup
+			(*m_explore_board).addMoveToBoard(move_play);
+
+			// On simule une partie
+			adjList_play = adjList_save;
+			adjList_play.remove(i);
+			colorWinner = playUntilEnd(adjList_play);
+
+			if (colorWinner == m_color)
+				++nbWin;
+
+			// On remet le plateau d'exploration a zeros
+			ResetExploreBoard(current_board);
+		}
+		// std::cout << "i=" << move_play.i << " j=" << move_play.j << " => " << nbWin << std::endl;
+
+		// On sauvgarde le coup si c'est le meilleur trouve actuellement
+		if (nbWin > maxNbWin) {
+			maxNbWin = nbWin;
+			move_save.i = move_play.i;
+			move_save.j = move_play.j;
 		}
 	}
-	return move;
+
+	return move_save;
 }
-Color MonteCarlo::playUntilEnd() {
+
+Color MonteCarlo::playUntilEnd(AdjacentList& adjList) {
 	Color color = m_color;
 	int size = (*m_explore_board).getSize();
-	AdjacentList adjList = AdjacentList(size*size);
-	for (int i=0; i<size; ++i)
-		for(int j=0; j<size; ++j) {
-			Tile* t = (*m_explore_board).getTile(i, j);
-			if ((*t).getColor() == Color::Undefined)
-				adjList.push_back(t);
-		}
 
 	while ((*m_explore_board).getNbFreeTiles() != size*size)
 	{
