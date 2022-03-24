@@ -7,6 +7,7 @@
 #include <vector>
 #include <hexgame/Board.hpp>
 #include "AI.hpp"
+#include "AdjacentList.hpp"
 
 
 class MonteCarlo : public AI {
@@ -24,7 +25,7 @@ public :
 
 	HEXGAMELIB_EXPORT Color playUntilEnd();
 
-	HEXGAMELIB_EXPORT void simulateMove(Color color);
+	HEXGAMELIB_EXPORT void simulateMove(Color color, AdjacentList& adjList);
 
 	HEXGAMELIB_EXPORT void ResetExploreBoard(Board* current_board);
 

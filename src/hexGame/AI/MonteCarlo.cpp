@@ -2,6 +2,7 @@
 #include "MonteCarlo.hpp"
 #include "AI.hpp"
 #include "hexgame/gameUtils.hpp"
+#include "AdjacentList.hpp"
 #include <stack>
 #include <vector>
 #include <ctime>
@@ -73,6 +74,13 @@ Move MonteCarlo::makeMove(Board* current_board) {
 Color MonteCarlo::playUntilEnd() {
 	Color color = m_color;
 	int size = (*m_explore_board).getSize();
+	AdjacentList adjList = AdjacentList(size*size);
+	for (int i=0; i<size; ++i)
+		for(int j=0; j<size; ++j) {
+			Tile* t = (*m_explore_board).getTile(i, j);
+			if ((*t).getColor() == Color::Undefined)
+				adjList.push_back(t);
+		}
 
 	while ((*m_explore_board).getNbFreeTiles() != size*size)
 	{
@@ -81,7 +89,7 @@ Color MonteCarlo::playUntilEnd() {
 		} else {
 			color = Color::Black;
 		}
-		simulateMove(color);
+		simulateMove(color, adjList);
 	}
 	if ((*m_explore_board).hasPlayerWon(color)) {
 		return color;
@@ -94,16 +102,18 @@ Color MonteCarlo::playUntilEnd() {
 }
 
 
-void MonteCarlo::simulateMove(Color color) {
-	int board_size = (*m_explore_board).getSize();
+void MonteCarlo::simulateMove(Color color, AdjacentList& adjList) {
+	int size;
 	Move move;
+	int index;
 	move.color = color;
 	
 	// On choisit les coordonnees du coup
-	do {
-		move.i = std::rand() % board_size;
-		move.j = std::rand() % board_size;
-	}while(!(*m_explore_board).isMoveValid(move));
+	size = adjList.size();
+	index = std::rand() % size;
+	move.i = (*adjList[index]).getI();
+	move.j = (*adjList[index]).getJ();
+	adjList.remove(index);
 
 	// On joue le coup
 	(*m_explore_board).addMoveToBoard(move);
