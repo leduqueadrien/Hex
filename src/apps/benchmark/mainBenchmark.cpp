@@ -10,16 +10,6 @@
 #include <hexGame/Board.hpp>
 #include <AI/MonteCarlo.hpp>
 
-// std::fstream file;
-// file.open("benchmark/test.txt", std::ios::out | std::ios::app);
-// file << "COUCOU";
-// file.close();
-
-// clock_t clock_start;
-// clock_t clock_end;
-// clock_start = clock();
-// clock_end = clock();
-// std::cout << clock_end-clock_start << std::endl;
 
 void playAGame(Game* game, CSVwriter& writer) {
 	std::vector<double> vect;
@@ -53,6 +43,7 @@ void playAGame(Game* game, CSVwriter& writer) {
 	writer.writeDataLine(vect);
 }
 
+
 void writeCommentSection(CSVwriter& writer,
 						 const std::string& name,
 						 const std::string& description,
@@ -72,6 +63,7 @@ void writeCommentSection(CSVwriter& writer,
 	writer.writeComment("Time unit : " + timeUnit);
 }
 
+
 void writeTabHeader(CSVwriter& writer, int boardSize)
 {
 	std::vector<std::string> vect;
@@ -83,14 +75,13 @@ void writeTabHeader(CSVwriter& writer, int boardSize)
 	writer.writeHeader(vect);
 }
 
+
 int main(int argc, char const *argv[])
 {
 	int nb_game = 5;
 	int board_size = 7;
 	CSVwriter writer("test.csv");
-
 	Board* board = new Board(board_size);
-	// GameUI* gameUI = new VoidU();
 	GameUI* gameUI = new VoidU();
 	MonteCarlo* playerW = new MonteCarlo(Color::White);
 	MonteCarlo* playerB = new MonteCarlo(Color::Black);
