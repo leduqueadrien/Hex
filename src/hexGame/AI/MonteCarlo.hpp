@@ -5,7 +5,7 @@
 #include "HexGameLib_export.hpp"
 
 #include <vector>
-#include <hexgame/Board.hpp>
+#include <hexGame/Board.hpp>
 #include "AI.hpp"
 
 
