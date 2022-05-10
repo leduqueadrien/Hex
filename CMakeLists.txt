@@ -22,6 +22,7 @@ option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
 
 option(BUILD_MAIN_GRAPHIC "Build the executable using SDL2" OFF)
 option(BUILD_MAIN_CONSOLE "Build the executable for console" ON)
+option(BUILD_MAIN_BENCHMARK "Build the executable for benchark" OFF)
 
 
 find_package(SDL2 REQUIRED)
