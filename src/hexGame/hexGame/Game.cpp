@@ -39,18 +39,20 @@ void Game::initGame()
 	(*m_board).initBoard();
 	(*m_player1).initPlayer(m_board);
 	(*m_player2).initPlayer(m_board);
+	
+	m_numTurn = 0;
+
+	// On definie le joueur qui ne commence pas : noire
+	m_player_turn = m_player1;
+	if ((*m_player2).getColor() == Color::Black) {
+		m_player_turn = m_player2;
+	}
 }
 
 
 void Game::launchGame()
 {
 
-	// On definie le joueur qui ne commence pas : noire
-	m_numTurn = 0;
-	m_player_turn = m_player1;
-	if ((*m_player2).getColor() == Color::Black) {
-		m_player_turn = m_player2;
-	}
 	displayBoard();
 
 	// boucle de jeu
