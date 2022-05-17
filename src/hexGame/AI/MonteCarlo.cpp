@@ -1,8 +1,8 @@
 
 #include "MonteCarlo.hpp"
 #include "AI.hpp"
-#include "hexgame/gameUtils.hpp"
 #include "AdjacentList.hpp"
+#include "hexGame/gameUtils.hpp"
 #include <stack>
 #include <vector>
 #include <ctime>

@@ -2,7 +2,7 @@
 #include "HexGameLib_export.hpp"
 
 #include "AI.hpp"
-#include <hexgame/Board.hpp>
+#include <hexGame/Board.hpp>
 
 /**
  * @brief random AI player class
