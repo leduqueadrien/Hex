@@ -24,7 +24,7 @@ option(BUILD_MAIN_GRAPHIC "Build the executable using SDL2" OFF)
 option(BUILD_MAIN_CONSOLE "Build the executable for console" ON)
 
 
-find_package(SDL2 REQUIRED)
+# find_package(SDL2 REQUIRED)
 
 include(CMakePackageConfigHelpers)
 

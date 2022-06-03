@@ -47,7 +47,7 @@ set(HEADERS
 )
 
 add_library(${HEX_GAME_LIB_NAME} ${SOURCES} ${HEADERS})
-target_compile_definitions(${HEX_GAME_LIB_NAME} PRIVATE "HexGameLib_EXPORTS")
+target_compile_definitions(${HEX_GAME_LIB_NAME} PRIVATE "HexGameLib_EXPORT")
 
 # generate a file suitable for preprocessor inclusion which contains EXPORT macros to be used in library classes
 generate_export_header(
