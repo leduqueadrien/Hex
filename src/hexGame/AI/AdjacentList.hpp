@@ -3,33 +3,31 @@
 
 #include "HexGameLib_export.hpp"
 
-#include <hexGame/Tile.hpp>
 #include <hexGame/Board.hpp>
+#include <hexGame/Tile.hpp>
 
+class AdjacentList {
+  private:
+    int m_max_size;
+    Tile **m_tab;
+    int m_size;
 
-class AdjacentList
-{
-private:
-	int m_max_size;
-	Tile** m_tab;
-	int m_size;
+  public:
+    AdjacentList(int max_size);
 
-public:
-	AdjacentList(int max_size);
+    AdjacentList(const AdjacentList &adjList);
 
-	AdjacentList(const AdjacentList& adjList);
+    ~AdjacentList();
 
-	~AdjacentList();
+    int size();
 
-	int size();
+    void push_back(Tile *p);
 
-	void push_back(Tile* p);
+    void fillWithBoard(Board *board);
 
-	void fillWithBoard(Board* board);
+    void remove(int index);
 
-	void remove(int index);
+    AdjacentList &operator=(const AdjacentList &adjList);
 
-	AdjacentList& operator =(const AdjacentList& adjList);
-
-	Tile* operator [] (int index);
+    Tile *operator[](int index);
 };

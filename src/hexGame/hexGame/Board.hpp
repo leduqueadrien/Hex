@@ -3,131 +3,129 @@
 
 #include "HexGameLib_export.hpp"
 
-#include <vector>
-#include "gameUtils.hpp"
 #include "Tile.hpp"
+#include "gameUtils.hpp"
+#include <vector>
 
 /**
  * @brief Class board
  */
-class Board final
-{
-private:
-	/**
-	 * @brief size of the board
-	 */
-	int m_size;
+class Board final {
+  private:
+    /**
+     * @brief size of the board
+     */
+    int m_size;
 
-	/**
-	 * @brief board of the game. Compose of Tile
-	 */
-	std::vector<std::vector<Tile*>> m_board;
+    /**
+     * @brief board of the game. Compose of Tile
+     */
+    std::vector<std::vector<Tile *>> m_board;
 
-	/**
-	 * @brief number of tile remaining
-	 */
-	int m_nbFreeTiles;
+    /**
+     * @brief number of tile remaining
+     */
+    int m_nbFreeTiles;
 
-public:
-	/**
-	 * @brief Constructor
-	 * @param size size of the board
-	 */
-	HEXGAMELIB_EXPORT Board(int size);
+  public:
+    /**
+     * @brief Constructor
+     * @param size size of the board
+     */
+    HEXGAMELIB_EXPORT Board(int size);
 
-	/**
-	 * @brief Constructor par copie
-	 * @param size size of the board
-	 */
-	HEXGAMELIB_EXPORT Board(Board * board);
+    /**
+     * @brief Constructor par copie
+     * @param size size of the board
+     */
+    HEXGAMELIB_EXPORT Board(Board *board);
 
-	/**
-	 * @brief Destructor of the board
-	 */
-	HEXGAMELIB_EXPORT ~Board();
+    /**
+     * @brief Destructor of the board
+     */
+    HEXGAMELIB_EXPORT ~Board();
 
-	/**
-	 * @brief initialize the board
-	 * Set each tile of the board to undefined and to uncheck
-	 * @return void
-	 */
-	HEXGAMELIB_EXPORT void initBoard();
+    /**
+     * @brief initialize the board
+     * Set each tile of the board to undefined and to uncheck
+     * @return void
+     */
+    HEXGAMELIB_EXPORT void initBoard();
 
-	/**
-	 * @brief add a move to th board
-	 * a player had made a valid move. Add this move to the board i.e. change the color of a tile
-	 * @param move the made move
-	 * @return void
-	 */
-	HEXGAMELIB_EXPORT void addMoveToBoard(Move move);
+    /**
+     * @brief add a move to th board
+     * a player had made a valid move. Add this move to the board i.e. change
+     * the color of a tile
+     * @param move the made move
+     * @return void
+     */
+    HEXGAMELIB_EXPORT void addMoveToBoard(Move move);
 
-	/**
-	 * @brief check whether a move is valid
-	 * Check if the move is in the board and if any player had made a move on this tile
-	 * @param move the move to check
-	 * @return bool
-	 */
-	HEXGAMELIB_EXPORT bool isMoveValid(Move move) const;
-	
-	/**
-	 * @brief is a player have win
-	 * @param color color of the player we want to know
-	 * @return bool 
-	 */
-	HEXGAMELIB_EXPORT bool hasPlayerWon(Color color);
+    /**
+     * @brief check whether a move is valid
+     * Check if the move is in the board and if any player had made a move on
+     * this tile
+     * @param move the move to check
+     * @return bool
+     */
+    HEXGAMELIB_EXPORT bool isMoveValid(Move move) const;
 
-	/**
-	 * @brief set all tile to unchecked
-	 * @return void
-	 */
-	HEXGAMELIB_EXPORT void resetCheckup();
+    /**
+     * @brief is a player have win
+     * @param color color of the player we want to know
+     * @return bool
+     */
+    HEXGAMELIB_EXPORT bool hasPlayerWon(Color color);
 
-	/**
-	 * @brief delete the board property
-	 * 
-	 * @return void
-	 */
-	HEXGAMELIB_EXPORT void deleteBoard();
+    /**
+     * @brief set all tile to unchecked
+     * @return void
+     */
+    HEXGAMELIB_EXPORT void resetCheckup();
 
+    /**
+     * @brief delete the board property
+     *
+     * @return void
+     */
+    HEXGAMELIB_EXPORT void deleteBoard();
 
-	/**
-	 * @brief Get a tile from the board
-	 * @param i line of the wanted tile
-	 * @param j column of the wanted tile
-	 * @return Tile *
-	 */
-	HEXGAMELIB_EXPORT Tile* getTile(int i, int j) const;
+    /**
+     * @brief Get a tile from the board
+     * @param i line of the wanted tile
+     * @param j column of the wanted tile
+     * @return Tile *
+     */
+    HEXGAMELIB_EXPORT Tile *getTile(int i, int j) const;
 
-	/**
-	 * @brief Get the Size property
-	 * 
-	 * @return int size
-	 */
-	HEXGAMELIB_EXPORT int getSize() const;
+    /**
+     * @brief Get the Size property
+     *
+     * @return int size
+     */
+    HEXGAMELIB_EXPORT int getSize() const;
 
+    /**
+     * @brief Get the Nb Free Tiles object
+     *
+     * @return int
+     */
+    int getNbFreeTiles() const;
 
-	/**
-	 * @brief Get the Nb Free Tiles object
-	 * 
-	 * @return int 
-	 */
-	int getNbFreeTiles() const;
+    /**
+     * @brief Set the Nb Free Tiles object
+     *
+     * @param nbFreeTiles
+     */
+    void setNbFreeTiles(int nbFreeTiles);
 
-	/**
-	 * @brief Set the Nb Free Tiles object
-	 * 
-	 * @param nbFreeTiles 
-	 */
-	void setNbFreeTiles(int nbFreeTiles);
-
-	/**
-	 * @brief affectation operator
-	 * @param board target board
-	 * @return board & 
-	 */
-	HEXGAMELIB_EXPORT Board& operator=(const Board& board);
+    /**
+     * @brief affectation operator
+     * @param board target board
+     * @return board &
+     */
+    HEXGAMELIB_EXPORT Board &operator=(const Board &board);
 };
-
 
 /*
 To Do :
