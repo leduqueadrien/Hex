@@ -1,13 +1,8 @@
 
 #include "MonteCarlo.hpp"
-#include "AI.hpp"
-#include "AdjacentList.hpp"
 #include "hexGame/gameUtils.hpp"
-#include <stack>
-#include <vector>
+#include <cstdlib>
 #include <ctime>
-#include <iostream>
-#include <string>
 
 
 MonteCarlo::MonteCarlo(Color color, Board* board) :
@@ -73,7 +68,6 @@ Move MonteCarlo::makeMove(Board* current_board) {
 			// On remet le plateau d'exploration a zeros
 			ResetExploreBoard(current_board);
 		}
-		// std::cout << "i=" << move_play.i << " j=" << move_play.j << " => " << nbWin << std::endl;
 
 		// On sauvgarde le coup si c'est le meilleur trouve actuellement
 		if (nbWin > maxNbWin) {

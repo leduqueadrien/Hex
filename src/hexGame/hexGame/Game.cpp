@@ -1,16 +1,6 @@
 
-#include <iostream>
-#include <string>
-#include <stack>
-#include <iostream>
 #include "Game.hpp"
-#include "IterNeighbour.hpp"
-#include "Board.hpp"
 #include "gameUtils.hpp"
-#include "Player.hpp"
-#include "Human.hpp"
-#include <AI/RandomAI.hpp>
-#include <AI/MonteCarlo.hpp>
 
 Game::Game(GameUI* gameUI, Player * player1, Player * player2, int boardSize):
 	m_boardSize(boardSize),

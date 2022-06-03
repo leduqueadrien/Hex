@@ -1,8 +1,7 @@
 
+#include "ConsoleUI.hpp"
 #include <iostream>
 #include <cmath>
-#include "ConsoleUI.hpp"
-#include "hexGame/GameUI.hpp"
 
 
 ConsoleUI::ConsoleUI(/* args */)

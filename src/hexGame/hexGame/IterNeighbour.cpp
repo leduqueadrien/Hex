@@ -1,7 +1,5 @@
 
 #include "IterNeighbour.hpp"
-#include "Board.hpp"
-#include "gameUtils.hpp"
 
 
 IterNeighbour::IterNeighbour(Board * board, int i, int j) :

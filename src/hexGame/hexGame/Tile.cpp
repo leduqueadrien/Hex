@@ -1,6 +1,5 @@
 
 #include "Tile.hpp"
-#include "gameUtils.hpp"
 
 Tile::Tile(int i, int j):
 	Tile(i, j, Undefined, false)

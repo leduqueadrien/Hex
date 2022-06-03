@@ -3,6 +3,7 @@
 #include <hexGame/Game.hpp>
 #include <hexGame/Board.hpp>
 #include <hexGame/Tile.hpp>
+#include "string"
 
 class ConsoleUI final : public GameUI
 {

@@ -1,9 +1,7 @@
 
 #include "Board.hpp"
-#include "Tile.hpp"
 #include "IterNeighbour.hpp"
 #include <stdexcept>
-#include <iostream>
 #include <stack>
 
 

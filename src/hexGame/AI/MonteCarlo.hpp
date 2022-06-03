@@ -4,7 +4,6 @@
 
 #include "HexGameLib_export.hpp"
 
-#include <vector>
 #include <hexGame/Board.hpp>
 #include "AI.hpp"
 #include "AdjacentList.hpp"
