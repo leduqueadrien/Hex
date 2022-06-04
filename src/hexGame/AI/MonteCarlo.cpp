@@ -77,7 +77,7 @@ Color MonteCarlo::playUntilEnd(AdjacentList &adjList) {
     Color color = m_color;
     int size = (*m_explore_board).getSize();
 
-    while ((*m_explore_board).getNbFreeTiles() != size * size) {
+    while ((*m_explore_board).getNbOccupiedTiles() != size * size) {
         if (color == Color::Black) {
             color = Color::White;
         } else {
@@ -122,7 +122,7 @@ void MonteCarlo::ResetExploreBoard(Board *current_board) {
             (*(*m_explore_board).getTile(i, j)).setIsChecked(false);
         }
     }
-    (*m_explore_board).setNbFreeTiles((*current_board).getNbFreeTiles());
+    (*m_explore_board).setNbOccupiedTiles((*current_board).getNbOccupiedTiles());
 }
 
 void MonteCarlo::initPlayer(Board *board) {

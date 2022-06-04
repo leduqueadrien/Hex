@@ -17,12 +17,12 @@ class IterBoard {
     Board *m_board;
 
     /**
-     * @brief line iterator
+     * @brief line of the tile on which we iterate
      */
     int m_i;
 
     /**
-     * @brief column iterator
+     * @brief column of the tile on which we iterate
      */
     int m_j;
 

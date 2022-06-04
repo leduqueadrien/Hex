@@ -5,7 +5,7 @@
 #include <stack>
 #include <stdexcept>
 
-Board::Board(int size) : m_size(size), m_nbFreeTiles(0) {
+Board::Board(int size) : m_size(size), m_nbOccupiedTIles(0) {
     m_board.reserve(m_size);
     for (int i = 0; i < m_size; ++i) {
         std::vector<Tile *> tmp;
@@ -18,7 +18,7 @@ Board::Board(int size) : m_size(size), m_nbFreeTiles(0) {
 }
 
 Board::Board(Board *board)
-    : m_size((*board).getSize()), m_nbFreeTiles((*board).getNbFreeTiles()) {
+    : m_size((*board).getSize()), m_nbOccupiedTIles((*board).getNbOccupiedTiles()) {
     m_board.reserve(m_size);
     for (int i = 0; i < m_size; ++i) {
         std::vector<Tile *> tmp;
@@ -33,7 +33,7 @@ Board::Board(Board *board)
 Board::~Board() { deleteBoard(); }
 
 void Board::initBoard() {
-    m_nbFreeTiles = 0;
+    m_nbOccupiedTIles = 0;
     IterBoard it(this);
     for (it.begin(); *it != it.end(); ++it) {
         (*it)->setColor(Color::Undefined);
@@ -43,7 +43,7 @@ void Board::initBoard() {
 
 void Board::addMoveToBoard(Move move) {
     m_board.at(move.i).at(move.j)->setColor(move.color);
-    ++m_nbFreeTiles;
+    ++m_nbOccupiedTIles;
 }
 
 bool Board::isMoveValid(Move move) const {
@@ -117,9 +117,9 @@ Tile *Board::getTile(int i, int j) const {
 
 int Board::getSize() const { return m_size; }
 
-int Board::getNbFreeTiles() const { return m_nbFreeTiles; }
+int Board::getNbOccupiedTiles() const { return m_nbOccupiedTIles; }
 
-void Board::setNbFreeTiles(int nbFreeTiles) { m_nbFreeTiles = nbFreeTiles; }
+void Board::setNbOccupiedTiles(int nbFreeTiles) { m_nbOccupiedTIles = nbFreeTiles; }
 
 Board &Board::operator=(const Board &board) {
     if (this != &board) {

@@ -7,7 +7,7 @@
 #include "gameUtils.hpp"
 
 /**
- * @brief player base class
+ * @brief player bases class
  */
 class Player {
   protected:
@@ -42,9 +42,8 @@ class Player {
 
     /**
      * @brief Initialise the player
-     *
      * @param board the board on which the player will play
-     * @return HEXGAMELIB_EXPORT
+     * @return void
      */
     HEXGAMELIB_EXPORT virtual void initPlayer(Board *board) = 0;
 

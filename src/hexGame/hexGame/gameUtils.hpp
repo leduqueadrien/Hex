@@ -2,7 +2,7 @@
 #pragma once
 
 /**
- * @brief give the possible color for a tile
+ * @brief enumerate the possible colors for a tile
  */
 typedef enum Color { Undefined, White, Black } Color;
 
@@ -11,17 +11,17 @@ typedef enum Color { Undefined, White, Black } Color;
  */
 typedef struct Move {
     /**
-     * @brief i line of the move
+     * @brief line of the move
      */
     int i;
 
     /**
-     * @brief j column of the move
+     * @brief column of the move
      */
     int j;
 
     /**
-     * @brief color of the player that had made the move
+     * @brief color of the move
      */
     Color color;
 
@@ -38,7 +38,7 @@ typedef struct Move {
 } Move;
 
 /**
- * @brief give the possible neighbour for a tile
+ * @brief enumerate the possible neighbour for a tile
  */
 typedef enum Neighbour {
     NOT_INIT,

@@ -6,7 +6,6 @@
 
 /**
  * @brief random AI player class
- *
  */
 class RandomAI : public AI {
 
@@ -24,16 +23,15 @@ class RandomAI : public AI {
 
     /**
      * @brief Initialise the player
-     *
      * @param board the board on which the player will play
-     * @return HEXGAMELIB_EXPORT
+     * @return void
      */
     HEXGAMELIB_EXPORT void initPlayer(Board *board) override;
 
     /**
      * @brief choose the move to make
      * @param current_board current state of the board
-     * @return Move move made
+     * @return move made
      */
     HEXGAMELIB_EXPORT Move makeMove(Board *current_board) override;
 };

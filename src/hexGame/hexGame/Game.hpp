@@ -44,12 +44,12 @@ class Game final {
     Player *m_player2;
 
     /**
-     * @brief the number of the current tunr
+     * @brief the number of the current turn
      */
     int m_numTurn;
 
     /**
-     * @brief pointer on the player who had to play
+     * @brief the player who had to play
      */
     Player *m_player_turn;
 
@@ -59,6 +59,7 @@ class Game final {
      * @param gameUI user interface use on the game
      * @param player1 player 1
      * @param player2 player 2
+     * @param boarSize size of the board
      */
     HEXGAMELIB_EXPORT Game(GameUI *gameUI, Player *player1, Player *player2,
                            int boardSize = 11);

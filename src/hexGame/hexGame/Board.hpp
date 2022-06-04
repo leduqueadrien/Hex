@@ -18,14 +18,14 @@ class Board final {
     int m_size;
 
     /**
-     * @brief board of the game. Compose of Tile
+     * @brief board of the game. Composed of Tile
      */
     std::vector<std::vector<Tile *>> m_board;
 
     /**
-     * @brief number of tile remaining
+     * @brief number of occupied tiles
      */
-    int m_nbFreeTiles;
+    int m_nbOccupiedTIles;
 
   public:
     /**
@@ -35,8 +35,8 @@ class Board final {
     HEXGAMELIB_EXPORT Board(int size);
 
     /**
-     * @brief Constructor par copie
-     * @param size size of the board
+     * @brief Copy constructor
+     * @param board board to copy
      */
     HEXGAMELIB_EXPORT Board(Board *board);
 
@@ -47,16 +47,15 @@ class Board final {
 
     /**
      * @brief initialize the board
-     * Set each tile of the board to undefined and to uncheck
+     * Set each tile of the board to undefined and to uncheck.
      * @return void
      */
     HEXGAMELIB_EXPORT void initBoard();
 
     /**
      * @brief add a move to th board
-     * a player had made a valid move. Add this move to the board i.e. change
-     * the color of a tile
-     * @param move the made move
+     * Add a valid move to the board i.e. change the color of a tile.
+     * @param move the valid move
      * @return void
      */
     HEXGAMELIB_EXPORT void addMoveToBoard(Move move);
@@ -64,7 +63,7 @@ class Board final {
     /**
      * @brief check whether a move is valid
      * Check if the move is in the board and if any player had made a move on
-     * this tile
+     * it.
      * @param move the move to check
      * @return bool
      */
@@ -78,14 +77,13 @@ class Board final {
     HEXGAMELIB_EXPORT bool hasPlayerWon(Color color);
 
     /**
-     * @brief set all tile to unchecked
+     * @brief set all tiles to unchecked
      * @return void
      */
     HEXGAMELIB_EXPORT void resetCheckup();
 
     /**
      * @brief delete the board property
-     *
      * @return void
      */
     HEXGAMELIB_EXPORT void deleteBoard();
@@ -110,14 +108,14 @@ class Board final {
      *
      * @return int
      */
-    int getNbFreeTiles() const;
+    int getNbOccupiedTiles() const;
 
     /**
      * @brief Set the Nb Free Tiles object
      *
      * @param nbFreeTiles
      */
-    void setNbFreeTiles(int nbFreeTiles);
+    void setNbOccupiedTiles(int nbFreeTiles);
 
     /**
      * @brief affectation operator
@@ -126,8 +124,3 @@ class Board final {
      */
     HEXGAMELIB_EXPORT Board &operator=(const Board &board);
 };
-
-/*
-To Do :
-Constructeur par copie
-*/

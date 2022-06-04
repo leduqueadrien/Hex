@@ -16,16 +16,14 @@ class Tile final {
     int m_i;
     /**
      * @brief column of the tile in the board
-     *
      */
     int m_j;
     /**
      * @brief color of the tile
-     * Undefined, White, Black
      */
     Color m_color;
     /**
-     * @brief boolean use when a process on the board in running
+     * @brief boolean use when a process on the board is running
      * True : the tile had already been checked
      */
     bool m_isChecked;
@@ -48,7 +46,8 @@ class Tile final {
     HEXGAMELIB_EXPORT Tile(int i, int j, Color color, bool isChecked);
 
     /**
-     * @brief Constructor par copie
+     * @brief Copy constructor
+     * @param Tile Tile to copy
      */
     HEXGAMELIB_EXPORT Tile(const Tile &tile);
 
@@ -56,9 +55,6 @@ class Tile final {
      * @brief destructor
      */
     HEXGAMELIB_EXPORT ~Tile() = default;
-
-    //******************************** Getters - Setters
-    //********************************
 
     /**
      * @brief Get the m_i property
@@ -105,9 +101,6 @@ class Tile final {
      * @return void
      */
     HEXGAMELIB_EXPORT void setIsChecked(bool isChecked);
-
-    //******************************** Operators
-    //********************************
 
     /**
      * @brief operator= affectation oprator

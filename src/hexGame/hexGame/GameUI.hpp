@@ -10,7 +10,7 @@
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/tool-errors/linker-tools-error-lnk2001?view=msvc-160#what-is-an-unresolved-external-symbol
 
 /**
- * @brief user interface base class
+ * @brief user interface based class
  */
 class GameUI {
   private:
@@ -37,7 +37,6 @@ class GameUI {
 
     /**
      * @brief display a move
-     *
      * @param move move who had to be display
      */
     HEXGAMELIB_EXPORT virtual void displayMove(Move move) = 0;
