@@ -1,6 +1,7 @@
 
 #include "Board.hpp"
 #include "IterNeighbour.hpp"
+#include "IterBoard.hpp"
 #include <stack>
 #include <stdexcept>
 
@@ -33,11 +34,10 @@ Board::~Board() { deleteBoard(); }
 
 void Board::initBoard() {
     m_nbFreeTiles = 0;
-    for (int i = 0; i < m_size; ++i) {
-        for (int j = 0; j < m_size; ++j) {
-            getTile(i, j)->setColor(Color::Undefined);
-            getTile(i, j)->setIsChecked(false);
-        }
+    IterBoard it(this);
+    for (it.begin(); *it != it.end(); ++it) {
+        (*it)->setColor(Color::Undefined);
+        (*it)->setIsChecked(false);
     }
 }
 
@@ -96,19 +96,15 @@ bool Board::hasPlayerWon(Color color) {
 }
 
 void Board::resetCheckup() {
-    for (int i = 0; i < m_size; ++i) {
-        for (int j = 0; j < m_size; ++j) {
-            getTile(i, j)->setIsChecked(false);
-        }
-    }
+    IterBoard it(this);
+    for (it.begin(); *it != it.end(); ++it)
+        (*it)->setIsChecked(false);
 }
 
 void Board::deleteBoard() {
-    for (int i = 0; i < m_size; ++i) {
-        for (int j = 0; j < m_size; ++j) {
-            delete getTile(i, j);
-        }
-    }
+    IterBoard it(this);
+    for (it.begin(); *it != it.end(); ++it)
+        delete *it;
 }
 
 Tile *Board::getTile(int i, int j) const {
