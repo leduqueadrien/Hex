@@ -1,7 +1,6 @@
 
 #include "ConsoleUI.hpp"
 #include <hexGame/Board.hpp>
-#include <hexGame/IterBoard.hpp>
 #include <hexGame/IterNeighbour.hpp>
 #include <hexGame/gameUtils.hpp>
 #include <iostream>
