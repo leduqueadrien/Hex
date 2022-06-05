@@ -18,7 +18,7 @@ class AdjacentList {
     }
 
     AdjacentList(const AdjacentList<T> &adjList) {
-        m_tab.reserve(adjList.size())
+        m_tab.reserve(adjList.size());
         for (int i = 0; i < adjList.max_size(); ++i)
             m_tab[i] = adjList.m_tab[i];
     }
@@ -36,7 +36,7 @@ class AdjacentList {
     template <typename C>
     void fillWithContainer(C& c, bool(*statement)(T*)) {
     // void fillWithBoard(C& c) {
-        C::iterator it;
+        typename C::iterator it;
         for (it = c.begin(); it != c.end(); ++it)
             if ( (**it).getColor() == Color::Undefined)
                 push_back((*it));
