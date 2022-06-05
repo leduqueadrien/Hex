@@ -12,7 +12,8 @@ int main(int, char const **) {
 
     GameUI *gameUI = new ConsoleUI();
     Player *player1 = new MonteCarlo(Color::White);
-    Player *player2 = new Human(Color::Black, gameUI);
+    Player *player2 = new MonteCarlo(Color::Black);
+    // Player *player2 = new Human(Color::Black, gameUI);
     int board_size = 7;
 
     Game *game = new Game(gameUI, player1, player2, board_size);
