@@ -1,48 +1,33 @@
 
 #include "Board.hpp"
 #include "IterNeighbour.hpp"
-#include "IterBoard.hpp"
 #include <stack>
 #include <stdexcept>
 
 Board::Board(int size) : m_size(size), m_nbOccupiedTIles(0) {
-    m_board.reserve(m_size);
-    for (int i = 0; i < m_size; ++i) {
-        std::vector<Tile *> tmp;
-        tmp.reserve(m_size);
-        for (int j = 0; j < m_size; ++j) {
-            tmp.push_back(new Tile(i, j));
-        }
-        m_board.push_back(tmp);
+    m_board.reserve(size*size);
+    for (int i = 0; i < m_size*m_size; ++i) {
+        m_board.push_back(new Tile(i/m_size, i%m_size));
     }
 }
 
 Board::Board(Board *board)
     : m_size((*board).getSize()), m_nbOccupiedTIles((*board).getNbOccupiedTiles()) {
-    m_board.reserve(m_size);
-    for (int i = 0; i < m_size; ++i) {
-        std::vector<Tile *> tmp;
-        tmp.reserve(m_size);
-        for (int j = 0; j < m_size; ++j) {
-            tmp.push_back(new Tile(*(*board).getTile(i, j)));
-        }
-        m_board.push_back(tmp);
-    }
+    m_board.reserve(m_size*m_size);
+    for (iterator it=board->begin(); it!=board->end(); ++it)
+        m_board.push_back(new Tile(**it));
 }
 
 Board::~Board() { deleteBoard(); }
 
 void Board::initBoard() {
     m_nbOccupiedTIles = 0;
-    IterBoard it(this);
-    for (it.begin(); *it != it.end(); ++it) {
-        (*it)->setColor(Color::Undefined);
-        (*it)->setIsChecked(false);
-    }
+    for (iterator it = begin(); it != end(); ++it)
+        (*it)->initTile();
 }
 
 void Board::addMoveToBoard(Move move) {
-    m_board.at(move.i).at(move.j)->setColor(move.color);
+    m_board.at(m_size*move.i + move.j)->setColor(move.color);
     ++m_nbOccupiedTIles;
 }
 
@@ -96,20 +81,21 @@ bool Board::hasPlayerWon(Color color) {
 }
 
 void Board::resetCheckup() {
-    IterBoard it(this);
-    for (it.begin(); *it != it.end(); ++it)
+    for (iterator it = begin(); it != end(); ++it)
         (*it)->setIsChecked(false);
 }
 
 void Board::deleteBoard() {
-    IterBoard it(this);
-    for (it.begin(); *it != it.end(); ++it)
+    for (iterator it = begin(); it != end(); ++it)
         delete *it;
 }
 
 Tile *Board::getTile(int i, int j) const {
     try {
-        return m_board.at(i).at(j);
+        if (i >= 0 && i < m_size && j >= 0 && j < m_size)
+            return m_board.at(m_size*i + j);
+        else
+            throw std::out_of_range("");
     } catch (std::out_of_range e) {
         return nullptr;
     }
@@ -126,23 +112,33 @@ Board &Board::operator=(const Board &board) {
         if (board.m_size != m_size) {
             m_size = board.m_size;
             deleteBoard();
-            for (int i = 0; i < m_size; ++i) {
-                std::vector<Tile *> tmp;
-                tmp.reserve(m_size);
-                for (int j = 0; j < m_size; ++j) {
-                    Tile t = *(board.getTile(i, j));
-                    tmp.push_back(new Tile(t.getI(), t.getJ(), t.getColor(),
-                                           t.getIsChecked()));
-                }
-                m_board.push_back(tmp);
+            m_board.reserve(m_size*m_size);
+            Tile* t;
+            for (const_iterator it=board.begin(); it!=board.end(); it++) {
+                t = *it;
+                m_board.push_back(new Tile(t->getI(), t->getJ(), t->getColor(),
+                                           t->getIsChecked()));
             }
         } else {
-            for (int i = 0; i < m_size; ++i) {
-                for (int j = 0; j < m_size; ++j) {
-                    *(getTile(i, j)) = *(board.getTile(i, j));
-                }
-            }
+            for (const_iterator it=board.begin(); it!=board.end(); it++)
+                *(getTile((**it).getI(), (**it).getJ())) = (**it);
         }
     }
     return *this;
+}
+
+Board::iterator Board::begin() {
+    return m_board.begin();
+}
+
+Board::const_iterator Board::begin() const {
+    return m_board.begin();
+}
+
+Board::iterator Board::end() {
+    return m_board.end();
+}
+
+Board::const_iterator Board::end() const {
+    return m_board.end();
 }

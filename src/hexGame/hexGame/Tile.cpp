@@ -1,6 +1,8 @@
 
 #include "Tile.hpp"
 
+Tile::Tile() : Tile(-1, -1, Undefined, false) {}
+
 Tile::Tile(int i, int j) : Tile(i, j, Undefined, false) {}
 
 Tile::Tile(int i, int j, Color color, bool isChecked)
@@ -25,6 +27,12 @@ void Tile::setColor(Color color) { m_color = color; }
 bool Tile::getIsChecked() const { return m_isChecked; }
 
 void Tile::setIsChecked(bool isChecked) { m_isChecked = isChecked; }
+
+void Tile::initTile() {
+    m_color = Color::Undefined;
+    m_isChecked = false;
+}
+
 
 Tile &Tile::operator=(const Tile &tile) {
     if (this != &tile) {

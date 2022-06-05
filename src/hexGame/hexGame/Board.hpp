@@ -20,7 +20,7 @@ class Board final {
     /**
      * @brief board of the game. Composed of Tile
      */
-    std::vector<std::vector<Tile *>> m_board;
+    std::vector<Tile *> m_board;
 
     /**
      * @brief number of occupied tiles
@@ -123,4 +123,39 @@ class Board final {
      * @return board &
      */
     HEXGAMELIB_EXPORT Board &operator=(const Board &board);
+
+    /**
+     * @brief iterator through the board
+     */
+    using iterator = std::vector<Tile*>::iterator;
+    
+    /**
+     * @brief constant iterator though the board
+     */
+    using const_iterator = std::vector<Tile*>::const_iterator;
+
+    /**
+     * @brief begin the iteration
+     * @return begin iterator
+     */
+    HEXGAMELIB_EXPORT iterator begin();
+    
+    /**
+     * @brief begin the constant iteration
+     * @return begin constant iterator
+     */
+    HEXGAMELIB_EXPORT const_iterator begin() const;
+
+    /**
+     * @brief end the iterator
+     * @return end iterator
+     */
+    HEXGAMELIB_EXPORT iterator end();
+    
+    /**
+     * @brief end the constant iterator
+     * @return end constant iterator
+     */
+    HEXGAMELIB_EXPORT const_iterator end() const;
+
 };

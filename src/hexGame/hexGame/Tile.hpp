@@ -29,6 +29,12 @@ class Tile final {
     bool m_isChecked;
 
   public:
+    
+    /**
+     * @brief Default constructor
+     */
+    HEXGAMELIB_EXPORT Tile();
+
     /**
      * @brief Constructor
      * @param i line of the tile
@@ -101,6 +107,8 @@ class Tile final {
      * @return void
      */
     HEXGAMELIB_EXPORT void setIsChecked(bool isChecked);
+
+    HEXGAMELIB_EXPORT void initTile();
 
     /**
      * @brief operator= affectation oprator
