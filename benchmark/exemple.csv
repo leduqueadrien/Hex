@@ -1,0 +1,14 @@
+# Nom de l'IA
+# Description de l'IA utilise : 
+# Taille du plateau : 5
+# Nb game explored in the AI : 100
+# Nb thread : 1
+# Nb of game: 3
+# Unite de temps
+25_Tiles; 24_Tiles; 23_Tiles, ... , 2_Tiles, 1_Tiles
+# Game 1
+120; 118; 115; ... ; 5; 4
+# Game 2
+...
+# Game 3
+...
