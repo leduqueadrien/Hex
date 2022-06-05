@@ -13,7 +13,7 @@
 
 void playAGame(Game* game, CSVwriter& writer) {
 	std::vector<double> vect;
-	int boardSize = (*(*game).getBoard()).getSize();
+	int boardSize = (*(*game).getBoard()).size();
 	clock_t clock_start;
 	clock_t clock_end;
 
@@ -78,9 +78,9 @@ void writeTabHeader(CSVwriter& writer, int boardSize)
 
 int main(int argc, char const *argv[])
 {
-	int nb_game = 5;
-	int board_size = 7;
-	CSVwriter writer("test.csv");
+	int nb_game = 100;
+	int board_size = 9;
+	CSVwriter writer("AdjListTemplate_9_100_1.csv");
 	Board* board = new Board(board_size);
 	GameUI* gameUI = new VoidU();
 	MonteCarlo* playerW = new MonteCarlo(Color::White);
@@ -92,6 +92,7 @@ int main(int argc, char const *argv[])
 
 	for (int i=0; i<nb_game; ++i) {
 		playAGame(game, writer);
+		std::cout << "Game " << (i+1) << " / " << nb_game << std::endl;
 	}
 	
 	delete game;
