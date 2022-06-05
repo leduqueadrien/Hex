@@ -12,7 +12,7 @@ Board::Board(int size) : m_size(size), m_nbOccupiedTIles(0) {
 }
 
 Board::Board(Board *board)
-    : m_size((*board).getSize()), m_nbOccupiedTIles((*board).getNbOccupiedTiles()) {
+    : m_size((*board).size()), m_nbOccupiedTIles((*board).getNbOccupiedTiles()) {
     m_board.reserve(m_size*m_size);
     for (iterator it=board->begin(); it!=board->end(); ++it)
         m_board.push_back(new Tile(**it));
@@ -101,7 +101,7 @@ Tile *Board::getTile(int i, int j) const {
     }
 }
 
-int Board::getSize() const { return m_size; }
+int Board::size() const { return m_size; }
 
 int Board::getNbOccupiedTiles() const { return m_nbOccupiedTIles; }
 

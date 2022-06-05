@@ -101,7 +101,7 @@ class Board final {
      *
      * @return int size
      */
-    HEXGAMELIB_EXPORT int getSize() const;
+    HEXGAMELIB_EXPORT int size() const;
 
     /**
      * @brief Get the Nb Free Tiles object

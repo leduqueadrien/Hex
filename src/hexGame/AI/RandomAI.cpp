@@ -12,7 +12,7 @@ RandomAI::~RandomAI() {}
 void RandomAI::initPlayer(Board *board) {}
 
 Move RandomAI::makeMove(Board *current_board) {
-    int n = (*current_board).getSize();
+    int n = (*current_board).size();
     Move move(m_color);
 
     move.i = -1;

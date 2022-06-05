@@ -25,7 +25,7 @@ std::string ConsoleUI::displayTile(Tile *tile) {
 
 void ConsoleUI::displayBoard(Board *board) {
     // On recupere la taille du plateau
-    int boardSize = (*board).getSize();
+    int boardSize = (*board).size();
     // On calcul sur combien de caractere est la taille
     int roughSize = (int)log10(boardSize);
 

@@ -18,7 +18,7 @@ Move MonteCarlo::makeMove(Board *current_board) {
 
     // On choisie le nombre de partie a jouer
     int nbGameOfExploration = 100;
-    int board_size = (*current_board).getSize();
+    int board_size = (*current_board).size();
     Color colorWinner;
     int nbWin;
     int maxNbWin = -1;
@@ -75,7 +75,7 @@ Move MonteCarlo::makeMove(Board *current_board) {
 
 Color MonteCarlo::playUntilEnd(AdjacentList<Tile> &adjList) {
     Color color = m_color;
-    int size = (*m_explore_board).getSize();
+    int size = (*m_explore_board).size();
 
     while ((*m_explore_board).getNbOccupiedTiles() != size * size) {
         if (color == Color::Black) {
@@ -114,7 +114,7 @@ void MonteCarlo::simulateMove(Color color, AdjacentList<Tile> &adjList) {
 
 void MonteCarlo::ResetExploreBoard(Board *current_board) {
     Color c;
-    int size_board = (*m_explore_board).getSize();
+    int size_board = (*m_explore_board).size();
     for (int i = 0; i < size_board; ++i) {
         for (int j = 0; j < size_board; ++j) {
             c = (*(*current_board).getTile(i, j)).getColor();
