@@ -4,30 +4,67 @@
 #include "HexGameLib_export.hpp"
 
 #include <hexGame/Board.hpp>
-#include <hexGame/Tile.hpp>
+#include <vector>
 
+template <typename T>
 class AdjacentList {
   private:
-    int m_max_size;
-    Tile **m_tab;
-    int m_size;
+    std::vector<T*> m_tab;
+    // T **m_tab;
 
   public:
-    AdjacentList(int max_size);
+    AdjacentList(int max_size) {
+        m_tab.reserve(max_size);
+    }
 
-    AdjacentList(const AdjacentList &adjList);
+    AdjacentList(const AdjacentList<T> &adjList) {
+        m_tab.reserve(adjList.size())
+        for (int i = 0; i < adjList.max_size(); ++i)
+            m_tab[i] = adjList.m_tab[i];
+    }
 
-    ~AdjacentList();
+    ~AdjacentList() = default;
 
-    int size();
+    size_t size() { return m_tab.size(); }
 
-    void push_back(Tile *p);
+    size_t max_size() { return m_tab.max_size(); }
 
-    void fillWithBoard(Board *board);
+    void push_back(T *p) {
+        m_tab.push_back(p);
+    }
 
-    void remove(int index);
+    // <typename C>
+    // void fillWithBoard(C& c, bool(*statement)(T*)) {
+        // C::iterator it;
+        // for (it = c.begin(); it != c.end(); ++it) {
+        // }
+    void fillWithBoard(Board& board) {
+        int board_size = board.getSize();
+        T* t;
+        for (int i = 0; i < board_size; ++i) {
+            for (int j = 0; j < board_size; ++j) {
+                t = board.getTile(i, j);
+                if ((*t).getColor() == Color::Undefined)
+                    push_back(t);
+            }
+        }
+    }
 
-    AdjacentList &operator=(const AdjacentList &adjList);
+    void remove(int index) {
+        m_tab[index] = m_tab.at(m_tab.size()-1);
+        m_tab.pop_back();
+    }
 
-    Tile *operator[](int index);
+    AdjacentList &operator=(const AdjacentList &adjList) {
+        m_tab = adjList.m_tab;
+        return *this;
+    }
+
+    T* operator[](int index) {
+        return m_tab[index];
+    }
+
+    T* at(int index) {
+        return m_tab.at(index);
+    }
 };

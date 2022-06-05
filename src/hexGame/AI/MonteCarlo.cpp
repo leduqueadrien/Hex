@@ -26,15 +26,15 @@ Move MonteCarlo::makeMove(Board *current_board) {
     Move move_save;
     move_play.color = m_color;
     move_save.color = m_color;
-    AdjacentList adjList_save(board_size * board_size);
-    AdjacentList adjList_play(board_size * board_size);
+    AdjacentList<Tile> adjList_save(board_size * board_size);
+    AdjacentList<Tile> adjList_play(board_size * board_size);
     Tile *current_tile;
 
     // On remet le plateau d'exploration a zeros
     ResetExploreBoard(current_board);
 
     // On sauvegarde les tiles qui n'ont pas ete jouees
-    adjList_save.fillWithBoard(m_explore_board);
+    adjList_save.fillWithBoard(*m_explore_board);
 
     for (int i = 0; i < adjList_save.size(); ++i) {
         // On recupere la tile qui va etre jouer
@@ -73,7 +73,7 @@ Move MonteCarlo::makeMove(Board *current_board) {
     return move_save;
 }
 
-Color MonteCarlo::playUntilEnd(AdjacentList &adjList) {
+Color MonteCarlo::playUntilEnd(AdjacentList<Tile> &adjList) {
     Color color = m_color;
     int size = (*m_explore_board).getSize();
 
@@ -95,8 +95,8 @@ Color MonteCarlo::playUntilEnd(AdjacentList &adjList) {
     }
 }
 
-void MonteCarlo::simulateMove(Color color, AdjacentList &adjList) {
-    int size;
+void MonteCarlo::simulateMove(Color color, AdjacentList<Tile> &adjList) {
+    size_t size;
     Move move;
     int index;
     move.color = color;

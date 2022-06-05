@@ -19,7 +19,6 @@ set(HEX_GAME_TARGET_NAME "${HEX_GAME_LIB_NAME}Targets")
 set(SOURCES
 	AI/MonteCarlo.cpp
 	AI/RandomAI.cpp
-	AI/AdjacentList.cpp
 	hexGame/Board.cpp
 	hexGame/Human.cpp
 	hexGame/Game.cpp

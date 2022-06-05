@@ -50,7 +50,7 @@ class MonteCarlo : public AI {
      * be played by the players
      * @return color of the winner
      */
-    HEXGAMELIB_EXPORT Color playUntilEnd(AdjacentList &adjlist);
+    HEXGAMELIB_EXPORT Color playUntilEnd(AdjacentList<Tile> &adjlist);
 
     /**
      * @brief Make a move on the exploration game
@@ -58,7 +58,7 @@ class MonteCarlo : public AI {
      * @param adjList AdjacentList of all the playable
      * @return void 
      */
-    HEXGAMELIB_EXPORT void simulateMove(Color color, AdjacentList &adjList);
+    HEXGAMELIB_EXPORT void simulateMove(Color color, AdjacentList<Tile> &adjList);
 
     /**
      * @brief reset the exploration board in order to be like the current
