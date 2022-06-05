@@ -34,7 +34,7 @@ Move MonteCarlo::makeMove(Board *current_board) {
     ResetExploreBoard(current_board);
 
     // On sauvegarde les tiles qui n'ont pas ete jouees
-    adjList_save.fillWithBoard(*m_explore_board);
+    adjList_save.fillWithContainer(*m_explore_board, [](Tile*t) -> bool { return t->getColor() == Color::Undefined; });
 
     for (int i = 0; i < adjList_save.size(); ++i) {
         // On recupere la tile qui va etre jouer

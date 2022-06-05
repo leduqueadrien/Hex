@@ -33,21 +33,13 @@ class AdjacentList {
         m_tab.push_back(p);
     }
 
-    // <typename C>
-    // void fillWithBoard(C& c, bool(*statement)(T*)) {
-        // C::iterator it;
-        // for (it = c.begin(); it != c.end(); ++it) {
-        // }
-    void fillWithBoard(Board& board) {
-        int board_size = board.getSize();
-        T* t;
-        for (int i = 0; i < board_size; ++i) {
-            for (int j = 0; j < board_size; ++j) {
-                t = board.getTile(i, j);
-                if ((*t).getColor() == Color::Undefined)
-                    push_back(t);
-            }
-        }
+    template <typename C>
+    void fillWithContainer(C& c, bool(*statement)(T*)) {
+    // void fillWithBoard(C& c) {
+        C::iterator it;
+        for (it = c.begin(); it != c.end(); ++it)
+            if ( (**it).getColor() == Color::Undefined)
+                push_back((*it));
     }
 
     void remove(int index) {
