@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include "HexGameLib_export.hpp"
+
 /**
  * @brief enumerate the possible colors for a tile
  */
@@ -37,23 +39,3 @@ typedef struct Move {
 
 } Move;
 
-/**
- * @brief enumerate the possible neighbour for a tile
- */
-typedef enum Neighbour {
-    NOT_INIT,
-    TOP_LEFT,
-    TOP_RIGHT,
-    RIGHT,
-    BOTTOM_RIGHT,
-    BOTTOM_LEFT,
-    LEFT,
-    END
-} Neighbour;
-
-/**
- * @brief incremental operator for the neighbour enum
- * @param n current neighbour
- * @return Neighbour& next neighbour
- */
-Neighbour &operator++(Neighbour &n);

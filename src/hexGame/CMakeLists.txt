@@ -22,7 +22,6 @@ set(SOURCES
 	hexGame/Board.cpp
 	hexGame/Human.cpp
 	hexGame/Game.cpp
-	hexGame/gameUtils.cpp
 	hexGame/IterNeighbour.cpp
 	hexGame/Player.cpp
 	hexGame/Tile.cpp
@@ -37,10 +36,10 @@ set(HEADERS
 	hexGame/Human.hpp
 	hexGame/Game.hpp
 	hexGame/GameUI.hpp
-	hexGame/gameUtils.hpp
 	hexGame/IterNeighbour.hpp
 	hexGame/Player.hpp
 	hexGame/Tile.hpp
+	gameUtils.hpp
 )
 
 add_library(${HEX_GAME_LIB_NAME} ${SOURCES} ${HEADERS})

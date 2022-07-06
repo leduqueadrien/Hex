@@ -1,6 +1,11 @@
 
 #include "IterNeighbour.hpp"
 
+Neighbour &operator++(Neighbour &n) {
+    n = static_cast<Neighbour>(static_cast<int>(n) + 1);
+    return n;
+}
+
 IterNeighbour::IterNeighbour(Board *board, int i, int j)
     : m_i(i), m_j(j), m_numCurrentNeighbour(Neighbour::NOT_INIT),
       m_board(board) {}
