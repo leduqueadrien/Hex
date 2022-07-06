@@ -1,9 +1,10 @@
 
 #pragma once
 
-#include "Board.hpp"
-#include "GameUI.hpp"
 #include "HexGameLib_export.hpp"
+
+#include "GameUI.hpp"
+#include "Board.hpp"
 #include "Player.hpp"
 
 // Convention : blanc : haut en bas

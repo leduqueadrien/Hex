@@ -3,9 +3,11 @@
 
 #include "HexGameLib_export.hpp"
 
+#include <hexGame/Board.hpp>
+
 #include "AI.hpp"
 #include "AdjacentList.hpp"
-#include <hexGame/Board.hpp>
+
 /**
  * @brief AI based on Monte Carlo principal
  */

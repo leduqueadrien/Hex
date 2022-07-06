@@ -3,9 +3,10 @@
 
 #include "HexGameLib_export.hpp"
 
+#include <vector>
+
 #include "Tile.hpp"
 #include "gameUtils.hpp"
-#include <vector>
 
 /**
  * @brief Class board

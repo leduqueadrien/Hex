@@ -1,8 +1,11 @@
 
+#pragma once
+
 #include "HexGameLib_export.hpp"
 
-#include "AI.hpp"
 #include <hexGame/Board.hpp>
+
+#include "AI.hpp"
 
 /**
  * @brief random AI player class
