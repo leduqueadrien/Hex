@@ -4,7 +4,6 @@
 #include <ctime>
 
 RandomAI::RandomAI(Color color) : AI::AI(color) {
-    std::srand((int)std::time(nullptr));
 }
 
 RandomAI::~RandomAI() {}
@@ -12,6 +11,7 @@ RandomAI::~RandomAI() {}
 void RandomAI::initPlayer(Board *board) {}
 
 Move RandomAI::makeMove(Board *current_board) {
+    std::srand((int)std::time(nullptr));
     int n = (*current_board).size();
     Move move(m_color);
 

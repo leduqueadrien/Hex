@@ -1,13 +1,11 @@
 
 #include "MonteCarlo.hpp"
-#include "hexGame/gameUtils.hpp"
+#include "gameUtils.hpp"
 #include <cstdlib>
 #include <ctime>
 
 MonteCarlo::MonteCarlo(Color color, Board *board)
     : AI::AI(color), m_explore_board(board) {
-    // On initialise la graine
-    std::srand((int)std::time(nullptr));
 }
 
 MonteCarlo::MonteCarlo(Color color) : MonteCarlo(color, nullptr) {}
@@ -15,6 +13,7 @@ MonteCarlo::MonteCarlo(Color color) : MonteCarlo(color, nullptr) {}
 MonteCarlo::~MonteCarlo() { delete m_explore_board; }
 
 Move MonteCarlo::makeMove(Board *current_board) {
+    std::srand((int)std::time(nullptr));
 
     // On choisie le nombre de partie a jouer
     int nbGameOfExploration = 100;
