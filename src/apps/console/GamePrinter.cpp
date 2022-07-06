@@ -1,14 +1,26 @@
 
-#include "ConsoleUI.hpp"
+#include "GamePrinter.hpp"
 #include <cmath>
 #include <iostream>
 
-ConsoleUI::ConsoleUI(/* args */) {}
 
-ConsoleUI::~ConsoleUI() {}
+GamePrinter::GamePrinter(int board_size) : m_board_size(board_size) {
+    m_board.reserve(board_size*board_size);
+    std::vector<Color>::iterator it;
+    for(int i=0; i<m_board_size*m_board_size; ++i)
+        m_board.push_back(Color::Undefined);
+}
 
-std::string ConsoleUI::displayTile(Tile *tile) {
-    switch ((*tile).getColor()) {
+GamePrinter::~GamePrinter() {}
+
+void GamePrinter::addMove(Move move) {
+    try {
+        m_board.at(move.i*m_board_size + move.j) = move.color;
+    } catch (const std::out_of_range &) {}
+}
+
+std::string GamePrinter::displayTile(Color color) {
+    switch (color) {
     case Color::White:
         return "B";
         break;
@@ -23,9 +35,9 @@ std::string ConsoleUI::displayTile(Tile *tile) {
     }
 }
 
-void ConsoleUI::displayBoard(Board *board) {
+void GamePrinter::displayBoard() {
     // On recupere la taille du plateau
-    int boardSize = (*board).size();
+    int boardSize = m_board_size;
     // On calcul sur combien de caractere est la taille
     int roughSize = (int)log10(boardSize);
 
@@ -62,7 +74,7 @@ void ConsoleUI::displayBoard(Board *board) {
         space.append(" ");
         std::cout << space;
         for (int j = 0; j < boardSize; ++j) {
-            std::cout << "[" << displayTile((*board).getTile(i, j)) << "]";
+            std::cout << "[" << displayTile(m_board.at(i*boardSize+j)) << "]";
         }
 
         std::cout << std::endl;
@@ -70,7 +82,7 @@ void ConsoleUI::displayBoard(Board *board) {
     std::cout << std::endl;
 }
 
-void ConsoleUI::displayTurnInfo(int numTurn, Color color) {
+void GamePrinter::displayTurnInfo(int numTurn, Color color) {
     std::cout << "Turn number " << numTurn << ", ";
     if (color == Color::White) {
         std::cout << "White";
@@ -80,18 +92,21 @@ void ConsoleUI::displayTurnInfo(int numTurn, Color color) {
     std::cout << " turn" << std::endl;
 }
 
-void ConsoleUI::displayMove(Move move) {
+void GamePrinter::displayMove(Move move) {
     std::cout << "player's move : ";
     std::cout << "(" << move.i + 1 << "," << move.j + 1 << ")" << std::endl;
 }
 
-void ConsoleUI::getPlayerMove(Move &move) {
-
+Move GamePrinter::getPlayerMove() {
+    Move move;
     std::cout << "line number : ";
     std::cin >> move.i;
 
     std::cout << "colonne number : ";
     std::cin >> move.j;
+
     move.i -= 1;
     move.j -= 1;
+    
+    return move;
 }

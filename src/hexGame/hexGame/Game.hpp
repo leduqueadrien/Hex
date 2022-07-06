@@ -3,9 +3,11 @@
 
 #include "HexGameLib_export.hpp"
 
-#include "GameUI.hpp"
+#include <memory>
+
 #include "Board.hpp"
 #include "Player.hpp"
+#include "Mediator.hpp"
 
 // Convention : blanc : haut en bas
 //				noire : gauche droite
@@ -13,6 +15,8 @@
 // Without HEXGAMELIB_EXPORT, we get : error LNK2019 or : fatal error LNK1104
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/tool-errors/linker-tools-error-lnk2019?view=msvc-160
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/compiler-errors-1/fatal-error-c1083?view=msvc-160
+
+class Mediator;
 
 /**
  * @brief class game
@@ -30,19 +34,14 @@ class Game final {
     Board *m_board;
 
     /**
-     * @brief user interface use on the game
-     */
-    GameUI *m_gameUI;
-
-    /**
      * @brief player 1
      */
-    Player *m_player1;
+    std::shared_ptr<Player> m_playerWhite;
 
     /**
      * @brief player 2
      */
-    Player *m_player2;
+    std::shared_ptr<Player> m_playerBlack;
 
     /**
      * @brief the number of the current turn
@@ -52,7 +51,11 @@ class Game final {
     /**
      * @brief the player who had to play
      */
-    Player *m_player_turn;
+     std::shared_ptr<Player> m_player_turn;
+
+    Move m_last_move;
+
+    std::shared_ptr<Mediator> m_mediator;
 
   public:
     /**
@@ -62,8 +65,8 @@ class Game final {
      * @param player2 player 2
      * @param boarSize size of the board
      */
-    HEXGAMELIB_EXPORT Game(GameUI *gameUI, Player *player1, Player *player2,
-                           int boardSize = 11);
+    HEXGAMELIB_EXPORT Game( std::shared_ptr<Player> playerWhite,  std::shared_ptr<Player> playerBlack,
+                           int boardSize, const std::shared_ptr<Mediator>& mediator);
 
     /**
      * @brief destructor
@@ -86,12 +89,7 @@ class Game final {
      * @brief Get the Player Turn object
      * @return player who had to play
      */
-    HEXGAMELIB_EXPORT Player *getPlayerTurn() const;
-
-    /**
-     * @brief display the board through the user iterface
-     */
-    HEXGAMELIB_EXPORT void displayBoard() const;
+    HEXGAMELIB_EXPORT  std::shared_ptr<Player> getPlayerTurn() const;
 
     /**
      * @brief increment the turn number
@@ -114,8 +112,18 @@ class Game final {
     HEXGAMELIB_EXPORT void launchGame();
 
     /**
+     * @brief Change the turn of the game
+     * 
+     * @param move VALID move to play
+     * @return 
+     */
+    HEXGAMELIB_EXPORT bool nextTurn(Move move);
+
+    /**
      * @brief is the game is finished
      * @return bool
      */
     HEXGAMELIB_EXPORT bool isGameFinished();
+
+    HEXGAMELIB_EXPORT void WaitingInstruction();
 };

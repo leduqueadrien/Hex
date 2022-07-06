@@ -25,8 +25,10 @@ set(SOURCES
 	hexGame/IterNeighbour.cpp
 	hexGame/Player.cpp
 	hexGame/Tile.cpp
-)
-
+	Parameters.cpp
+	Mediator.cpp
+	)
+	
 set(HEADERS
 	AI/AI.hpp
 	AI/MonteCarlo.hpp
@@ -35,11 +37,12 @@ set(HEADERS
 	hexGame/Board.hpp
 	hexGame/Human.hpp
 	hexGame/Game.hpp
-	hexGame/GameUI.hpp
 	hexGame/IterNeighbour.hpp
 	hexGame/Player.hpp
 	hexGame/Tile.hpp
 	gameUtils.hpp
+	Parameters.hpp
+	Mediator.hpp
 )
 
 add_library(${HEX_GAME_LIB_NAME} ${SOURCES} ${HEADERS})

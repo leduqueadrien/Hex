@@ -1,35 +1,33 @@
 
 #include "Game.hpp"
 #include "gameUtils.hpp"
+#ifdef _WIN32
+    #include <Windows.h>
+#else
+    #include <unistd.h>
+#endif
 
-Game::Game(GameUI *gameUI, Player *player1, Player *player2, int boardSize)
-    : m_boardSize(boardSize), m_board(nullptr), m_gameUI(gameUI),
-      m_player1(player1), m_player2(player2), m_numTurn(0),
-      m_player_turn(nullptr) {
+Game::Game( std::shared_ptr<Player> playerWhite,  std::shared_ptr<Player> playerBlack, int boardSize, const std::shared_ptr<Mediator>& mediator)
+    : m_boardSize(boardSize), m_board(nullptr),
+      m_playerWhite(playerWhite), m_playerBlack(playerBlack), m_numTurn(0),
+      m_player_turn(nullptr), m_last_move(), m_mediator(mediator) {
     m_board = new Board(boardSize);
 }
 
 Game::~Game() {
     delete m_board;
-    delete m_player1;
-    delete m_player2;
 }
 
 void Game::initGame() {
     (*m_board).initBoard();
-    (*m_player1).initPlayer(m_board);
-    (*m_player2).initPlayer(m_board);
+    (*m_playerWhite).initPlayer(m_board);
+    (*m_playerBlack).initPlayer(m_board);
+    m_numTurn = 0;
+    // On definie le joueur qui ne commence pas : noire
+    m_player_turn = m_playerWhite;
 }
 
 void Game::launchGame() {
-
-    // On definie le joueur qui ne commence pas : noire
-    m_numTurn = 0;
-    m_player_turn = m_player1;
-    if ((*m_player2).getColor() == Color::Black) {
-        m_player_turn = m_player2;
-    }
-    displayBoard();
 
     // boucle de jeu
     while (!(*m_board).hasPlayerWon((*m_player_turn).getColor())) {
@@ -40,9 +38,6 @@ void Game::launchGame() {
         // On change le numero du tour
         incrementNumTurn();
 
-        // On affiche les informations du tour
-        (*m_gameUI).displayTurnInfo(m_numTurn, (*m_player_turn).getColor());
-
         // on recupere le move et on verifie qu'il soit correct
         Move move;
         do {
@@ -52,20 +47,38 @@ void Game::launchGame() {
         // On joue le coup
         (*m_board).addMoveToBoard(move);
 
-        // On affiche le coup
-        (*m_gameUI).displayMove(move);
-
-        // On afiche le plateau
-        displayBoard();
     }
 }
+
+bool Game::nextTurn(Move move) {
+    if (!(*m_board).isMoveValid(move)) {
+        // Lunch exception
+    } else {
+        // On place le move
+        m_last_move = move;
+        (*m_board).addMoveToBoard(move);
+
+        bool isHadPlayerWin = m_board->hasPlayerWon(m_player_turn->getColor());
+
+        if (isHadPlayerWin) {
+            m_mediator->sendMessageToUI(MESSAGE::END_GAME);
+            return true;
+        } else {
+            // On change le joueur qui a le trait
+            changePlayerTurn();
+
+            // On change le numero du tour
+            incrementNumTurn();
+        }
+    }
+    return false;
+}
+
 
 bool Game::isGameFinished() {
     return (*m_board).hasPlayerWon(Color::White) ||
            (*m_board).hasPlayerWon(Color::Black);
 }
-
-void Game::displayBoard() const { (*m_gameUI).displayBoard(m_board); }
 
 void Game::incrementNumTurn() {
     if ((*m_player_turn).getColor() == Color::White) {
@@ -74,15 +87,54 @@ void Game::incrementNumTurn() {
 }
 
 void Game::changePlayerTurn() {
-    if ((*m_player1).getColor() == (*m_player_turn).getColor()) {
-        m_player_turn = m_player2;
+    if ((*m_playerWhite).getColor() == (*m_player_turn).getColor()) {
+        m_player_turn = m_playerBlack;
     } else {
-        m_player_turn = m_player1;
+        m_player_turn = m_playerWhite;
     }
 }
 
-Board *Game::getBoard() const { return m_board; }
+Board * Game::getBoard() const { return m_board; }
 
 int Game::getNumTurn() const { return m_numTurn; }
 
-Player *Game::getPlayerTurn() const { return m_player_turn; }
+ std::shared_ptr<Player> Game::getPlayerTurn() const { return m_player_turn; }
+
+void Game::WaitingInstruction() {
+    MESSAGE current_message = MESSAGE::NONE;
+    // m_mediator->sendMessageToUI(MESSAGE::SEND_PLAYER_TURN);
+    // m_mediator->sendMessageToUI(MESSAGE::SEND_PLAYER_TURN);
+
+
+    while (current_message != ACK_END_GAME){
+        current_message = m_mediator->getRemoveFirstMessageToGame();
+        switch (current_message)
+        {
+        case MESSAGE::ASK_FOR_NUM_TURN:
+            m_mediator->setNumTurn(m_numTurn);
+            m_mediator->sendMessageToUI(MESSAGE::SEND_NUM_TURN);
+            break;
+        case MESSAGE::ASK_FOR_PLAYER_TURN:
+            m_mediator->setPlayerTurn(m_player_turn->getColor());
+            m_mediator->sendMessageToUI(MESSAGE::SEND_PLAYER_TURN);
+            break;
+        case MESSAGE::ASK_FOR_GAME_INIT:
+            initGame();
+            m_mediator->sendMessageToUI(MESSAGE::DONE_GAME_INIT);
+            break;
+        case MESSAGE::ASK_NEXT_TURN:
+            nextTurn(m_player_turn->makeMove(m_board));
+            m_mediator->sendMessageToUI(MESSAGE::DONE_NEXT_TURN);
+            break;
+        case MESSAGE::ASK_FOR_LAST_MOVE:
+            m_mediator->setLastMove(m_last_move);
+            m_mediator->sendMessageToUI(MESSAGE::SEND_LAST_MOVE);
+            break;
+        
+        default:
+            break;
+        }
+        Sleep(10);
+    }
+    
+}

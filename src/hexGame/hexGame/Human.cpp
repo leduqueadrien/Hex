@@ -1,14 +1,19 @@
 
 #include "Human.hpp"
 
-Human::Human(Color color, GameUI *gameUI)
-    : Player::Player(color, true), m_gameUI(gameUI) {}
+Human::Human(Color color,std::shared_ptr<Mediator> mediator)
+    : Player::Player(color, true), m_mediator(mediator) {}
 
 Human::~Human() {}
 
 Move Human::makeMove(Board *current_board) {
-    Move move(m_color);
-    (*m_gameUI).getPlayerMove(move);
+    m_mediator->sendMessageToUI(MESSAGE::ASK_FOR_MOVE);
+    MESSAGE message = MESSAGE::NONE;
+    while (message != MESSAGE::SEND_MOVE) {
+        message = m_mediator->getRemoveMessageToGame(MESSAGE::SEND_MOVE);
+    }
+    Move move = m_mediator->getMove();
+    move.color = m_color;
     return move;
 }
 

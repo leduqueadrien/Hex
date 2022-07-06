@@ -1,27 +1,30 @@
 
 #include "ConsoleUI.hpp"
-#include <hexGame/Board.hpp>
-#include <hexGame/IterNeighbour.hpp>
-#include <hexGame/gameUtils.hpp>
+#include <AI/MonteCarlo.hpp>
+#include <AI/RandomAI.hpp>
+#include <hexGame/Game.hpp>
+#include <hexGame/Human.hpp>
 #include <iostream>
+#include <string>
 
-int main() {
-    Board board(3);
+int main(int, char const **) {
+    std::cout << "Starting Game" << std::endl;
 
-    ConsoleUI console;
+    GameUI *gameUI = new ConsoleUI();
+    Player *player1 = new MonteCarlo(Color::White);
+    Player *player2 = new MonteCarlo(Color::Black);
+    // Player *player2 = new Human(Color::Black, gameUI);
+    int board_size = 7;
 
-    console.displayBoard(&board);
+    Game *game = new Game(gameUI, player1, player2, board_size);
 
-    board.addMoveToBoard(Move(Color::White, 0, 0));
-    board.addMoveToBoard(Move(Color::Black, 0, 1));
-    board.addMoveToBoard(Move(Color::Black, 1, 0));
+    (*game).initGame();
+    (*game).launchGame();
 
-    console.displayBoard(&board);
+    std::cout << "End Game" << std::endl;
 
-    IterNeighbour itN(&board, 0, 0);
+    delete game;
+    delete gameUI;
 
-    for (itN.begin(); *itN != itN.end(); ++itN) {
-        std::cout << "i:" << (**itN).getI() << " j:" << (**itN).getJ()
-                  << " color:" << (**itN).getColor() << std::endl;
-    }
+    return 0;
 }

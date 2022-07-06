@@ -7,11 +7,17 @@ set(CONS_APP mainCons)
 
 set(SOURCES
     MainHexCons.cpp
-    ConsoleUI.cpp
+    GamePrinter.cpp
+    HomePage.cpp
+    Menu.cpp
+    GameUI.cpp
 )
-
-set(HEADERS
-    ConsoleUI.hpp
+    
+    set(HEADERS
+    GamePrinter.hpp
+    HomePage.hpp
+    Menu.hpp
+    GameUI.hpp
 )
 
 
@@ -24,7 +30,7 @@ set(HEADERS
 add_executable(${CONS_APP} ${SOURCES} ${HEADERS})
 
 target_link_libraries(${CONS_APP} PUBLIC
-	HexGameLib
+    HexGameLib
     #ncurses ?
 )
 
@@ -47,7 +53,7 @@ install(TARGETS ${CONS_APP} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 
 if (STUFF_TESTING)
 
-	set(TEST_CONS testCons)
+    set(TEST_CONS testCons)
 
     set(TEST_SOURCES
         testCons.cpp
@@ -59,10 +65,10 @@ if (STUFF_TESTING)
     )
 
 
-	add_executable(${TEST_CONS} ${TEST_SOURCES} ${TEST_HEADERS})
+    add_executable(${TEST_CONS} ${TEST_SOURCES} ${TEST_HEADERS})
 
     target_link_libraries(${TEST_CONS} PUBLIC
-	    HexGameLib
+        HexGameLib
     )
 
     target_include_directories(${TEST_CONS} PUBLIC
@@ -73,6 +79,6 @@ if (STUFF_TESTING)
 ############################## INSTALL/PACKAGING ##############################
 ###############################################################################
 
-	install(TARGETS ${TEST_CONS} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+    install(TARGETS ${TEST_CONS} DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 
 endif()

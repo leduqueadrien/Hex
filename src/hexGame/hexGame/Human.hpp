@@ -3,7 +3,9 @@
 
 #include "HexGameLib_export.hpp"
 
-#include "GameUI.hpp"
+#include <memory>
+
+#include "Mediator.hpp"
 #include "Player.hpp"
 
 /**
@@ -12,18 +14,15 @@
 class Human final : public Player {
 
   private:
-    /**
-     * @brief user interface of the game
-     */
-    GameUI *m_gameUI;
+    std::shared_ptr<Mediator> m_mediator;
 
   public:
     /**
      * @brief constructor
      * @param color player's color
-     * @param gameUI user interface of the game
+     * @param mediator mediator between Game and UI
      */
-    HEXGAMELIB_EXPORT Human(Color color, GameUI *gameUI);
+    HEXGAMELIB_EXPORT Human(Color color, std::shared_ptr<Mediator> mediator);
 
     /**
      * @brief destructor
