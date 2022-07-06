@@ -1,7 +1,9 @@
 bin
 build
+buildVS
 .vscode
 .vs
 Benchmark
 
 thirdParty
+CMakeSettings.json
