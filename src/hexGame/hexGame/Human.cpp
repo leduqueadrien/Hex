@@ -1,4 +1,10 @@
 
+#ifdef _WIN32
+    #include <Windows.h>
+#else
+    #include <unistd.h>
+#endif
+
 #include "Human.hpp"
 
 Human::Human(Color color,std::shared_ptr<Mediator> mediator)
@@ -11,6 +17,7 @@ Move Human::makeMove(Board *current_board) {
     MESSAGE message = MESSAGE::NONE;
     while (message != MESSAGE::SEND_MOVE) {
         message = m_mediator->getRemoveMessageToGame(MESSAGE::SEND_MOVE);
+        Sleep(50);
     }
     Move move = m_mediator->getMove();
     move.color = m_color;

@@ -18,6 +18,7 @@ public:
     void main();
     Parameters menuHandler();
     void gameProcessing();
-    bool waitingUntil(MESSAGE);
+    void waitingUntil(MESSAGE message);
+    bool gameRunner();
     void display();
 };

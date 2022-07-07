@@ -17,7 +17,8 @@ class GamePrinter {
     void GamePrinter::addMove(Move move);
     std::string displayTile(Color color);
     void displayBoard();
-    void displayTurnInfo(int, Color);
-    void displayMove(Move);
+    void displayTurnInfo(int numTurn, Color color);
+    void displayMove(Move Move);
+    void displayWinner(Color color);
     Move getPlayerMove();
 };

@@ -29,7 +29,9 @@ typedef enum MESSAGE {
     END_GAME,               // 11
     ACK_END_GAME,           // 12
     ASK_NEXT_TURN,          // 13
-    DONE_NEXT_TURN          // 14
+    DONE_NEXT_TURN,         // 14
+    TURN_MAKE,              // 15
+    END_DISPLAY             // 16
 } MESSAGE;
 
 class Game;
@@ -47,6 +49,7 @@ private:
     std::shared_ptr<Move> m_last_move;
     std::shared_ptr<bool> m_is_game_finished;
     std::shared_ptr<Color> m_player_turn;
+    std::shared_ptr<Color> m_winner_player;
 
 public:
     Mediator() = default;
@@ -71,8 +74,8 @@ public:
     void setLastMove(Move move);
     Move getMove();
     void setMove(Move move);
-
-
+    Color getWinnerPlayer();
+    void setWinnerPlayer(Color color);
 
 };
 

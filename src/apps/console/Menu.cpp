@@ -64,7 +64,7 @@ bool MenuPlayer::action(int choice, Parameters& param, std::shared_ptr<Menu>& cu
 		current_menu = std::make_shared<MenuHome>();
 		break;
 	case 2:
-		param.setValue(param_type, "RamdomAI");
+		param.setValue(param_type, "Random");
 		current_menu = std::make_shared<MenuHome>();
 		break;
 	case 3:

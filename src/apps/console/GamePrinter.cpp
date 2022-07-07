@@ -97,6 +97,15 @@ void GamePrinter::displayMove(Move move) {
     std::cout << "(" << move.i + 1 << "," << move.j + 1 << ")" << std::endl;
 }
 
+void GamePrinter::displayWinner(Color color) {
+    std::string winner;
+    if (color == Color::White)
+        winner = "White";
+    else
+        winner = "Black";
+    std::cout << "Winner : " << winner << std::endl;
+}
+
 Move GamePrinter::getPlayerMove() {
     Move move;
     std::cout << "line number : ";

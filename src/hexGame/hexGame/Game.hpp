@@ -16,6 +16,7 @@
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/tool-errors/linker-tools-error-lnk2019?view=msvc-160
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/compiler-errors-1/fatal-error-c1083?view=msvc-160
 
+typedef enum MESSAGE MESSAGE;
 class Mediator;
 
 /**
@@ -55,7 +56,7 @@ class Game final {
 
     Move m_last_move;
 
-    std::shared_ptr<Mediator> m_mediator;
+    Mediator* m_mediator;
 
   public:
     /**
@@ -64,9 +65,10 @@ class Game final {
      * @param player1 player 1
      * @param player2 player 2
      * @param boarSize size of the board
+     * @param mediator pointor to the mediator
      */
     HEXGAMELIB_EXPORT Game( std::shared_ptr<Player> playerWhite,  std::shared_ptr<Player> playerBlack,
-                           int boardSize, const std::shared_ptr<Mediator>& mediator);
+                           int boardSize, Mediator* mediator);
 
     /**
      * @brief destructor
@@ -107,17 +109,9 @@ class Game final {
     HEXGAMELIB_EXPORT void initGame();
 
     /**
-     * @brief launch the game
+     * @brief run the game 
      */
-    HEXGAMELIB_EXPORT void launchGame();
-
-    /**
-     * @brief Change the turn of the game
-     * 
-     * @param move VALID move to play
-     * @return 
-     */
-    HEXGAMELIB_EXPORT bool nextTurn(Move move);
+    HEXGAMELIB_EXPORT void gameRunner();
 
     /**
      * @brief is the game is finished
@@ -125,5 +119,10 @@ class Game final {
      */
     HEXGAMELIB_EXPORT bool isGameFinished();
 
-    HEXGAMELIB_EXPORT void WaitingInstruction();
+    /**
+     * @brief wait until the MESSAGE message is received
+     * @param message message to wait
+     * @return void 
+     */
+    HEXGAMELIB_EXPORT void waitingUntil(MESSAGE message);
 };

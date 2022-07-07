@@ -8,7 +8,7 @@
 #include <AI/MonteCarlo.hpp>
 
 void lunchGameWaiting(std::shared_ptr<Game> game) {
-    game->WaitingInstruction();
+    game->gameRunner();
 }
 
 bool Mediator::createGame(const Parameters& param) {
@@ -16,7 +16,7 @@ bool Mediator::createGame(const Parameters& param) {
     std::shared_ptr<Player> playerBlack = createPlayer(param, Color::Black);
     int board_size = atoi(param.getValue("BoardSize").c_str());
 
-    m_game = std::make_shared<Game>(playerWhite, playerBlack, board_size, std::shared_ptr<Mediator>(this));
+    m_game = std::make_shared<Game>(playerWhite, playerBlack, board_size, this);
 
     m_game_thread = new std::thread(lunchGameWaiting, m_game);
 
@@ -179,6 +179,16 @@ Move Mediator::getMove() {
 
 void Mediator::setMove(Move move) {
     m_move = std::make_shared<Move>(move);
+}
+
+Color Mediator::getWinnerPlayer() {
+    Color color = *m_winner_player;
+    m_winner_player.reset();
+    return color;
+}
+
+void Mediator::setWinnerPlayer(Color color) {
+    m_winner_player = std::make_shared<Color>(color);
 }
 
 void LOGGER(const std::string& chaine) {
