@@ -12,7 +12,7 @@ GameUI::GameUI() : m_mediator(std::make_shared<Mediator>()) {}
 void GameUI::main() {
     Parameters param = menuHandler();
     int board_size = atoi(param.getValue("BoardSize").c_str());
-    m_gamePrinter = std::make_shared<GamePrinter>(board_size);
+    m_gamePrinter = std::make_shared<Printer>(board_size);
 
     m_mediator->createGame(param);
     gameRunner();

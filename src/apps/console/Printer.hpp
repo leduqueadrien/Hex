@@ -5,16 +5,16 @@
 #include <vector>
 #include <gameUtils.hpp>
 
-class GamePrinter {
+class Printer {
   private:
     int m_board_size;
     std::vector<Color> m_board;
 
   public:
-    GamePrinter(int board_size);
-    ~GamePrinter();
+    Printer(int board_size);
+    ~Printer();
 
-    void GamePrinter::addMove(Move move);
+    void addMove(Move move);
     std::string displayTile(Color color);
     void displayBoard();
     void displayTurnInfo(int numTurn, Color color);

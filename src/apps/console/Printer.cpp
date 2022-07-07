@@ -1,25 +1,25 @@
 
-#include "GamePrinter.hpp"
+#include "Printer.hpp"
 #include <cmath>
 #include <iostream>
 
 
-GamePrinter::GamePrinter(int board_size) : m_board_size(board_size) {
+Printer::Printer(int board_size) : m_board_size(board_size) {
     m_board.reserve(board_size*board_size);
     std::vector<Color>::iterator it;
     for(int i=0; i<m_board_size*m_board_size; ++i)
         m_board.push_back(Color::Undefined);
 }
 
-GamePrinter::~GamePrinter() {}
+Printer::~Printer() {}
 
-void GamePrinter::addMove(Move move) {
+void Printer::addMove(Move move) {
     try {
         m_board.at(move.i*m_board_size + move.j) = move.color;
     } catch (const std::out_of_range &) {}
 }
 
-std::string GamePrinter::displayTile(Color color) {
+std::string Printer::displayTile(Color color) {
     switch (color) {
     case Color::White:
         return "B";
@@ -35,7 +35,7 @@ std::string GamePrinter::displayTile(Color color) {
     }
 }
 
-void GamePrinter::displayBoard() {
+void Printer::displayBoard() {
     // On recupere la taille du plateau
     int boardSize = m_board_size;
     // On calcul sur combien de caractere est la taille
@@ -82,7 +82,7 @@ void GamePrinter::displayBoard() {
     std::cout << std::endl;
 }
 
-void GamePrinter::displayTurnInfo(int numTurn, Color color) {
+void Printer::displayTurnInfo(int numTurn, Color color) {
     std::cout << "Turn number " << numTurn << ", ";
     if (color == Color::White) {
         std::cout << "White";
@@ -92,12 +92,12 @@ void GamePrinter::displayTurnInfo(int numTurn, Color color) {
     std::cout << " turn" << std::endl;
 }
 
-void GamePrinter::displayMove(Move move) {
+void Printer::displayMove(Move move) {
     std::cout << "player's move : ";
     std::cout << "(" << move.i + 1 << "," << move.j + 1 << ")" << std::endl;
 }
 
-void GamePrinter::displayWinner(Color color) {
+void Printer::displayWinner(Color color) {
     std::string winner;
     if (color == Color::White)
         winner = "White";
@@ -106,7 +106,7 @@ void GamePrinter::displayWinner(Color color) {
     std::cout << "Winner : " << winner << std::endl;
 }
 
-Move GamePrinter::getPlayerMove() {
+Move Printer::getPlayerMove() {
     Move move;
     std::cout << "line number : ";
     std::cin >> move.i;
