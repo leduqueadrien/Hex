@@ -27,7 +27,7 @@ Parameters GameUI::menuHandler() {
 bool GameUI::gameRunner() {
     MESSAGE receive_message;
     bool is_game_finished = false;
-    m_gamePrinter->displayBoard();
+    m_gamePrinter->initDisplay();
     while(!is_game_finished) {
         receive_message = m_mediator->getRemoveFirstMessageToUI();
         switch (receive_message) {
@@ -47,7 +47,7 @@ bool GameUI::gameRunner() {
         Sleep(50);
     }
     Color color = m_mediator->getWinnerPlayer();
-    m_gamePrinter->displayWinner(color);
+    // m_gamePrinter->displayWinner(color);
     return is_game_finished;
 }
 
@@ -75,7 +75,7 @@ void GameUI::display() {
 
     m_gamePrinter->displayTurnInfo(num_turn, player_turn);
     m_gamePrinter->displayMove(last_move);
-    m_gamePrinter->addMove(last_move);
-    m_gamePrinter->displayBoard();
+    // m_gamePrinter->addMove(last_move);
+    // m_gamePrinter->displayBoard();
 
 }

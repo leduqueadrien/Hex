@@ -50,8 +50,6 @@ void Game::gameRunner() {
         // On verifie si le joueur a gagne
         isGameFinished = m_board->hasPlayerWon(m_player_turn->getColor());
 
-        m_mediator->sendMessageToUI(MESSAGE::TURN_MAKE);
-        waitingUntil(MESSAGE::END_DISPLAY);
 
         if (!isGameFinished) {
             // On change le joueur qui a le trait
@@ -60,6 +58,8 @@ void Game::gameRunner() {
             // On change le numero du tour
             incrementNumTurn();
         }
+        m_mediator->sendMessageToUI(MESSAGE::TURN_MAKE);
+        waitingUntil(MESSAGE::END_DISPLAY);
     }
     m_mediator->setWinnerPlayer(m_player_turn->getColor());
     m_mediator->sendMessageToUI(MESSAGE::END_GAME);
