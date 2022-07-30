@@ -2,8 +2,10 @@
 #include "Parameters.hpp"
 
 Parameters::Parameters() {
-	setValue("BoardSize", "7");
-    setValue("PlayerWhiteType", "Human");
+	setValue("BoardSize", "3");
+	// setValue("BoardSize", "7");
+    setValue("PlayerWhiteType", "Random");
+    // setValue("PlayerWhiteType", "Human");
 	setValue("PlayerBlackType", "MonteCarlo");
 	setValue("MonteCarloNbGame", "100");
 }

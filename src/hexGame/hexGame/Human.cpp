@@ -16,7 +16,7 @@ Move Human::makeMove(Board *current_board) {
     m_mediator->sendMessageToUI(MESSAGE::ASK_FOR_MOVE);
     MESSAGE message = MESSAGE::NONE;
     while (message != MESSAGE::SEND_MOVE) {
-        message = m_mediator->getRemoveMessageToGame(MESSAGE::SEND_MOVE);
+        message = m_mediator->getRemoveFirstMessageToGame();
         Sleep(50);
     }
     Move move = m_mediator->getMove();

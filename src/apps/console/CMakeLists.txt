@@ -7,19 +7,19 @@ set(CONS_APP mainCons)
 
 set(SOURCES
     MainHexCons.cpp
-    Printer.cpp
-    HomePage.cpp
     Menu.cpp
+    UI.cpp
     GameUI.cpp
     PositionSaver.cpp
+    Cursor.cpp
 )
 
 set(HEADERS
-    Printer.hpp
-    HomePage.hpp
     Menu.hpp
+    UI.hpp
     GameUI.hpp
     PositionSaver.hpp
+    Cursor.hpp
 )
 
 

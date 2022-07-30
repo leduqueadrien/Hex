@@ -1,24 +1,48 @@
 
 #pragma once
 
-#include <Mediator.hpp>
+#include <string>
+#include <vector>
+#include <gameUtils.hpp>
 #include <memory>
-#include <Parameters.hpp>
+#ifdef _WIN32
+    #include <Windows.h>
+#endif
 
-#include "Printer.hpp"
+#include "PositionSaver.hpp"
+#include "Cursor.hpp"
 
 class GameUI {
-private:
-    std::shared_ptr<Mediator> m_mediator;
-    std::shared_ptr<Printer> m_gamePrinter;
-    
-public:
-    GameUI();
-    ~GameUI() = default;
-    void main();
-    Parameters menuHandler();
-    void gameProcessing();
-    void waitingUntil(MESSAGE message);
-    bool gameRunner();
-    void display();
+  private:
+    int m_board_size;
+    std::vector<Color> m_board;
+    PositionSaver m_numTurnSaver;
+    PositionSaver m_playerSaver;
+    PositionSaver m_getTileSaver;
+    PositionSaver m_lastMove;
+    std::vector<TileSaver> m_boardSaver;
+    std::shared_ptr<Cursor> m_cursor;
+
+  public:
+    GameUI(std::shared_ptr<Cursor> cursor, int board_size);
+    ~GameUI();
+
+    void initDisplay();
+    void initNumTurn();
+    void initLastMove();
+    void initPlayer();
+    void initBoard();
+    void initGetTile();
+    COORD getCoord();
+    void displayMove(Move move);
+    void addMove(Move move);
+    std::string displayTile(Color color);
+    void displayBoard();
+    void displayTurnInfo(int numTurn, Color color);
+    void displayLastMove(Move Move);
+    void displayWinner(Color color);
+    int convertCharToInt(char line);
+    std::string getPlayerString(Color color);
+    std::string getTileString(Color color);
+    Move getPlayerMove();
 };

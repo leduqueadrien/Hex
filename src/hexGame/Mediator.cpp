@@ -124,8 +124,10 @@ MESSAGE Mediator::getRemoveMessageToUI(MESSAGE message) {
     MESSAGE mes = MESSAGE::NONE;
     mtx_ui.lock();
     std::list<MESSAGE>::iterator it = std::find(m_list_ui.begin(), m_list_ui.end(), message);
-    if (it != m_list_ui.end())
+    if (it != m_list_ui.end()) {
         mes = *it;
+        std::remove(m_list_ui.begin(), m_list_ui.end(), message);
+    }
     mtx_ui.unlock();
     return mes;
 }
@@ -134,8 +136,10 @@ MESSAGE Mediator::getRemoveMessageToGame(MESSAGE message) {
     MESSAGE mes = MESSAGE::NONE;
     mtx_game.lock();
     std::list<MESSAGE>::iterator it = std::find(m_list_game.begin(), m_list_game.end(), message);
-    if (it != m_list_game.end())
+    if (it != m_list_game.end()) {
         mes = *it;
+        std::remove(m_list_game.begin(), m_list_game.end(), message);
+    }
     mtx_game.unlock();
     return mes;
 }
