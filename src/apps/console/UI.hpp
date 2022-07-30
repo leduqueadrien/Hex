@@ -2,6 +2,7 @@
 #pragma once
 
 #include <Mediator.hpp>
+#include <Message.hpp>
 #include <memory>
 #include <Parameters.hpp>
 

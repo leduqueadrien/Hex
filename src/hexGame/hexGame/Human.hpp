@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "Mediator.hpp"
+#include "Message.hpp"
 #include "Player.hpp"
 
 /**

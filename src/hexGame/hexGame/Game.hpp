@@ -8,6 +8,7 @@
 #include "Board.hpp"
 #include "Player.hpp"
 #include "Mediator.hpp"
+#include "Message.hpp"
 
 // Convention : blanc : haut en bas
 //				noire : gauche droite
@@ -16,7 +17,6 @@
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/tool-errors/linker-tools-error-lnk2019?view=msvc-160
 // https://docs.microsoft.com/fr-fr/cpp/error-messages/compiler-errors-1/fatal-error-c1083?view=msvc-160
 
-typedef enum MESSAGE MESSAGE;
 class Mediator;
 
 /**

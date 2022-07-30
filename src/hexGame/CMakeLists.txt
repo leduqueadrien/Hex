@@ -43,6 +43,7 @@ set(HEADERS
 	gameUtils.hpp
 	Parameters.hpp
 	Mediator.hpp
+	Message.hpp
 )
 
 add_library(${HEX_GAME_LIB_NAME} ${SOURCES} ${HEADERS})
