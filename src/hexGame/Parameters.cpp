@@ -1,31 +1,44 @@
 
 #include "Parameters.hpp"
+#include <algorithm>
 
 Parameters::Parameters() {
-	setValue("BoardSize", "3");
-	// setValue("BoardSize", "7");
-    setValue("PlayerWhiteType", "Random");
-    // setValue("PlayerWhiteType", "Human");
-	setValue("PlayerBlackType", "MonteCarlo");
-	setValue("MonteCarloNbGame", "100");
+
+    std::shared_ptr<ParameterBoardSize> paramBoardSize = std::make_shared<ParameterBoardSize>("BoardSize", 3);
+    m_parameters.push_front(std::move(paramBoardSize));
+
+    std::shared_ptr<ParameterPlayer> paramPlayerWhite = std::make_shared<ParameterPlayer>("PlayerWhite", Color::White, "Random", 100);
+    m_parameters.push_front(std::move(paramPlayerWhite));
+
+    std::shared_ptr<ParameterPlayer> paramPlayerBlack = std::make_shared<ParameterPlayer>("PlayerBlack", Color::Black, "Random", 100);
+    m_parameters.push_front(std::move(paramPlayerBlack));
+
 }
 
-void Parameters::addKeyValue(const std::string& key, const std::string& value) {
-	m_map.insert({key, value});
-}
+// void Parameters::addParameter(const std::string& name, std::shared_ptr<Parameter> parameter) {
+//     m_parameters[name] = parameter;
+// }
+// void Parameters::addParameter(const std::string& name, std::shared_ptr<ParameterBoardSize> parameter) {
+//     m_parameters[name] = parameter;
+// }
 
-const std::string& Parameters::getValue(const std::string& key) const {
-	return m_map.at(key);
-}
+// void Parameters::addParameter(const std::string& name, std::shared_ptr<ParameterPlayer> parameter) {
+//     m_parameters[name] = parameter;
+// }
 
-void Parameters::setValue(const std::string key, const std::string& value) {
-	m_map.insert_or_assign(key, value);
+std::shared_ptr<Parameter> Parameters::getParameter(const std::string& name) {
+    ComparaisonStringParameter compare(name);
+    return *std::find_if(begin(), end(), compare);
 }
 
 Parameters::const_iterator Parameters::begin() {
-	return m_map.begin();
+    return m_parameters.begin();
 }
 
 Parameters::const_iterator Parameters::end() {
-	return m_map.end();
+    return m_parameters.end();
 }
+
+ParameterBoardSize::ParameterBoardSize(const std::string& name, int boardSize) : Parameter(name), m_boardSize(boardSize) {}
+
+ParameterPlayer::ParameterPlayer(const std::string& name, Color color, const std::string& playerType, int monteCarloNbGame) : Parameter(name), m_color(color), m_playerType(playerType), m_monteCarloNbGame(monteCarloNbGame) {}

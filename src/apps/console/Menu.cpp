@@ -87,7 +87,7 @@ MenuBoard::MenuBoard(std::shared_ptr<Cursor> cursor) : Menu(cursor) {
 
 bool MenuBoard::action(int choice, Parameters& param, std::shared_ptr<Menu>& current_menu) {
 	if (choice % 2 == 1) {
-		param.setValue("BoardSize", std::to_string(choice));
+        std::dynamic_pointer_cast<ParameterBoardSize>(param.getParameter("BoardSize"))->setBoardSize(choice);
 		current_menu = std::make_shared<MenuHome>(m_cursor);
 		return true;
 	} else {
@@ -108,21 +108,21 @@ MenuPlayer::MenuPlayer(Color player_color, std::shared_ptr<Cursor> cursor) : Men
 }
 
 bool MenuPlayer::action(int choice, Parameters& param, std::shared_ptr<Menu>& current_menu) {
-	std::string param_type = "PlayerWhiteType";
+	std::string param_type = "PlayerWhite";
 	if (m_player_color == Color::Black)
-		param_type = "PlayerBlackType";
+		param_type = "PlayerBlack";
 	switch (choice)
 	{
 	case 1:
-		param.setValue(param_type, "Human");
+        std::dynamic_pointer_cast<ParameterPlayer>(param.getParameter(param_type))->setPlayerType("Human");
 		current_menu = std::make_shared<MenuHome>(m_cursor);
 		break;
 	case 2:
-		param.setValue(param_type, "Random");
+        std::dynamic_pointer_cast<ParameterPlayer>(param.getParameter(param_type))->setPlayerType("Random");
 		current_menu = std::make_shared<MenuHome>(m_cursor);
 		break;
 	case 3:
-		param.setValue(param_type, "MonteCarlo");
+        std::dynamic_pointer_cast<ParameterPlayer>(param.getParameter(param_type))->setPlayerType("MonteCarlo");
 		current_menu = std::make_shared<MenuMonteCarlo>(m_player_color, m_cursor);
 	default:
 		return false;
@@ -143,7 +143,10 @@ MenuMonteCarlo::MenuMonteCarlo(Color player_color, std::shared_ptr<Cursor> curso
 bool MenuMonteCarlo::action(int choice, Parameters& param, std::shared_ptr<Menu>& current_menu) {
 	if (choice < 1)
 		return false;
-	param.setValue("MonteCarloNbGame", std::to_string(choice));
+    std::string param_type = "PlayerWhite";
+	if (m_player_color == Color::Black)
+		param_type = "PlayerBlack";
+    std::dynamic_pointer_cast<ParameterPlayer>(param.getParameter(param_type))->setMonteCarloNbGame(choice);
 	current_menu = std::make_shared<MenuHome>(m_cursor);
 	return true;
 }

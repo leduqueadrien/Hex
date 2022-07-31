@@ -35,8 +35,8 @@ private:
 public:
     Mediator() = default;
     ~Mediator() = default;
-    std::shared_ptr<Player> Mediator::createPlayer(const Parameters& param, Color color);
-    bool createGame(const Parameters& param);
+    std::shared_ptr<Player> Mediator::createPlayer(Parameters& param, Color color);
+    bool createGame(Parameters& param);
     void sendMessageToUI(MESSAGE message);
     void sendMessageToGame(MESSAGE message);
     MESSAGE getFirstMessageToUI();

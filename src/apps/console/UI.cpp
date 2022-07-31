@@ -21,7 +21,7 @@ void UI::mainMenu() {
 }
 
 void UI::mainGame() {
-    int board_size = atoi(m_parameters.getValue("BoardSize").c_str());
+    int board_size = std::dynamic_pointer_cast<ParameterBoardSize>(m_parameters.getParameter("BoardSize"))->getBoardSize();
     m_gameUI = std::make_shared<GameUI>(m_cursor, board_size);
 
     m_mediator->createGame(m_parameters);
