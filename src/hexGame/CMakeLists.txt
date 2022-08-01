@@ -49,6 +49,10 @@ set(HEADERS
 add_library(${HEX_GAME_LIB_NAME} ${SOURCES} ${HEADERS})
 target_compile_definitions(${HEX_GAME_LIB_NAME} PRIVATE "HexGameLib_EXPORT")
 
+# thread package dependency
+find_package(Threads REQUIRED)
+target_link_libraries(${HEX_GAME_LIB_NAME} PUBLIC Threads::Threads)
+
 # generate a file suitable for preprocessor inclusion which contains EXPORT macros to be used in library classes
 generate_export_header(
 	${HEX_GAME_LIB_NAME}
