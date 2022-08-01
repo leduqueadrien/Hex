@@ -61,7 +61,11 @@ bool UI::gameRunner() {
             default:
                 break;
         }
-        Sleep(50);
+        #ifdef _WIN32
+            Sleep(50);
+        #else
+            sleep(1);
+        #endif
     }
     Color color = m_mediator->getWinnerPlayer();
     m_gameUI->displayWinner(color);
@@ -72,7 +76,11 @@ void UI::waitingUntil(MESSAGE message) {
     MESSAGE receive_message = MESSAGE::NONE;
     while(receive_message != message) {
         receive_message = m_mediator->getRemoveFirstMessageToUI();
-        Sleep(50);
+        #ifdef _WIN32
+            Sleep(50);
+        #else
+            sleep(1);
+        #endif
     }
 }
 

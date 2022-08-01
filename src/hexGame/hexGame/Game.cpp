@@ -112,7 +112,11 @@ void Game::waitingUntil(MESSAGE message) {
         default:
             break;
         }
-        Sleep(50);
+        #ifdef _WIN32
+            Sleep(50);
+        #else
+            sleep(1);
+        #endif
     }
     
 }

@@ -17,7 +17,11 @@ Move Human::makeMove(Board *current_board) {
     MESSAGE message = MESSAGE::NONE;
     while (message != MESSAGE::SEND_MOVE) {
         message = m_mediator->getRemoveFirstMessageToGame();
-        Sleep(50);
+        #ifdef _WIN32
+            Sleep(50);
+        #else
+            sleep(1);
+        #endif
     }
     Move move = m_mediator->getMove();
     move.color = m_color;

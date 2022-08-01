@@ -33,7 +33,6 @@ class GameUI {
     void initPlayer();
     void initBoard();
     void initGetTile();
-    COORD getCoord();
     void displayMove(Move move);
     void addMove(Move move);
     std::string displayTile(Color color);

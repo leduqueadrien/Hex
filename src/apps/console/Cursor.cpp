@@ -8,9 +8,7 @@
 #endif
 
 Cursor::Cursor(int line, int column) : m_line(line), m_column(column) {
-    #ifdef _WIN32
         setVirtualTerminal();
-    #endif
     setAlternateBuffer();
     clearScreen();
 }
@@ -41,21 +39,23 @@ void Cursor::setPositionToOrigine() {
 }
 
 bool Cursor::setVirtualTerminal() {
-    // Set output mode to handle virtual terminal sequences
-    HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hout == INVALID_HANDLE_VALUE) {
-        return false;
-    }
+    #ifdef _WIN32
+        // Set output mode to handle virtual terminal sequences
+        HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hout == INVALID_HANDLE_VALUE) {
+            return false;
+        }
 
-    DWORD dwMode = 0;
-    if (!GetConsoleMode(hout, &dwMode)) {
-        return false;
-    }
+        DWORD dwMode = 0;
+        if (!GetConsoleMode(hout, &dwMode)) {
+            return false;
+        }
 
-    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    if (!SetConsoleMode(hout, dwMode)) {
-        return false;
-    }
+        dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+        if (!SetConsoleMode(hout, dwMode)) {
+            return false;
+        }
+    #endif
     return true;
 }
 

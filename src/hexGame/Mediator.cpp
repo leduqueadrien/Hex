@@ -6,6 +6,7 @@
 #include <hexGame/Human.hpp>
 #include <AI/RandomAI.hpp>
 #include <AI/MonteCarlo.hpp>
+#include <cstring>
 
 void lunchGameWaiting(std::shared_ptr<Game> game) {
     game->gameRunner();
