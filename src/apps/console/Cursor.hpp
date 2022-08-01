@@ -33,7 +33,7 @@ public:
     void quitAlternateBuffer();
     void saveCursorPosition(PositionSaver& position) const;
     std::string getString(const std::string& str, PositionSaver& position);
-    std::string Cursor::getString(const std::string& str);
+    std::string getString(const std::string& str);
     void deleteLine(int num, PositionSaver& position);
     void waitEnter();
 
