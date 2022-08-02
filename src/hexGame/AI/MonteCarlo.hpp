@@ -13,13 +13,13 @@
  */
 class MonteCarlo : public AI {
 
-  private:
+private:
     /**
      * @brief board used to explore games
      */
     Board *m_explore_board;
 
-  public:
+public:
     /**
      * @brief constructor
      * @param color player's color
@@ -58,14 +58,15 @@ class MonteCarlo : public AI {
      * @brief Make a move on the exploration game
      * @param color color of the player that had to play
      * @param adjList AdjacentList of all the playable
-     * @return void 
+     * @return void
      */
-    HEXGAMELIB_EXPORT void simulateMove(Color color, AdjacentList<Tile> &adjList);
+    HEXGAMELIB_EXPORT void simulateMove(Color color,
+                                        AdjacentList<Tile> &adjList);
 
     /**
      * @brief reset the exploration board in order to be like the current
      * state of the board
-     * @param current_board current board 
+     * @param current_board current board
      * @return void
      */
     HEXGAMELIB_EXPORT void ResetExploreBoard(Board *current_board);
@@ -86,7 +87,7 @@ tableau compteur et pas de mutex A decider avec du benchmark
         - Ne pas faire un check de fin de partie a chaque coup.
                 Le faire tous les 2, 3, ... coup
                 A la fin de la partie, quand toutes les pieces ont ete posse
-        
+        
         - Trouver un algo opti de recherche de chemin dans un graph
 
         - Utiliser namespace pour la librairie

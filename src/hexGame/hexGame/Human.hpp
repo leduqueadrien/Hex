@@ -14,10 +14,10 @@
  */
 class Human final : public Player {
 
-  private:
+private:
     std::shared_ptr<Mediator> m_mediator;
 
-  public:
+public:
     /**
      * @brief constructor
      * @param color player's color

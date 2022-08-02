@@ -5,7 +5,7 @@
 
 class GraphicUI final : public GameUI {
 
-  private:
+private:
     /**
      * @brief the SDL2 framework
      */
@@ -16,7 +16,7 @@ class GraphicUI final : public GameUI {
      */
     int m_margin;
 
-  public:
+public:
     /**
      * @brief Construct a new GraphicUI object
      */

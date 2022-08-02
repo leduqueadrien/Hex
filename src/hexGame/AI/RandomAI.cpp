@@ -6,9 +6,11 @@
 RandomAI::RandomAI(Color color) : AI::AI(color) {
 }
 
-RandomAI::~RandomAI() {}
+RandomAI::~RandomAI() {
+}
 
-void RandomAI::initPlayer(Board *board) {}
+void RandomAI::initPlayer(Board *board) {
+}
 
 Move RandomAI::makeMove(Board *current_board) {
     std::srand((int)std::time(nullptr));

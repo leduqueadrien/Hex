@@ -3,15 +3,17 @@
 
 #include "Game.hpp"
 #ifdef _WIN32
-    #include <Windows.h>
+#include <Windows.h>
 #else
-    #include <unistd.h>
+#include <unistd.h>
 #endif
 
-Game::Game(std::shared_ptr<Player> playerWhite, std::shared_ptr<Player> playerBlack, int boardSize, Mediator* mediator)
-    : m_boardSize(boardSize), m_board(nullptr),
-      m_playerWhite(playerWhite), m_playerBlack(playerBlack), m_numTurn(0),
-      m_player_turn(nullptr), m_last_move(), m_mediator(mediator) {
+Game::Game(std::shared_ptr<Player> playerWhite,
+           std::shared_ptr<Player> playerBlack, int boardSize,
+           Mediator *mediator)
+    : m_boardSize(boardSize), m_board(nullptr), m_playerWhite(playerWhite),
+      m_playerBlack(playerBlack), m_numTurn(0), m_player_turn(nullptr),
+      m_last_move(), m_mediator(mediator) {
     m_board = new Board(boardSize);
 }
 
@@ -35,8 +37,8 @@ void Game::gameRunner() {
     initGame();
 
     // boucle de jeu
-    while(!isGameFinished) {
-    // while (!(*m_board).hasPlayerWon((*m_player_turn).getColor())) {
+    while (!isGameFinished) {
+        // while (!(*m_board).hasPlayerWon((*m_player_turn).getColor())) {
 
         // on recupere le move et on verifie qu'il soit correct
         do {
@@ -49,7 +51,6 @@ void Game::gameRunner() {
 
         // On verifie si le joueur a gagne
         isGameFinished = m_board->hasPlayerWon(m_player_turn->getColor());
-
 
         if (!isGameFinished) {
             // On change le joueur qui a le trait
@@ -84,19 +85,24 @@ void Game::changePlayerTurn() {
     }
 }
 
-Board * Game::getBoard() const { return m_board; }
+Board *Game::getBoard() const {
+    return m_board;
+}
 
-int Game::getNumTurn() const { return m_numTurn; }
+int Game::getNumTurn() const {
+    return m_numTurn;
+}
 
- std::shared_ptr<Player> Game::getPlayerTurn() const { return m_player_turn; }
+std::shared_ptr<Player> Game::getPlayerTurn() const {
+    return m_player_turn;
+}
 
 void Game::waitingUntil(MESSAGE message) {
     MESSAGE current_message = MESSAGE::NONE;
 
-    while (current_message != message){
+    while (current_message != message) {
         current_message = m_mediator->getRemoveFirstMessageToGame();
-        switch (current_message)
-        {
+        switch (current_message) {
         case MESSAGE::ASK_FOR_NUM_TURN:
             m_mediator->setNumTurn(m_numTurn);
             m_mediator->sendMessageToUI(MESSAGE::SEND_NUM_TURN);
@@ -112,11 +118,10 @@ void Game::waitingUntil(MESSAGE message) {
         default:
             break;
         }
-        #ifdef _WIN32
-            Sleep(50);
-        #else
-            sleep(1);
-        #endif
+#ifdef _WIN32
+        Sleep(50);
+#else
+        sleep(1);
+#endif
     }
-    
 }

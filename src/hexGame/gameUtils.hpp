@@ -29,13 +29,12 @@ typedef struct Move {
 
     /**
      * @brief Constructor
-     *
      * @param _color color of the move
      * @param _i line of the move
      * @param _j column of the move
      */
     Move(Color _color = Color::Undefined, int _i = -1, int _j = -1)
-        : i(_i), j(_j), color(_color) {}
+        : i(_i), j(_j), color(_color) {
+    }
 
 } Move;
-

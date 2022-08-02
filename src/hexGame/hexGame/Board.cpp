@@ -5,20 +5,23 @@
 #include <stdexcept>
 
 Board::Board(int size) : m_size(size), m_nbOccupiedTIles(0) {
-    m_board.reserve(size*size);
-    for (int i = 0; i < m_size*m_size; ++i) {
-        m_board.push_back(new Tile(i/m_size, i%m_size));
+    m_board.reserve(size * size);
+    for (int i = 0; i < m_size * m_size; ++i) {
+        m_board.push_back(new Tile(i / m_size, i % m_size));
     }
 }
 
 Board::Board(Board *board)
-    : m_size((*board).size()), m_nbOccupiedTIles((*board).getNbOccupiedTiles()) {
-    m_board.reserve(m_size*m_size);
-    for (iterator it=board->begin(); it!=board->end(); ++it)
+    : m_size((*board).size()),
+      m_nbOccupiedTIles((*board).getNbOccupiedTiles()) {
+    m_board.reserve(m_size * m_size);
+    for (iterator it = board->begin(); it != board->end(); ++it)
         m_board.push_back(new Tile(**it));
 }
 
-Board::~Board() { deleteBoard(); }
+Board::~Board() {
+    deleteBoard();
+}
 
 void Board::initBoard() {
     m_nbOccupiedTIles = 0;
@@ -27,7 +30,7 @@ void Board::initBoard() {
 }
 
 void Board::addMoveToBoard(Move move) {
-    m_board.at(m_size*move.i + move.j)->setColor(move.color);
+    m_board.at(m_size * move.i + move.j)->setColor(move.color);
     ++m_nbOccupiedTIles;
 }
 
@@ -93,7 +96,7 @@ void Board::deleteBoard() {
 Tile *Board::getTile(int i, int j) const {
     try {
         if (i >= 0 && i < m_size && j >= 0 && j < m_size)
-            return m_board.at(m_size*i + j);
+            return m_board.at(m_size * i + j);
         else
             throw std::out_of_range("");
     } catch (std::out_of_range e) {
@@ -101,26 +104,32 @@ Tile *Board::getTile(int i, int j) const {
     }
 }
 
-int Board::size() const { return m_size; }
+int Board::size() const {
+    return m_size;
+}
 
-int Board::getNbOccupiedTiles() const { return m_nbOccupiedTIles; }
+int Board::getNbOccupiedTiles() const {
+    return m_nbOccupiedTIles;
+}
 
-void Board::setNbOccupiedTiles(int nbFreeTiles) { m_nbOccupiedTIles = nbFreeTiles; }
+void Board::setNbOccupiedTiles(int nbFreeTiles) {
+    m_nbOccupiedTIles = nbFreeTiles;
+}
 
 Board &Board::operator=(const Board &board) {
     if (this != &board) {
         if (board.m_size != m_size) {
             m_size = board.m_size;
             deleteBoard();
-            m_board.reserve(m_size*m_size);
-            Tile* t;
-            for (const_iterator it=board.begin(); it!=board.end(); it++) {
+            m_board.reserve(m_size * m_size);
+            Tile *t;
+            for (const_iterator it = board.begin(); it != board.end(); it++) {
                 t = *it;
                 m_board.push_back(new Tile(t->getI(), t->getJ(), t->getColor(),
                                            t->getIsChecked()));
             }
         } else {
-            for (const_iterator it=board.begin(); it!=board.end(); it++)
+            for (const_iterator it = board.begin(); it != board.end(); it++)
                 *(getTile((**it).getI(), (**it).getJ())) = (**it);
         }
     }

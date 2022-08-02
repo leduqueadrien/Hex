@@ -1,19 +1,19 @@
 
 #pragma once
 
-#include <string>
-#include <vector>
 #include <gameUtils.hpp>
 #include <memory>
+#include <string>
+#include <vector>
 #ifdef _WIN32
-    #include <Windows.h>
+#include <Windows.h>
 #endif
 
-#include "PositionSaver.hpp"
 #include "Cursor.hpp"
+#include "PositionSaver.hpp"
 
 class GameUI {
-  private:
+private:
     int m_board_size;
     std::vector<Color> m_board;
     PositionSaver m_numTurnSaver;
@@ -23,7 +23,7 @@ class GameUI {
     std::vector<TileSaver> m_boardSaver;
     std::shared_ptr<Cursor> m_cursor;
 
-  public:
+public:
     GameUI(std::shared_ptr<Cursor> cursor, int board_size);
     ~GameUI();
 

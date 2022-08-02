@@ -10,7 +10,7 @@
  * @brief player bases class
  */
 class Player {
-  protected:
+protected:
     /**
      * @brief color of the player
      */
@@ -21,7 +21,7 @@ class Player {
      */
     bool m_isHuman;
 
-  public:
+public:
     /**
      * @brief constructor
      * @param color player's color

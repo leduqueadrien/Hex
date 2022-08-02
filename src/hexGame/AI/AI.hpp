@@ -11,12 +11,13 @@
  */
 class AI : public Player {
 
-  public:
+public:
     /**
      * @brief constructor
      * @param color player's color
      */
-    HEXGAMELIB_EXPORT AI(Color color) : Player::Player(color, false) {}
+    HEXGAMELIB_EXPORT AI(Color color) : Player::Player(color, false) {
+    }
 
     /**
      * @brief destructor

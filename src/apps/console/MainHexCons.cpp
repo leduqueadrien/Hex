@@ -4,7 +4,7 @@
 #include <string>
 
 int main(int, char const **) {
-    
+
     UI ui;
     ui.main();
 

@@ -3,11 +3,16 @@
 #include "Game.hpp"
 #include "Human.hpp"
 
-Player::Player(Color color) : Player(color, true) {}
+Player::Player(Color color) : Player(color, true) {
+}
 
-Player::Player(Color color, bool isHuman)
-    : m_color(color), m_isHuman(isHuman) {}
+Player::Player(Color color, bool isHuman) : m_color(color), m_isHuman(isHuman) {
+}
 
-Color Player::getColor() const { return m_color; }
+Color Player::getColor() const {
+    return m_color;
+}
 
-bool Player::getIsHuman() const { return m_isHuman; }
+bool Player::getIsHuman() const {
+    return m_isHuman;
+}

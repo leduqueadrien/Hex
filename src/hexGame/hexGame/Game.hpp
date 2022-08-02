@@ -6,9 +6,9 @@
 #include <memory>
 
 #include "Board.hpp"
-#include "Player.hpp"
 #include "Mediator.hpp"
 #include "Message.hpp"
+#include "Player.hpp"
 
 // Convention : blanc : haut en bas
 //				noire : gauche droite
@@ -23,7 +23,7 @@ class Mediator;
  * @brief class game
  */
 class Game final {
-  private:
+private:
     /**
      * @brief size of the board game
      */
@@ -52,13 +52,13 @@ class Game final {
     /**
      * @brief the player who had to play
      */
-     std::shared_ptr<Player> m_player_turn;
+    std::shared_ptr<Player> m_player_turn;
 
     Move m_last_move;
 
-    Mediator* m_mediator;
+    Mediator *m_mediator;
 
-  public:
+public:
     /**
      * @brief constructor
      * @param gameUI user interface use on the game
@@ -67,8 +67,9 @@ class Game final {
      * @param boarSize size of the board
      * @param mediator pointor to the mediator
      */
-    HEXGAMELIB_EXPORT Game( std::shared_ptr<Player> playerWhite,  std::shared_ptr<Player> playerBlack,
-                           int boardSize, Mediator* mediator);
+    HEXGAMELIB_EXPORT Game(std::shared_ptr<Player> playerWhite,
+                           std::shared_ptr<Player> playerBlack, int boardSize,
+                           Mediator *mediator);
 
     /**
      * @brief destructor
@@ -91,7 +92,7 @@ class Game final {
      * @brief Get the Player Turn object
      * @return player who had to play
      */
-    HEXGAMELIB_EXPORT  std::shared_ptr<Player> getPlayerTurn() const;
+    HEXGAMELIB_EXPORT std::shared_ptr<Player> getPlayerTurn() const;
 
     /**
      * @brief increment the turn number
@@ -109,7 +110,7 @@ class Game final {
     HEXGAMELIB_EXPORT void initGame();
 
     /**
-     * @brief run the game 
+     * @brief run the game
      */
     HEXGAMELIB_EXPORT void gameRunner();
 
@@ -122,7 +123,7 @@ class Game final {
     /**
      * @brief wait until the MESSAGE message is received
      * @param message message to wait
-     * @return void 
+     * @return void
      */
     HEXGAMELIB_EXPORT void waitingUntil(MESSAGE message);
 };

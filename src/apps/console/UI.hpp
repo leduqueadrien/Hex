@@ -3,12 +3,12 @@
 
 #include <Mediator.hpp>
 #include <Message.hpp>
-#include <memory>
 #include <Parameters.hpp>
+#include <memory>
 
+#include "Cursor.hpp"
 #include "GameUI.hpp"
 #include "Menu.hpp"
-#include "Cursor.hpp"
 
 class UI {
 private:
@@ -16,7 +16,7 @@ private:
     std::shared_ptr<GameUI> m_gameUI;
     std::shared_ptr<Cursor> m_cursor;
     Parameters m_parameters;
-    
+
 public:
     UI();
     ~UI() = default;

@@ -7,8 +7,10 @@
 
 #define POINTS_COUNT 4
 
-static SDL_Point points[POINTS_COUNT] = {
-    {320, 200}, {300, 240}, {340, 240}, {320, 200}};
+static SDL_Point points[POINTS_COUNT] = {{320, 200},
+                                         {300, 240},
+                                         {340, 240},
+                                         {320, 200}};
 
 static SDL_Point points2[5000];
 

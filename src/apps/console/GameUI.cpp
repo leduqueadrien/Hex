@@ -1,11 +1,11 @@
 
 #include "GameUI.hpp"
 #include <cmath>
-#include <string>
 #include <sstream>
+#include <string>
 
-
-GameUI::GameUI(std::shared_ptr<Cursor> cursor, int board_size) : m_board_size(board_size), m_cursor(cursor) {
+GameUI::GameUI(std::shared_ptr<Cursor> cursor, int board_size)
+    : m_board_size(board_size), m_cursor(cursor) {
     m_cursor->clearScreen();
 }
 
@@ -44,15 +44,15 @@ void GameUI::initLastMove() {
 }
 
 void GameUI::initBoard() {
-    m_boardSaver.reserve(m_board_size*m_board_size);
-    for(int i=0; i<m_board_size*m_board_size; ++i)
+    m_boardSaver.reserve(m_board_size * m_board_size);
+    for (int i = 0; i < m_board_size * m_board_size; ++i)
         m_boardSaver.push_back(TileSaver());
-    
+
     // On affiche les indicateurs de colonnes
     m_cursor->newLine();
     m_cursor->print("  ");
     int A_hex = 65;
-    for (int i=A_hex; i<A_hex+m_board_size; ++i) {
+    for (int i = A_hex; i < A_hex + m_board_size; ++i) {
         m_cursor->print(" ");
         m_cursor->print(char(i));
     }
@@ -62,27 +62,27 @@ void GameUI::initBoard() {
     // On affiche le plateau
     // On affiche la première ligne
     m_cursor->print("  ");
-    for (int j=0; j<m_board_size; ++j) {
-        m_cursor->printDrawMode(j==0 ? 'l': 'w');
+    for (int j = 0; j < m_board_size; ++j) {
+        m_cursor->printDrawMode(j == 0 ? 'l' : 'w');
         m_cursor->printDrawMode('q');
     }
     m_cursor->printlnDrawMode('k');
 
     // On affiche toutes les autres lignes
-    for (int i=0; i<m_board_size; ++i) {
-        bool is_last = i == m_board_size-1;
+    for (int i = 0; i < m_board_size; ++i) {
+        bool is_last = i == m_board_size - 1;
 
         // On affiche le numero de la ligne
-        if ((i+1) < 10)
+        if ((i + 1) < 10)
             m_cursor->print(" ");
-        m_cursor->print(std::to_string(i+1));
+        m_cursor->print(std::to_string(i + 1));
         // On affiche les espaces pour le décalage entre chaque ligne
-        for (int k=i; k>0; --k)
+        for (int k = i; k > 0; --k)
             m_cursor->print(" ");
         // On affiche la ligne du milieu de la ligne i
-        for (int j=0; j<m_board_size; ++j) {
+        for (int j = 0; j < m_board_size; ++j) {
             m_cursor->printDrawMode('x');
-            m_cursor->saveCursorPosition(m_boardSaver.at(i*m_board_size+j));
+            m_cursor->saveCursorPosition(m_boardSaver.at(i * m_board_size + j));
             m_cursor->print(" ");
         }
         m_cursor->printlnDrawMode('x');
@@ -90,15 +90,15 @@ void GameUI::initBoard() {
         // On affiche la ligne entre la case i et i+1
         // On affiche les espaces pour le décalage entre chaque ligne
         m_cursor->print("  ");
-        for (int k=i; k>0; --k)
+        for (int k = i; k > 0; --k)
             m_cursor->print(" ");
-        
-        for (int j=0; j<m_board_size; ++j) {
+
+        for (int j = 0; j < m_board_size; ++j) {
             if (j == 0)
                 m_cursor->printDrawMode('m');
             else
                 m_cursor->printDrawMode('v');
-            m_cursor->printDrawMode(is_last? 'q': 'w');
+            m_cursor->printDrawMode(is_last ? 'q' : 'w');
         }
         if (is_last) {
             m_cursor->printlnDrawMode('j');
@@ -125,7 +125,7 @@ std::string GameUI::getTileString(Color color) {
 }
 
 void GameUI::displayMove(Move move) {
-    TileSaver* tile = &(m_boardSaver.at(move.i*m_board_size+move.j));
+    TileSaver *tile = &(m_boardSaver.at(move.i * m_board_size + move.j));
     tile->setColor(move.color);
     m_cursor->print(getTileString(move.color), *tile);
 }
@@ -147,7 +147,7 @@ void GameUI::displayTurnInfo(int numTurn, Color color) {
 
 void GameUI::displayLastMove(Move move) {
     std::stringstream ss;
-    ss << "player's move : (" << (move.i+1) << "," << (move.j+1) << ")";
+    ss << "player's move : (" << (move.i + 1) << "," << (move.j + 1) << ")";
     m_cursor->println(ss.str(), m_lastMove);
 }
 
@@ -181,11 +181,11 @@ Move GameUI::getPlayerMove() {
         move.j = -1;
 
     try {
-        move.i = std::stoi(&(output.c_str()[1]))-1;
-    } catch(const std::invalid_argument&) {
+        move.i = std::stoi(&(output.c_str()[1])) - 1;
+    } catch (const std::invalid_argument &) {
         move.i = -1;
     }
-    
+
     if (move.i < 0 || move.i > m_board_size)
         move.i = -1;
 

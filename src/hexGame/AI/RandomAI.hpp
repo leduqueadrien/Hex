@@ -12,7 +12,7 @@
  */
 class RandomAI : public AI {
 
-  public:
+public:
     /**
      * @brief constructor
      * @param color player's color

@@ -8,14 +8,17 @@ Neighbour &operator++(Neighbour &n) {
 
 IterNeighbour::IterNeighbour(Board *board, int i, int j)
     : m_i(i), m_j(j), m_numCurrentNeighbour(Neighbour::NOT_INIT),
-      m_board(board) {}
+      m_board(board) {
+}
 
 Tile *IterNeighbour::begin() {
     operator++();
     return operator*();
 }
 
-Tile *IterNeighbour::end() { return nullptr; }
+Tile *IterNeighbour::end() {
+    return nullptr;
+}
 
 Tile *IterNeighbour::operator*() {
     switch (m_numCurrentNeighbour) {

@@ -4,14 +4,14 @@
 
 class Framework {
 
-  public:
+public:
     SDL_Window *window;
     SDL_Renderer *renderer;
     // TTF_Font * font;
     int m_height;
     int m_width;
 
-  public:
+public:
     Framework(int, int);
     ~Framework();
 };

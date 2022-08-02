@@ -1,9 +1,11 @@
 
 #include "PositionSaver.hpp"
 
-
-PositionSaver::PositionSaver(int line, int column) : m_line(line), m_column(column) {}
-PositionSaver::PositionSaver(): PositionSaver(1, 1) {}
+PositionSaver::PositionSaver(int line, int column)
+    : m_line(line), m_column(column) {
+}
+PositionSaver::PositionSaver() : PositionSaver(1, 1) {
+}
 
 int PositionSaver::getLine() const {
     return m_line;
@@ -21,8 +23,11 @@ void PositionSaver::setColumn(int column) {
     m_column = column;
 }
 
-TileSaver::TileSaver(int line, int column) : PositionSaver::PositionSaver(line, column), m_color(Color::Undefined) {}
-TileSaver::TileSaver() : TileSaver(1, 1) {}
+TileSaver::TileSaver(int line, int column)
+    : PositionSaver::PositionSaver(line, column), m_color(Color::Undefined) {
+}
+TileSaver::TileSaver() : TileSaver(1, 1) {
+}
 
 Color TileSaver::getColor() const {
     return m_color;

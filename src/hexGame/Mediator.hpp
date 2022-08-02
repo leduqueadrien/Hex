@@ -4,23 +4,22 @@
 #include "HexGameLib_export.hpp"
 #include "Message.hpp"
 
-#include <memory>
-#include <list>
-#include <thread>
 #include <Parameters.hpp>
 #include <gameUtils.hpp>
 #include <hexGame/Game.hpp>
 #include <hexGame/Player.hpp>
 #include <iostream>
+#include <list>
+#include <memory>
 #include <mutex>
-
+#include <thread>
 
 class Game;
 
 class Mediator {
 private:
     std::shared_ptr<Game> m_game;
-    std::thread* m_game_thread;
+    std::thread *m_game_thread;
     std::list<MESSAGE> m_list_ui;
     std::list<MESSAGE> m_list_game;
     std::mutex mtx_ui;
@@ -35,8 +34,8 @@ private:
 public:
     Mediator() = default;
     ~Mediator() = default;
-    std::shared_ptr<Player> createPlayer(Parameters& param, Color color);
-    bool createGame(Parameters& param);
+    std::shared_ptr<Player> createPlayer(Parameters &param, Color color);
+    bool createGame(Parameters &param);
     void sendMessageToUI(MESSAGE message);
     void sendMessageToGame(MESSAGE message);
     MESSAGE getFirstMessageToUI();
@@ -57,9 +56,8 @@ public:
     void setMove(Move move);
     Color getWinnerPlayer();
     void setWinnerPlayer(Color color);
-
 };
 
-void LOGGER(const std::string& chaine);
+void LOGGER(const std::string &chaine);
 void LOGGER(MESSAGE message);
 void lunchGameWaiting(std::shared_ptr<Game> game);

@@ -10,7 +10,7 @@
  *
  */
 class Tile final {
-  private:
+private:
     /**
      * @brief line of the tile in the board
      */
@@ -29,8 +29,7 @@ class Tile final {
      */
     bool m_isChecked;
 
-  public:
-    
+public:
     /**
      * @brief Default constructor
      */

@@ -8,9 +8,12 @@ MonteCarlo::MonteCarlo(Color color, Board *board)
     : AI::AI(color), m_explore_board(board) {
 }
 
-MonteCarlo::MonteCarlo(Color color) : MonteCarlo(color, nullptr) {}
+MonteCarlo::MonteCarlo(Color color) : MonteCarlo(color, nullptr) {
+}
 
-MonteCarlo::~MonteCarlo() { delete m_explore_board; }
+MonteCarlo::~MonteCarlo() {
+    delete m_explore_board;
+}
 
 Move MonteCarlo::makeMove(Board *current_board) {
     std::srand((int)std::time(nullptr));
@@ -33,7 +36,9 @@ Move MonteCarlo::makeMove(Board *current_board) {
     ResetExploreBoard(current_board);
 
     // On sauvegarde les tiles qui n'ont pas ete jouees
-    adjList_save.fillWithContainer(*m_explore_board, [](Tile*t) -> bool { return t->getColor() == Color::Undefined; });
+    adjList_save.fillWithContainer(*m_explore_board, [](Tile *t) -> bool {
+        return t->getColor() == Color::Undefined;
+    });
 
     for (int i = 0; i < adjList_save.size(); ++i) {
         // On recupere la tile qui va etre jouer
@@ -121,7 +126,8 @@ void MonteCarlo::ResetExploreBoard(Board *current_board) {
             (*(*m_explore_board).getTile(i, j)).setIsChecked(false);
         }
     }
-    (*m_explore_board).setNbOccupiedTiles((*current_board).getNbOccupiedTiles());
+    (*m_explore_board)
+        .setNbOccupiedTiles((*current_board).getNbOccupiedTiles());
 }
 
 void MonteCarlo::initPlayer(Board *board) {

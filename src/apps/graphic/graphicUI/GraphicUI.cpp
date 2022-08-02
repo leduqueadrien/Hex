@@ -7,7 +7,8 @@ GraphicUI::GraphicUI() : m_margin(100) {
     m_framework = new Framework(800, 800);
 }
 
-GraphicUI::~GraphicUI() {}
+GraphicUI::~GraphicUI() {
+}
 
 void GraphicUI::displayBoard(Board *board) {
     int tileSize = (m_framework->m_width - 2 * m_margin) / board->size();
@@ -28,4 +29,5 @@ void GraphicUI::displayBoard(Board *board) {
     SDL_RenderPresent(m_framework->renderer);
 }
 
-void GraphicUI::getPlayerMove(Move &move) {}
+void GraphicUI::getPlayerMove(Move &move) {
+}

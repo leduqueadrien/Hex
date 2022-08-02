@@ -12,7 +12,7 @@
  * @brief Class board
  */
 class Board final {
-  private:
+private:
     /**
      * @brief size of the board
      */
@@ -28,7 +28,7 @@ class Board final {
      */
     int m_nbOccupiedTIles;
 
-  public:
+public:
     /**
      * @brief Constructor
      * @param size size of the board
@@ -128,19 +128,19 @@ class Board final {
     /**
      * @brief iterator through the board
      */
-    using iterator = std::vector<Tile*>::iterator;
-    
+    using iterator = std::vector<Tile *>::iterator;
+
     /**
      * @brief constant iterator though the board
      */
-    using const_iterator = std::vector<Tile*>::const_iterator;
+    using const_iterator = std::vector<Tile *>::const_iterator;
 
     /**
      * @brief begin the iteration
      * @return begin iterator
      */
     HEXGAMELIB_EXPORT iterator begin();
-    
+
     /**
      * @brief begin the constant iteration
      * @return begin constant iterator
@@ -152,11 +152,10 @@ class Board final {
      * @return end iterator
      */
     HEXGAMELIB_EXPORT iterator end();
-    
+
     /**
      * @brief end the constant iterator
      * @return end constant iterator
      */
     HEXGAMELIB_EXPORT const_iterator end() const;
-
 };

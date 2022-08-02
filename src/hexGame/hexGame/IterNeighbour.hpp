@@ -28,13 +28,12 @@ typedef enum Neighbour {
  */
 Neighbour &operator++(Neighbour &n);
 
-
 /**
  * @brief iterate on the tile's neighbour
  *
  */
 class IterNeighbour {
-  private:
+private:
     /**
      * @brief line of the tile on which we iterate
      */
@@ -55,7 +54,7 @@ class IterNeighbour {
      */
     Board *m_board;
 
-  public:
+public:
     /**
      * @brief constructor
      * @param board : board of the tile on which we iterate
