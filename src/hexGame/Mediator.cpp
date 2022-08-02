@@ -2,6 +2,7 @@
 #include "Mediator.hpp"
 #include <AI/MonteCarlo.hpp>
 #include <AI/RandomAI.hpp>
+#include <AI/MonteCarloCrossGame.hpp>
 #include <algorithm>
 #include <cstring>
 #include <hexGame/Human.hpp>
@@ -47,9 +48,12 @@ std::shared_ptr<Player> Mediator::createPlayer(Parameters &param, Color color) {
     } else if (!strcmp(player_type.c_str(), "Random")) {
         player = std::make_shared<RandomAI>(color);
         LOGGER("RANDOM");
-    } else {
+    } else if (!strcmp(player_type.c_str(), "MonteCarlo")){
         player = std::make_shared<MonteCarlo>(color);
         LOGGER("MONTE CARLO");
+    } else {
+        player = std::make_shared<MonteCarloCrossGame>(color);
+        LOGGER("MONTE CARLO CROSS GAME");
     }
 
     return player;
