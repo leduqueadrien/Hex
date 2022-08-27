@@ -13,7 +13,7 @@
  */
 class MonteCarlo : public AI {
 
-private:
+protected:
     /**
      * @brief board used to explore games
      */
@@ -87,7 +87,15 @@ tableau compteur et pas de mutex A decider avec du benchmark
         - Ne pas faire un check de fin de partie a chaque coup.
                 Le faire tous les 2, 3, ... coup
                 A la fin de la partie, quand toutes les pieces ont ete posse
-        
+        
+
+
+
+
+
+
+
+
         - Trouver un algo opti de recherche de chemin dans un graph
 
         - Utiliser namespace pour la librairie

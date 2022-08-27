@@ -5,14 +5,14 @@
 #include <ctime>
 
 MonteCarloCrossGame::MonteCarloCrossGame(Color color, Board *board)
-    : AI::AI(color), m_explore_board(board) {
+    : MonteCarlo::MonteCarlo(color, board) {
 }
 
 MonteCarloCrossGame::MonteCarloCrossGame(Color color) : MonteCarloCrossGame(color, nullptr) {
 }
 
 MonteCarloCrossGame::~MonteCarloCrossGame() {
-    delete m_explore_board;
+    
 }
 
 Move MonteCarloCrossGame::makeMove(Board *current_board) {
@@ -71,58 +71,6 @@ Move MonteCarloCrossGame::makeMove(Board *current_board) {
     return chooseMove(current_board);
 }
 
-Color MonteCarloCrossGame::playUntilEnd(AdjacentList<Tile> &adjList) {
-    Color color = m_color;
-    int size = (*m_explore_board).size();
-
-    while ((*m_explore_board).getNbOccupiedTiles() != size * size) {
-        if (color == Color::Black) {
-            color = Color::White;
-        } else {
-            color = Color::Black;
-        }
-        simulateMove(color, adjList);
-    }
-    if ((*m_explore_board).hasPlayerWon(color)) {
-        return color;
-    } else {
-        if (color == Color::Black)
-            return Color::White;
-        else
-            return Color::Black;
-    }
-}
-
-void MonteCarloCrossGame::simulateMove(Color color, AdjacentList<Tile> &adjList) {
-    size_t size;
-    Move move;
-    int index;
-    move.color = color;
-
-    // On choisit les coordonnees du coup
-    size = adjList.size();
-    index = std::rand() % size;
-    move.i = (*adjList[index]).getI();
-    move.j = (*adjList[index]).getJ();
-    adjList.remove(index);
-
-    // On joue le coup
-    (*m_explore_board).addMoveToBoard(move);
-}
-
-void MonteCarloCrossGame::ResetExploreBoard(Board *current_board) {
-    Color c;
-    int size_board = (*m_explore_board).size();
-    for (int i = 0; i < size_board; ++i) {
-        for (int j = 0; j < size_board; ++j) {
-            c = (*(*current_board).getTile(i, j)).getColor();
-            (*(*m_explore_board).getTile(i, j)).setColor(c);
-            (*(*m_explore_board).getTile(i, j)).setIsChecked(false);
-        }
-    }
-    (*m_explore_board)
-        .setNbOccupiedTiles((*current_board).getNbOccupiedTiles());
-}
 
 void MonteCarloCrossGame::initPlayer(Board *board) {
     m_explore_board = new Board(board);

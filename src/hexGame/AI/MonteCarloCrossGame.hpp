@@ -3,23 +3,16 @@
 
 #include "HexGameLib_export.hpp"
 
-#include <hexGame/Board.hpp>
-
-#include "AI.hpp"
-#include "AdjacentList.hpp"
+#include "MonteCarlo.hpp"
 
 #include <vector>
 
 /**
  * @brief AI based on Monte Carlo principal
  */
-class MonteCarloCrossGame : public AI {
+class MonteCarloCrossGame : public MonteCarlo {
 
 private:
-    /**
-     * @brief board used to explore games
-     */
-    Board *m_explore_board;
 
     std::vector<int> m_boardCounter;
 
@@ -50,32 +43,6 @@ public:
     HEXGAMELIB_EXPORT Move makeMove(Board *current_board);
 
     /**
-     * @brief from the current state of the board, simulate a game until
-     * the end
-     * @param adjlist AdjacentList that contain the tile that can
-     * be played by the players
-     * @return color of the winner
-     */
-    HEXGAMELIB_EXPORT Color playUntilEnd(AdjacentList<Tile> &adjlist);
-
-    /**
-     * @brief Make a move on the exploration game
-     * @param color color of the player that had to play
-     * @param adjList AdjacentList of all the playable
-     * @return void
-     */
-    HEXGAMELIB_EXPORT void simulateMove(Color color,
-                                        AdjacentList<Tile> &adjList);
-
-    /**
-     * @brief reset the exploration board in order to be like the current
-     * state of the board
-     * @param current_board current board
-     * @return void
-     */
-    HEXGAMELIB_EXPORT void ResetExploreBoard(Board *current_board);
-
-    /**
      * @brief Initialise the player
      * @param board current state of the board
      * @return void
@@ -95,18 +62,6 @@ public:
 Amelioration :
         - Utilisation de mutex et qu'un seul tableau compteur ou plusieur
 tableau compteur et pas de mutex A decider avec du benchmark
-
-        - Ne pas faire un check de fin de partie a chaque coup.
-                Le faire tous les 2, 3, ... coup
-                A la fin de la partie, quand toutes les pieces ont ete posse
-        
-
-
-
-
-
-
-
 
         - Trouver un algo opti de recherche de chemin dans un graph
 
