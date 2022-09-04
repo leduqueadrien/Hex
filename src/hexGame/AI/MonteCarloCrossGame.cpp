@@ -12,7 +12,6 @@ MonteCarloCrossGame::MonteCarloCrossGame(Color color) : MonteCarloCrossGame(colo
 }
 
 MonteCarloCrossGame::~MonteCarloCrossGame() {
-    
 }
 
 Move MonteCarloCrossGame::makeMove(Board *current_board) {

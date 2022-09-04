@@ -14,6 +14,9 @@ class MonteCarloCrossGame : public MonteCarlo {
 
 private:
 
+    /**
+     * @brief vector for count the number of win per tile.
+     */
     std::vector<int> m_boardCounter;
 
 public:
@@ -49,12 +52,29 @@ public:
      */
     HEXGAMELIB_EXPORT void initPlayer(Board *board) override;
 
+    /**
+     * @brief Initialise the board counter vector.
+     * @return void
+     */
     HEXGAMELIB_EXPORT void initGameCounter();
 
+    /**
+     * @brief Reset the board counter
+     * @return void
+     */
     HEXGAMELIB_EXPORT void resetCountBoard();
 
+    /**
+     * @brief Update the board counter from a win game.
+     * @return void
+     */
     HEXGAMELIB_EXPORT void updateBoardCounter();
 
+    /**
+     * @brief Choose the move to make from the board counter
+     * @param current_board current sate of the board
+     * @return Move make
+     */
     HEXGAMELIB_EXPORT Move chooseMove(Board *current_board);
 };
 

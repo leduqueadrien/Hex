@@ -29,8 +29,8 @@ set(SOURCES
 	Parameters.cpp
 	Mediator.cpp
 	)
-	
-    set(HEADERS
+
+set(HEADERS
 	AI/AI.hpp
 	AI/MonteCarlo.hpp
 	AI/MonteCarloCrossGame.hpp
