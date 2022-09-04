@@ -18,6 +18,7 @@ set(HEX_GAME_TARGET_NAME "${HEX_GAME_LIB_NAME}Targets")
 
 set(SOURCES
 	AI/MonteCarlo.cpp
+	AI/MonteCarloCrossGame.cpp
 	AI/RandomAI.cpp
 	hexGame/Board.cpp
 	hexGame/Human.cpp
@@ -28,10 +29,11 @@ set(SOURCES
 	Parameters.cpp
 	Mediator.cpp
 	)
-	
+
 set(HEADERS
 	AI/AI.hpp
 	AI/MonteCarlo.hpp
+	AI/MonteCarloCrossGame.hpp
 	AI/RandomAI.hpp
 	AI/AdjacentList.hpp
 	hexGame/Board.hpp

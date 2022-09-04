@@ -108,6 +108,7 @@ MenuPlayer::MenuPlayer(Color player_color, std::shared_ptr<Cursor> cursor)
     m_answers.push_back("Humain");
     m_answers.push_back("Aleatoire");
     m_answers.push_back("MonteCarlo");
+    m_answers.push_back("MonteCarloCrossGame");
 }
 
 bool MenuPlayer::action(int choice, Parameters &param,
@@ -134,6 +135,14 @@ bool MenuPlayer::action(int choice, Parameters &param,
             ->setPlayerType("MonteCarlo");
         current_menu =
             std::make_shared<MenuMonteCarlo>(m_player_color, m_cursor);
+        break;
+    case 4:
+        std::dynamic_pointer_cast<ParameterPlayer>(
+            param.getParameter(param_type))
+            ->setPlayerType("MonteCarloCrossGame");
+        current_menu =
+            std::make_shared<MenuMonteCarlo>(m_player_color, m_cursor);
+        break;
     default:
         return false;
         break;
