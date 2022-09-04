@@ -114,31 +114,12 @@ void GameUI::initGetTile() {
     m_cursor->saveCursorPosition(m_getTileSaver);
 }
 
-std::string GameUI::getTileString(Color color) {
-    if (color == Color::White) {
-        return "B";
-    } else if (color == Color::Black) {
-        return "N";
-    } else {
-        return " ";
-    }
-}
-
 void GameUI::displayMove(Move move) {
     TileSaver *tile = &(m_boardSaver.at(move.i * m_board_size + move.j));
     tile->setColor(move.color);
     m_cursor->print(getTileString(move.color), *tile);
 }
 
-std::string GameUI::getPlayerString(Color color) {
-    if (color == Color::White) {
-        return "White";
-    } else if (color == Color::Black) {
-        return "Black";
-    } else {
-        return "None ";
-    }
-}
 
 void GameUI::displayTurnInfo(int numTurn, Color color) {
     m_cursor->print(std::to_string(numTurn), m_numTurnSaver);
@@ -164,6 +145,26 @@ void GameUI::displayWinner(Color color) {
 
 int GameUI::convertCharToInt(char line) {
     return (int)(line)-97;
+}
+
+std::string GameUI::getPlayerString(Color color) {
+    if (color == Color::White) {
+        return "White";
+    } else if (color == Color::Black) {
+        return "Black";
+    } else {
+        return "None ";
+    }
+}
+
+std::string GameUI::getTileString(Color color) {
+    if (color == Color::White) {
+        return "B";
+    } else if (color == Color::Black) {
+        return "N";
+    } else {
+        return " ";
+    }
 }
 
 Move GameUI::getPlayerMove() {
