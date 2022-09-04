@@ -26,7 +26,7 @@ private:
     /**
      * @brief Board to store the color of each Tile
      */
-    std::vector<Color> m_board;
+    // std::vector<Color> m_board;
     
     /**
      * @brief Position where to print the turn number

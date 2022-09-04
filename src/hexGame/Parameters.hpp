@@ -204,7 +204,7 @@ public:
     std::shared_ptr<Parameter> getParameter(const std::string &name);
 
     /**
-     * @brief Make the class iterator
+     * @brief Iterator for the parameters
      */
     using const_iterator = std::list<std::shared_ptr<Parameter>>::iterator;
 

@@ -36,13 +36,3 @@ Color TileSaver::getColor() const {
 void TileSaver::setColor(Color color) {
     m_color = color;
 }
-
-std::string TileSaver::convertColorToString() {
-    if (m_color == Color::White) {
-        return "B";
-    } else if (m_color == Color::Black) {
-        return "N";
-    } else {
-        return " ";
-    }
-}
